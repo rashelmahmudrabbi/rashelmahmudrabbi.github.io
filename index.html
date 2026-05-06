@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rashel Mahmud Rabbi – Academic Portfolio</title>
+  <meta name="description" content="Academic portfolio of Rashel Mahmud Rabbi – Graduate Researcher in Computer Vision & AI, North Bengal International University, Bangladesh."/>
+  <meta name="keywords" content="Rashel Mahmud Rabbi, Computer Vision, AI, Deep Learning, Medical Image Analysis, Bangladesh, NBIU"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:     #0b1e3d;
+      --navy-mid: #10284f;
+      --navy-lt:  #1a3a6e;
+      --gold:     #c8952a;
+      --gold-lt:  #e8b84b;
+      --cream:    #f5f0e8;
+      --off-white:#fafaf8;
+      --text-dark:#1a1a2e;
+      --text-mid: #4a4a6a;
+      --border:   #ddd8cd;
+      --section-bg:#ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text-dark); font-size: 15px; }
+    h1,h2,h3,h4,h5 { font-family: 'Crimson Pro', serif; }
+
+    /* NAVBAR */
+    .navbar { background: var(--navy); padding: .75rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+    .navbar-brand { color: var(--gold) !important; font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: .5px; }
+    .navbar .nav-link { color: #ffffff !important; font-size: .8rem; font-weight: 500; letter-spacing: .4px; text-transform: uppercase; padding: .4rem .8rem !important; transition: color .2s; }
+    .navbar .nav-link:hover, .navbar .nav-link.active { color: var(--gold-lt) !important; }
+    .navbar-toggler { border-color: rgba(255,255,255,.3); }
+
+    /* HERO */
+    #hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3a6e 100%); color: #fff; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+    #hero::before { content:''; position:absolute; inset:0; pointer-events: none; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .hero-avatar { width:150px; height:150px; border-radius:50%; border:4px solid var(--gold); object-fit:cover; box-shadow:0 8px 32px rgba(0,0,0,.4); }
+    .hero-name { font-size: clamp(2rem,5vw,3rem); font-weight:700; letter-spacing:-.5px; line-height:1.1; color:#fff; }
+    .hero-title { color:var(--gold-lt); font-family:'DM Sans',sans-serif; font-size:.95rem; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; margin:.5rem 0 1.2rem; }
+    .hero-contact a { color:rgba(255,255,255,.8); text-decoration:none; font-size:.88rem; margin-right:1.2rem; transition:color .2s; }
+    .hero-contact a:hover { color:var(--gold-lt); }
+    .hero-contact i { margin-right:.3rem; color:var(--gold); }
+    .hero-socials .btn { border:1.5px solid rgba(255,255,255,.25); color:#fff; font-size:.8rem; padding:.32rem .85rem; border-radius:25px; transition:all .25s; }
+    .hero-socials .btn:hover { background:var(--gold); border-color:var(--gold); color:var(--navy); }
+    .hero-stats { display:flex; gap:2rem; margin-top:1.5rem; flex-wrap:wrap; }
+    .hero-stat { text-align:center; }
+    .hero-stat-num { font-family:'Crimson Pro',serif; font-size:2rem; font-weight:700; color:var(--gold-lt); line-height:1; }
+    .hero-stat-label { font-size:.72rem; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:.8px; }
+
+    /* SECTION SHELL */
+    .section-wrapper { padding: 4.5rem 0; }
+    .section-wrapper.alt-bg { background: var(--cream); }
+    .section-title { font-size:1.65rem; font-weight:700; color:var(--navy); position:relative; padding-bottom:.7rem; margin-bottom:2.2rem; }
+    .section-title::after { content:''; position:absolute; bottom:0; left:0; width:50px; height:3px; background:var(--gold); border-radius:2px; }
+
+    /* OBJECTIVE */
+    .objective-card { background:var(--navy); border-left:5px solid var(--gold); color:#e8e8f0; padding:2rem 2.2rem; border-radius:8px; font-size:1.02rem; line-height:1.8; box-shadow:0 4px 20px rgba(11,30,61,.12); }
+
+    /* RESEARCH INTERESTS */
+    .interest-card { background:var(--section-bg); border:1px solid var(--border); border-radius:10px; padding:1.4rem 1.2rem; text-align:center; transition:all .25s; height:100%; }
+    .interest-card:hover { border-color:var(--gold); box-shadow:0 6px 24px rgba(200,149,42,.15); transform:translateY(-2px); }
+    .interest-icon { font-size:2rem; color:var(--gold); margin-bottom:.7rem; }
+    .interest-topic { font-family:'Crimson Pro',serif; font-size:1.1rem; font-weight:700; color:var(--navy); margin-bottom:.4rem; }
+    .interest-desc { font-size:.82rem; color:var(--text-mid); }
+
+    /* TIMELINE */
+    .timeline { position:relative; padding-left:2rem; }
+    .timeline::before { content:''; position:absolute; left:.6rem; top:0; bottom:0; width:2px; background:var(--border); }
+    .timeline-item { position:relative; margin-bottom:2rem; }
+    .timeline-dot { position:absolute; left:-1.98rem; top:.35rem; width:14px; height:14px; border-radius:50%; background:var(--gold); border:3px solid var(--off-white); box-shadow:0 0 0 2px var(--gold); }
+    .timeline-card { background:var(--section-bg); border:1px solid var(--border); border-radius:8px; padding:1.4rem 1.6rem; box-shadow:0 2px 12px rgba(0,0,0,.05); transition:box-shadow .25s; }
+    .timeline-card:hover { box-shadow:0 6px 24px rgba(11,30,61,.1); }
+    .timeline-card h5 { color:var(--navy); font-size:1.05rem; margin-bottom:.3rem; }
+    .timeline-card .org { color:var(--gold); font-size:.88rem; font-weight:500; }
+    .timeline-card .period { color:var(--text-mid); font-size:.82rem; }
+    .timeline-card ul { margin:.8rem 0 0; padding-left:1.2rem; color:var(--text-mid); }
+    .timeline-card ul li { margin-bottom:.3rem; font-size:.9rem; }
+
+    /* EDUCATION */
+    .edu-table { background:var(--section-bg); border-radius:10px; overflow:hidden; box-shadow:0 2px 14px rgba(0,0,0,.06); }
+    .edu-table thead { background:var(--navy); color:#fff; }
+    .edu-table thead th { font-family:'DM Sans',sans-serif; font-weight:500; font-size:.82rem; letter-spacing:.5px; text-transform:uppercase; padding:1rem 1.1rem; border:none; }
+    .edu-table tbody td { padding:.9rem 1.1rem; vertical-align:middle; border-color:var(--border); font-size:.92rem; }
+    .edu-table tbody tr:hover { background:rgba(200,149,42,.05); }
+    .grade-badge { background:var(--gold); color:var(--navy); font-weight:700; font-size:.82rem; padding:.25rem .65rem; border-radius:20px; }
+
+    /* PUBLICATIONS */
+    .pub-tabs .nav-link { color: var(--navy); border: 1.5px solid var(--navy); border-radius:25px; font-size:.82rem; padding:.35rem .9rem; margin-right:.4rem; margin-bottom:.4rem; transition:all .2s; background: rgba(255,255,255,0.9); font-weight: 500; }
+    .pub-tabs .nav-link.active { background:var(--navy); color: var(--gold-lt) !important; border-color:var(--navy); }
+    .pub-tabs .nav-link:hover { background:var(--navy-lt); color:#fff !important; border-color:var(--navy-lt); }
+    .pub-card { background:var(--section-bg); border:1px solid var(--border); border-radius:10px; padding:1.4rem 1.6rem; margin-bottom:1rem; transition:box-shadow .2s; display:flex; gap:1.2rem; }
+    .pub-card:hover { box-shadow:0 6px 24px rgba(0,0,0,.08); }
+    .pub-thumb { width:90px; height:70px; object-fit:cover; border-radius:6px; flex-shrink:0; background:var(--cream); display:flex; align-items:center; justify-content:center; color:var(--text-mid); font-size:1.5rem; overflow:hidden; }
+    .pub-type-badge { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:.2rem .6rem; border-radius:20px; margin-right:.4rem; }
+    .badge-conference { background:#cce5ff; color:#004085; }
+    .pub-status { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.3px; }
+    .status-published { color:#155724; }
+    .pub-title { font-family:'Crimson Pro',serif; font-size:1.1rem; font-weight:700; color:var(--navy); margin-bottom:.3rem; line-height:1.35; }
+    .pub-authors { font-size:.85rem; color:var(--text-mid); margin-bottom:.25rem; }
+    .pub-venue { font-size:.85rem; color:var(--text-dark); font-style:italic; margin-bottom:.5rem; }
+    .pub-links a { font-size:.8rem; color:var(--gold); text-decoration:none; margin-right:.8rem; font-weight:500; }
+    .pub-links a:hover { color:var(--navy); }
+
+    /* PROJECTS */
+    .project-card { background:var(--section-bg); border:1px solid var(--border); border-radius:10px; overflow:hidden; transition:all .25s; height:100%; }
+    .project-card:hover { box-shadow:0 8px 32px rgba(11,30,61,.12); transform:translateY(-3px); }
+    .project-img { height:160px; background:linear-gradient(135deg,var(--navy),var(--navy-lt)); display:flex; align-items:center; justify-content:center; color:var(--gold-lt); font-size:3rem; }
+    .project-body { padding:1.3rem 1.4rem; }
+    .project-title { font-family:'Crimson Pro',serif; font-size:1.15rem; font-weight:700; color:var(--navy); margin-bottom:.5rem; }
+    .project-desc { font-size:.88rem; color:var(--text-mid); line-height:1.6; margin-bottom:.8rem; }
+    .tech-chip { display:inline-block; background:rgba(11,30,61,.07); color:var(--navy); font-size:.75rem; padding:.2rem .55rem; border-radius:20px; margin:.15rem .15rem .15rem 0; font-weight:500; }
+    .project-links a { font-size:.82rem; color:var(--gold); text-decoration:none; margin-right:.8rem; font-weight:500; }
+    .project-links a:hover { color:var(--navy); }
+
+    /* CERTIFICATIONS */
+    .cert-card { background:var(--section-bg); border:1px solid var(--border); border-radius:10px; padding:1.2rem 1.4rem; display:flex; gap:1rem; align-items:flex-start; transition:box-shadow .2s; margin-bottom:.8rem; }
+    .cert-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.07); }
+    .cert-thumb { width:80px; height:60px; object-fit:cover; border-radius:6px; flex-shrink:0; cursor:pointer; border:1px solid var(--border); }
+    .cert-icon { color:var(--gold); font-size:1.6rem; flex-shrink:0; }
+    .cert-title { font-weight:600; color:var(--navy); font-size:.97rem; margin:0 0 .2rem; }
+    .cert-meta { font-size:.82rem; color:var(--text-mid); }
+    .cert-link { font-size:.8rem; color:var(--gold); text-decoration:none; font-weight:500; margin-right:.6rem; }
+    .cert-link:hover { color:var(--navy); }
+
+    /* SKILLS */
+    .skill-group { margin-bottom:1.8rem; }
+    .skill-group-label { font-size:.78rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-mid); margin-bottom:.8rem; display:flex; align-items:center; gap:.5rem; }
+    .skill-group-label::after { content:''; flex:1; height:1px; background:var(--border); }
+    .skill-tag { display:inline-block; background:var(--navy); color:#e8e8f5; font-size:.82rem; padding:.35rem .85rem; border-radius:25px; margin:.25rem .3rem .25rem 0; font-weight:400; transition:all .2s; }
+    .skill-tag:hover { background:var(--gold); color:var(--navy); }
+
+    /* AWARDS */
+    .award-item { display:flex; align-items:flex-start; gap:1rem; padding:1rem 1.2rem; background:var(--section-bg); border-radius:8px; border:1px solid var(--border); margin-bottom:.85rem; transition:all .2s; }
+    .award-item:hover { box-shadow:0 4px 16px rgba(0,0,0,.07); }
+    .award-icon { color:var(--gold); font-size:1.4rem; flex-shrink:0; margin-top:.1rem; }
+    .award-thumb { width:60px; height:60px; object-fit:cover; border-radius:6px; flex-shrink:0; cursor:pointer; }
+    .award-title { font-weight:600; color:var(--navy); font-size:.97rem; margin:0; }
+    .award-meta { font-size:.8rem; color:var(--text-mid); margin-top:.2rem; }
+
+    /* LANGUAGES */
+    .lang-card { text-align:center; padding:1.4rem 1rem; background:var(--section-bg); border:1px solid var(--border); border-radius:10px; transition:all .2s; }
+    .lang-card:hover { border-color:var(--gold); box-shadow:0 4px 16px rgba(200,149,42,.12); }
+    .lang-name { font-family:'Crimson Pro',serif; font-size:1.1rem; color:var(--navy); font-weight:700; }
+    .lang-level { font-size:.8rem; color:var(--gold); font-weight:500; text-transform:uppercase; letter-spacing:.5px; }
+
+    /* ACTIVITIES */
+    .activity-item { display:flex; gap:.7rem; align-items:flex-start; padding:.6rem 0; border-bottom:1px dashed var(--border); font-size:.92rem; color:var(--text-mid); }
+    .activity-item:last-child { border-bottom:none; }
+    .activity-item i { color:var(--gold); flex-shrink:0; margin-top:.15rem; }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 4/3; cursor: pointer; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: transform .25s, box-shadow .25s; }
+    .gallery-item:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(11,30,61,.15); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; display: block; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,30,61,.85) 0%, transparent 55%); opacity: 0; transition: opacity .25s; display: flex; flex-direction: column; justify-content: flex-end; padding: .9rem 1rem; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption { color: #fff; font-size: .88rem; font-weight: 600; font-family: 'Crimson Pro', serif; line-height: 1.3; }
+    .gallery-year { color: var(--gold-lt); font-size: .75rem; margin-top: .2rem; }
+
+    /* PERSONAL */
+    .personal-grid .info-row { display:flex; gap:.7rem; padding:.65rem 0; border-bottom:1px solid var(--border); font-size:.9rem; }
+    .personal-grid .info-row:last-child { border-bottom:none; }
+    .info-label { font-weight:600; color:var(--text-mid); min-width:130px; font-size:.82rem; text-transform:uppercase; letter-spacing:.4px; }
+    .info-value { color:var(--text-dark); }
+
+    /* REFERENCES */
+    .ref-card { background:var(--section-bg); border:1px solid var(--border); border-top:4px solid var(--gold); border-radius:8px; padding:1.5rem; height:100%; transition:box-shadow .2s; }
+    .ref-card:hover { box-shadow:0 6px 24px rgba(0,0,0,.08); }
+    .ref-name { font-size:1.1rem; font-weight:700; color:var(--navy); margin-bottom:.25rem; }
+    .ref-role { font-size:.85rem; color:var(--gold); font-weight:500; }
+    .ref-org { font-size:.82rem; color:var(--text-mid); margin-bottom:.8rem; }
+    .ref-contact a { font-size:.83rem; color:var(--text-mid); text-decoration:none; display:block; }
+    .ref-contact a:hover { color:var(--gold); }
+
+    /* FOOTER */
+    footer { background:var(--navy); color:rgba(255,255,255,.55); text-align:center; padding:1.8rem 0; font-size:.82rem; }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    /* SCROLL TOP */
+    #scrollTop { position:fixed; bottom:2rem; right:2rem; width:42px; height:42px; background:var(--gold); color:var(--navy); border:none; border-radius:50%; font-size:1.1rem; display:none; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(200,149,42,.4); cursor:pointer; z-index:999; transition:background .2s; }
+    #scrollTop:hover { background:var(--gold-lt); }
+
+    /* IMAGE MODAL */
+    .modal-img { max-width:100%; max-height:80vh; object-fit:contain; border-radius:8px; }
+
+    @media (max-width:768px) {
+      .hero-contact a { display:block; margin-bottom:.4rem; }
+      .section-wrapper { padding:3rem 0; }
+      .pub-card { flex-direction:column; }
+      .pub-thumb { width:100%; height:120px; }
+      .hero-stats { gap:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#hero">Rashel Mahmud Rabbi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1 flex-wrap">
+        <li class="nav-item"><a class="nav-link" href="#objective">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Research Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#awards">Awards</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#personal">Personal</a></li>
+        <li class="nav-item"><a class="nav-link" href="#references">References</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-md-auto text-center text-md-start">
+        <img src="media/profile/Prof._Passport_size_image.jpg" class="hero-avatar" alt="Rashel Mahmud Rabbi"/>
+      </div>
+      <div class="col-md">
+        <p class="hero-title">Graduate Researcher – Computer Vision &amp; AI</p>
+        <h1 class="hero-name">Rashel Mahmud Rabbi</h1>
+        <div class="hero-contact mt-3 mb-3">
+          <a href="mailto:raselmahud6757@gmail.com"><i class="bi bi-envelope-fill"></i>raselmahud6757@gmail.com</a>
+          <a href="tel:+8801613000855"><i class="bi bi-telephone-fill"></i>+8801613-000855</a>
+          <a href="#"><i class="bi bi-geo-alt-fill"></i>Bangladesh</a>
+        </div>
+        <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
+          <a class="btn btn-sm" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+          <a class="btn btn-sm" href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>
+          <a class="btn btn-sm" href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>
+          <a class="btn btn-sm" href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ" target="_blank"><i class="bi bi-mortarboard me-1"></i>Google Scholar</a>
+          <a class="btn btn-sm" href="https://orcid.org/0009-0004-6070-4496" target="_blank"><i class="bi bi-person-badge me-1"></i>ORCID</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">Publication</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Projects</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label">Awards</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">3.87</div><div class="hero-stat-label">CGPA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / CAREER OBJECTIVE -->
+<section id="objective" class="section-wrapper">
+  <div class="container">
+    <h2 class="section-title">Career Objective</h2>
+    <div class="objective-card">
+      To pursue higher studies and research in Computer Science &amp; Engineering, focusing on Computer Vision, Medical Image Analysis, and Deep Learning, and to contribute to innovative solutions in AI-driven healthcare and real-world applications.
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="research" class="section-wrapper alt-bg">
+  <div class="container">
+    <h2 class="section-title">Research Interests</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="interest-card">
+          <div class="interest-icon"><i class="bi bi-eye"></i></div>
+          <div class="interest-topic">Computer Vision</div>
+          <div class="interest-desc">Image classification, object detection, segmentation</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="interest-card">
+          <div class="interest-icon"><i class="bi bi-heart-pulse"></i></div>
+          <div class="interest-topic">Medical Image Analysis</div>
+          <div class="interest-desc">AI-driven diagnostics, histology, radiology imaging</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="interest-card">
+          <div class="interest-icon"><i class="bi bi-diagram-3"></i></div>
+          <div class="interest-topic">Deep Learning</div>
+          <div class="interest-desc">CNN, Transformer, LSTM architectures</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="interest-card">
+          <div class="interest-icon"><i class="bi bi-lightbulb"></i></div>
+          <div class="interest-topic">Explainable AI</div>
+          <div class="interest-desc">LIME, SHAP, model interpretability</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="interest-card">
+          <div class="interest-icon"><i class="bi bi-globe"></i></div>
+          <div class="interest-topic">Remote Sensing</div>
+          <div class="interest-desc">Satellite image processing and analysis</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="interest-card">
+          <div class="interest-icon"><i class="bi bi-chat-text"></i></div>
+          <div class="interest-topic">Natural Language Processing</div>
+          <div class="interest-desc">Text classification, information extraction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section-wrapper">
+  <div class="container">
+    <h2 class="section-title">Work Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h5>Graduate Researcher – Computer Vision / Medical Imaging</h5>
+          <div class="org">North Bengal International University</div>
+          <div class="period">2023 – 2025</div>
+          <ul>
+            <li>Developed deep learning models for satellite and medical image classification</li>
+            <li>Worked with CNN, LSTM, and Transformer-based architectures</li>
+            <li>Applied Explainable AI techniques (LIME)</li>
+            <li>Experienced in dataset preprocessing, model optimization, and evaluation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section-wrapper alt-bg">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="table-responsive edu-table">
+      <table class="table table-bordered mb-0">
+        <thead>
+          <tr>
+            <th>Degree</th>
+            <th>Major</th>
+            <th>Institution</th>
+            <th>Year</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>B.Sc in CSE</strong></td>
+            <td>Computer Science &amp; Engineering</td>
+            <td>North Bengal International University</td>
+            <td>2025</td>
+            <td><span class="grade-badge">3.87/4.00</span></td>
+          </tr>
+          <tr>
+            <td><strong>HSC</strong></td>
+            <td>Science</td>
+            <td>Mymensingh - 01</td>
+            <td>2020</td>
+            <td><span class="grade-badge">5.00/5.00</span></td>
+          </tr>
+          <tr>
+            <td><strong>SSC</strong></td>
+            <td>Science</td>
+            <td>Rajshahi</td>
+            <td>2018</td>
+            <td><span class="grade-badge">5.00/5.00</span></td>
+          </tr>
+          <tr>
+            <td><strong>JSC</strong></td>
+            <td>–</td>
+            <td>Rajshahi</td>
+            <td>2016</td>
+            <td><span class="grade-badge">4.65/5.00</span></td>
+          </tr>
+          <tr>
+            <td><strong>PSC</strong></td>
+            <td>–</td>
+            <td>Bagmara, Rajshahi</td>
+            <td>2012</td>
+            <td><span class="grade-badge">4.25/5.00</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="section-wrapper">
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+    <div class="pub-tabs mb-3 d-flex flex-wrap">
+      <a class="nav-link active" href="#" onclick="filterPubs('all',this);return false;" data-filter="all">All</a>
+      <a class="nav-link" href="#" onclick="filterPubs('conference',this);return false;" data-filter="conference">Conference Papers</a>
+    </div>
+    <div id="pubList">
+      <div class="pub-card" data-type="conference">
+        <div class="pub-thumb"><i class="bi bi-file-earmark-text"></i></div>
+        <div class="flex-grow-1">
+          <div class="mb-1">
+            <span class="pub-type-badge badge-conference">Conference</span>
+            <span class="pub-status status-published">● Published</span>
+          </div>
+          <div class="pub-title">An Explainable Approach to Land-Use Classification Using CNN-LSTM and LIME</div>
+          <div class="pub-authors">Md Ashik Ahmmed; Rashel Mahmud Rabbi; Md Shafiuzzaman; Tithi Podder; Most. Tasnina Jaman; Afsana Tasnim</div>
+          <div class="pub-venue">IEEE International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN) · 2025</div>
+          <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-box-arrow-up-right me-1"></i>DOI / IEEE</a>
+            <a href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH PROJECTS -->
+<section id="projects" class="section-wrapper alt-bg">
+  <div class="container">
+    <h2 class="section-title">Research Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img"><i class="bi bi-cpu"></i></div>
+          <div class="project-body">
+            <div class="project-title">MediVision – AI Skin Disease Classifier</div>
+            <div class="project-desc">End-to-end deep learning web app for skin lesion classification with LIME-based explanations. Achieves 94.2% accuracy on HAM10000 dataset.</div>
+            <div class="mb-2">
+              <span class="tech-chip">PyTorch</span><span class="tech-chip">FastAI</span><span class="tech-chip">Django</span><span class="tech-chip">OpenCV</span><span class="tech-chip">LIME</span><span class="tech-chip">PostgreSQL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+            </div>
+            <small class="text-muted">2024</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img"><i class="bi bi-globe2"></i></div>
+          <div class="project-body">
+            <div class="project-title">SatelliteNet – Land Use Classification</div>
+            <div class="project-desc">CNN + Transfer Learning pipeline for land-use classification on EuroSAT satellite imagery. Supports 10 land-use categories with 96.4% accuracy.</div>
+            <div class="mb-2">
+              <span class="tech-chip">TensorFlow</span><span class="tech-chip">Keras</span><span class="tech-chip">NumPy</span><span class="tech-chip">Matplotlib</span><span class="tech-chip">Google Colab</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+            </div>
+            <small class="text-muted">2024</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img"><i class="bi bi-heart-pulse"></i></div>
+          <div class="project-body">
+            <div class="project-title">ECG Arrhythmia Detector</div>
+            <div class="project-desc">LSTM-based time-series model for detecting cardiac arrhythmia from ECG signals using the MIT-BIH dataset.</div>
+            <div class="mb-2">
+              <span class="tech-chip">PyTorch</span><span class="tech-chip">scikit-learn</span><span class="tech-chip">Pandas</span><span class="tech-chip">Wfdb</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+            </div>
+            <small class="text-muted">2023</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="section-wrapper">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <div class="cert-card">
+          <img src="media/certifications/images/Coursera__Data_Science_Math_Skills_7HHNEO5MT8WO_pages-to-jpg-0001.jpg"
+               class="cert-thumb" alt="Data Science Math Skills"
+               onclick="showImageModal(this.src,'Data Science Math Skills – Coursera')"/>
+          <div>
+            <div class="cert-title">Data Science Math Skills</div>
+            <div class="cert-meta">Coursera · 2024</div>
+            <div class="mt-2">
+              <a href="https://www.coursera.org/account/accomplishments/verify/7HHNEO5MT8WO" target="_blank" class="cert-link"><i class="bi bi-patch-check me-1"></i>Verify</a>
+              <a href="media/certifications/pdfs/Coursera__Data_Science_Math_Skills_7HHNEO5MT8WO.pdf" target="_blank" class="cert-link"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="cert-card">
+          <img src="media/certifications/images/Coursera_Python_Basics_KJ1TIFBGN6W3_pages-to-jpg-0001.jpg"
+               class="cert-thumb" alt="Python Basics"
+               onclick="showImageModal(this.src,'Python Basics – Coursera')"/>
+          <div>
+            <div class="cert-title">Python Basics</div>
+            <div class="cert-meta">Coursera · 2025</div>
+            <div class="mt-2">
+              <a href="https://coursera.org/verify/KJ1TIFBGN6W3" target="_blank" class="cert-link"><i class="bi bi-patch-check me-1"></i>Verify</a>
+              <a href="media/certifications/pdfs/Coursera_Python_Basics_KJ1TIFBGN6W3.pdf" target="_blank" class="cert-link"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-wrapper alt-bg">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="skill-group">
+          <div class="skill-group-label"><i class="bi bi-code-slash me-1"></i>Programming Languages</div>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C/C++</span>
+          <span class="skill-tag">Java</span>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label"><i class="bi bi-layers me-1"></i>Libraries &amp; Frameworks</div>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">FastAI</span>
+          <span class="skill-tag">Django</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="skill-group">
+          <div class="skill-group-label"><i class="bi bi-tools me-1"></i>Tools &amp; Platforms</div>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Jupyter Notebook</span>
+          <span class="skill-tag">Google Colab</span>
+          <span class="skill-tag">LaTeX</span>
+          <span class="skill-tag">VS Code</span>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label"><i class="bi bi-search me-1"></i>Research Methods</div>
+          <span class="skill-tag">LIME / SHAP</span>
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Dataset Curation</span>
+          <span class="skill-tag">Academic Writing</span>
+        </div>
+      </div>
+    </div>
+    <!-- Languages -->
+    <h3 class="section-title mt-4" style="font-size:1.2rem;">Languages</h3>
+    <div class="row g-3">
+      <div class="col-4 col-md-3 col-lg-2">
+        <div class="lang-card"><div class="lang-name">Bangla</div><div class="lang-level">Mother Tongue</div></div>
+      </div>
+      <div class="col-4 col-md-3 col-lg-2">
+        <div class="lang-card"><div class="lang-name">English</div><div class="lang-level">Fluent</div></div>
+      </div>
+      <div class="col-4 col-md-3 col-lg-2">
+        <div class="lang-card"><div class="lang-name">Hindi</div><div class="lang-level">Fluent</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="section-wrapper">
+  <div class="container">
+    <h2 class="section-title">Awards &amp; Achievements</h2>
+    <div class="award-item">
+      <div class="award-icon"><i class="bi bi-trophy-fill"></i></div>
+      <img src="media/awards/Idea_with_Poster_Presentation.jpg" class="award-thumb" alt="IEEE ProCon"
+           onclick="showImageModal(this.src,'2nd Runner-Up, IEEE ProCon App Idea Competition')"/>
+      <div>
+        <div class="award-title">2nd Runner-Up, IEEE ProCon App Idea Competition</div>
+        <div class="award-meta">IEEE · 2025</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon"><i class="bi bi-trophy-fill"></i></div>
+      <img src="media/awards/Research_Olympiad.jpg" class="award-thumb" alt="Research Olympiad"
+           onclick="showImageModal(this.src,'1st Position, Research Olympiad – Rajshahi Regional')"/>
+      <div>
+        <div class="award-title">1st Position, Research Olympiad – Rajshahi Regional</div>
+        <div class="award-meta">Rajshahi University Research Society (RURS) · 2024</div>
+      </div>
+    </div>
+
+    <!-- Activities -->
+    <h3 class="section-title mt-5" style="font-size:1.2rem;">Co-curricular Activities</h3>
+    <div class="activity-item"><i class="bi bi-chevron-right"></i>President, Computer Society – NBIU</div>
+    <div class="activity-item"><i class="bi bi-chevron-right"></i>Participation in research seminars and higher study camps</div>
+    <div class="activity-item"><i class="bi bi-chevron-right"></i>Active involvement in tech competitions and academic events</div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section-wrapper alt-bg">
+  <div class="container">
+    <h2 class="section-title">Achievement Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox(0)">
+        <img src="media/gallery/covers/20251122_185713.jpg" alt="IEEE ProCon App Idea Competition" loading="lazy"/>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">IEEE ProCon App Idea Competition</div>
+          <div class="gallery-year"><span><i class="bi bi-calendar3 me-1"></i>2025</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightboxModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,12,30,.96);align-items:center;justify-content:center;flex-direction:column;">
+  <button onclick="closeLightbox()" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:10;line-height:1;">&times;</button>
+  <div id="lbCounter" style="position:absolute;top:1.4rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:.85rem;letter-spacing:.5px;"></div>
+  <div id="lbTitle" style="position:absolute;top:1.2rem;left:1.5rem;color:var(--gold-lt);font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+  <button onclick="lbPrev()" id="lbPrevBtn" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8249;</button>
+  <div style="max-width:90vw;max-height:80vh;display:flex;align-items:center;justify-content:center;margin-top:2.5rem;">
+    <img id="lbImage" src="" alt="" style="max-width:88vw;max-height:78vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.6);"/>
+  </div>
+  <div id="lbCaption" style="color:rgba(255,255,255,.75);font-size:.9rem;margin-top:.8rem;text-align:center;max-width:70vw;min-height:1.4rem;"></div>
+  <div id="lbThumbs" style="display:flex;gap:.5rem;margin-top:.8rem;overflow-x:auto;max-width:90vw;padding:.3rem .5rem;"></div>
+  <button onclick="lbNext()" id="lbNextBtn" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8250;</button>
+</div>
+
+<!-- PERSONAL INFORMATION -->
+<section id="personal" class="section-wrapper">
+  <div class="container">
+    <h2 class="section-title">Personal Information</h2>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="personal-grid">
+          <div class="info-row"><span class="info-label">Father's Name</span><span class="info-value">Md. Ahsan Habib</span></div>
+          <div class="info-row"><span class="info-label">Mother's Name</span><span class="info-value">Mst. Rina Parvin</span></div>
+          <div class="info-row"><span class="info-label">Date of Birth</span><span class="info-value">13 January 2003</span></div>
+          <div class="info-row"><span class="info-label">Religion</span><span class="info-value">Islam</span></div>
+          <div class="info-row"><span class="info-label">NID</span><span class="info-value">8712333650</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-3 mt-lg-0">
+        <div class="personal-grid">
+          <div class="info-row"><span class="info-label">Marital Status</span><span class="info-value">Single</span></div>
+          <div class="info-row"><span class="info-label">Blood Group</span><span class="info-value">O (+ve)</span></div>
+          <div class="info-row"><span class="info-label">Nationality</span><span class="info-value">Bangladeshi</span></div>
+          <div class="info-row"><span class="info-label">Address</span><span class="info-value">Barigram, Hat-Gangopara, Bagmara, Rajshahi, Bangladesh</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references" class="section-wrapper alt-bg">
+  <div class="container">
+    <h2 class="section-title">References</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="ref-card">
+          <div class="ref-name">Md. Shafiuzzaman</div>
+          <div class="ref-role">Lecturer, Department of CSE</div>
+          <div class="ref-org">North Bengal International University</div>
+          <div class="ref-contact">
+            <a href="tel:+8801780165924"><i class="bi bi-telephone me-1"></i>+8801780-165924</a>
+            <a href="mailto:shafiuzzaman.ruet@gmail.com"><i class="bi bi-envelope me-1"></i>shafiuzzaman.ruet@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="ref-card">
+          <div class="ref-name">Md. Emdadul Haque</div>
+          <div class="ref-role">Lecturer &amp; Head, Department of CSE</div>
+          <div class="ref-org">North Bengal International University</div>
+          <div class="ref-contact">
+            <a href="tel:+8801773897585"><i class="bi bi-telephone me-1"></i>+8801773-897585</a>
+            <a href="mailto:haque.emdadul.one5@gmail.com"><i class="bi bi-envelope me-1"></i>haque.emdadul.one5@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="mb-1">I certify that all information in this portfolio is accurate and true.</p>
+    <p class="mb-0">© 2026 <strong style="color:#fff;">Rashel Mahmud Rabbi</strong> &nbsp;|&nbsp; Graduate Researcher · Computer Vision &amp; AI</p>
+  </div>
+</footer>
+
+<!-- Scroll-to-top -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content" style="background:transparent;border:none;">
+      <div class="modal-body text-center p-0">
+        <button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal" style="float:right;"></button>
+        <img id="modalImage" src="" alt="" class="modal-img"/>
+        <p id="modalCaption" style="color:#fff;margin-top:.5rem;font-size:.9rem;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll top
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'flex' : 'none';
+  });
+
+  // Active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  // Publication filter
+  function filterPubs(type, el) {
+    document.querySelectorAll('.pub-tabs .nav-link').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('#pubList .pub-card').forEach(card => {
+      card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+    });
+  }
+
+  // Image modal
+  function showImageModal(src, caption) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('modalCaption').textContent = caption;
+    new bootstrap.Modal(document.getElementById('imageModal')).show();
+  }
+
+  // ── GALLERY DATA ─────────────────────────────────────────────────────────
+  const galleryEvents = [
+    {
+      title: "IEEE ProCon App Idea Competition",
+      photos: [
+        { src: "media/gallery/covers/20251122_185713.jpg", caption: "IEEE ProCon App Idea Competition 2025" }
+      ]
+    }
+  ];
+
+  // ── LIGHTBOX ──────────────────────────────────────────────────────────────
+  let lbPhotos = [], lbIndex = 0, lbEventTitle = '';
+
+  function openLightbox(eventIndex) {
+    const ev = galleryEvents[eventIndex];
+    if (!ev || !ev.photos.length) return;
+    lbPhotos = ev.photos;
+    lbEventTitle = ev.title;
+    lbIndex = 0;
+    document.getElementById('lightboxModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    lbRender();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightboxModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function lbRender() {
+    const p = lbPhotos[lbIndex];
+    document.getElementById('lbImage').src = p.src;
+    document.getElementById('lbCaption').textContent = p.caption || '';
+    document.getElementById('lbTitle').textContent = lbEventTitle;
+    document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + lbPhotos.length;
+    document.getElementById('lbPrevBtn').style.opacity = lbIndex === 0 ? '0.3' : '1';
+    document.getElementById('lbNextBtn').style.opacity = lbIndex === lbPhotos.length - 1 ? '0.3' : '1';
+    const strip = document.getElementById('lbThumbs');
+    strip.innerHTML = '';
+    lbPhotos.forEach((ph, i) => {
+      const img = document.createElement('img');
+      img.src = ph.src;
+      img.style.cssText = `height:54px;width:72px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid ${i===lbIndex?'var(--gold)':'transparent'};opacity:${i===lbIndex?'1':'0.55'};transition:all .2s;flex-shrink:0;`;
+      img.onclick = () => { lbIndex = i; lbRender(); };
+      strip.appendChild(img);
+    });
+    strip.children[lbIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  function lbPrev() { if (lbIndex > 0) { lbIndex--; lbRender(); } }
+  function lbNext() { if (lbIndex < lbPhotos.length - 1) { lbIndex++; lbRender(); } }
+
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightboxModal')?.style.display === 'flex') {
+      if (e.key === 'ArrowRight') lbNext();
+      else if (e.key === 'ArrowLeft') lbPrev();
+      else if (e.key === 'Escape') closeLightbox();
+    }
+  });
+
+  document.getElementById('lightboxModal')?.addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+</script>
+</body>
+</html>
