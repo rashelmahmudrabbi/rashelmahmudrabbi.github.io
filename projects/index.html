@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects – Rashel Mahmud Rabbi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#0b1e3d; --navy-mid:#10284f; --navy-lt:#1a3a6e;
+      --gold:#c8952a; --gold-lt:#e8b84b;
+      --cream:#f5f0e8; --off-white:#fafaf8;
+      --text-dark:#1a1a2e; --text-mid:#4a4a6a;
+      --border:#ddd8cd; --section-bg:#ffffff;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-dark);font-size:15px;}
+    h1,h2,h3,h4,h5{font-family:'Crimson Pro',serif;}
+
+    .navbar{background:var(--navy);padding:.75rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.35);}
+    .navbar-brand{color:var(--gold)!important;font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;}
+    .navbar .nav-link{color:#ffffff!important;font-size:.8rem;font-weight:500;letter-spacing:.4px;text-transform:uppercase;padding:.4rem .8rem!important;transition:color .2s;}
+    .navbar .nav-link:hover,.navbar .nav-link.active{color:var(--gold-lt)!important;}
+    .navbar-toggler{border-color:rgba(255,255,255,.3);}
+
+    .page-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#1a3a6e 100%);color:#fff;padding:3.5rem 0 3rem;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;margin-bottom:.5rem;}
+    .page-hero p{color:rgba(255,255,255,.75);font-size:.95rem;margin:0;}
+    .breadcrumb-nav a{color:var(--gold-lt);text-decoration:none;font-size:.82rem;}
+    .breadcrumb-nav span{color:rgba(255,255,255,.5);font-size:.82rem;margin:0 .4rem;}
+
+    /* FILTER */
+    .filter-bar{background:var(--section-bg);border-bottom:1px solid var(--border);padding:.8rem 0;position:sticky;top:62px;z-index:100;}
+    .filter-btn{background:transparent;border:1.5px solid var(--navy);color:var(--navy);border-radius:25px;font-size:.8rem;padding:.32rem .9rem;cursor:pointer;transition:all .2s;font-weight:500;margin:.2rem;}
+    .filter-btn:hover,.filter-btn.active{background:var(--navy);color:var(--gold-lt);border-color:var(--navy);}
+
+    /* PROJECT CARDS */
+    .projects-section{padding:3rem 0;}
+    .project-card{background:var(--section-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .3s;height:100%;display:flex;flex-direction:column;}
+    .project-card:hover{box-shadow:0 12px 40px rgba(11,30,61,.14);transform:translateY(-4px);}
+    .project-img{height:180px;background:linear-gradient(135deg,var(--navy),var(--navy-lt));display:flex;align-items:center;justify-content:center;color:var(--gold-lt);font-size:3.5rem;position:relative;overflow:hidden;}
+    .project-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(11,30,61,.3));}
+    .project-year-badge{position:absolute;top:.8rem;right:.8rem;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;z-index:1;}
+    .project-type-badge{position:absolute;top:.8rem;left:.8rem;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);color:#fff;font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:20px;z-index:1;text-transform:uppercase;letter-spacing:.4px;}
+    .project-body{padding:1.4rem 1.5rem;flex:1;display:flex;flex-direction:column;}
+    .project-title{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:.6rem;line-height:1.3;}
+    .project-desc{font-size:.88rem;color:var(--text-mid);line-height:1.65;margin-bottom:1rem;flex:1;}
+    .tech-chips{margin-bottom:1rem;}
+    .tech-chip{display:inline-block;background:rgba(11,30,61,.07);color:var(--navy);font-size:.74rem;padding:.22rem .58rem;border-radius:20px;margin:.15rem .15rem .15rem 0;font-weight:500;}
+    .project-links{display:flex;gap:.6rem;margin-top:auto;flex-wrap:wrap;}
+    .project-link{font-size:.82rem;color:var(--gold);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:.3rem;border:1.5px solid var(--gold);padding:.28rem .75rem;border-radius:20px;transition:all .2s;}
+    .project-link:hover{background:var(--gold);color:var(--navy);}
+    .project-link.secondary{border-color:var(--border);color:var(--text-mid);}
+    .project-link.secondary:hover{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+    /* FEATURED (first project) */
+    .featured-card{background:var(--section-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .3s;margin-bottom:2rem;}
+    .featured-card:hover{box-shadow:0 12px 40px rgba(11,30,61,.14);}
+    .featured-img{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%);height:220px;display:flex;align-items:center;justify-content:center;color:var(--gold-lt);font-size:5rem;position:relative;}
+    .featured-badge{position:absolute;top:1rem;left:1rem;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:20px;letter-spacing:.3px;}
+    .featured-body{padding:2rem;}
+    .featured-title{font-family:'Crimson Pro',serif;font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:.7rem;}
+    .featured-desc{color:var(--text-mid);line-height:1.7;margin-bottom:1rem;}
+    .accuracy-badge{display:inline-block;background:rgba(200,149,42,.12);border:1px solid var(--gold);color:var(--navy);font-size:.8rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;margin-right:.5rem;}
+
+    /* FOOTER */
+    footer{background:var(--navy);color:rgba(255,255,255,.55);text-align:center;padding:1.8rem 0;font-size:.82rem;}
+    footer a{color:var(--gold);text-decoration:none;}
+    #scrollTop{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;background:var(--gold);color:var(--navy);border:none;border-radius:50%;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(200,149,42,.4);cursor:pointer;z-index:999;}
+    #scrollTop:hover{background:var(--gold-lt);}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">R. M. Rabbi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="../publications/index.html">Publications</a></li>
+        <li class="nav-item"><a class="nav-link active" href="index.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="../teaching/index.html">Teaching</a></li>
+        <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="../cv/index.html">CV</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb-nav mb-2">
+      <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Projects</span>
+    </div>
+    <h1><i class="bi bi-cpu me-2" style="color:var(--gold-lt)"></i>Research Projects</h1>
+    <p>Deep learning systems for medical imaging, satellite classification, and signal processing</p>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center gap-1">
+      <span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All (3)</button>
+      <button class="filter-btn" onclick="filterProjects('research',this)">Research (3)</button>
+      <button class="filter-btn" onclick="filterProjects('2024',this)">2024 (2)</button>
+      <button class="filter-btn" onclick="filterProjects('2023',this)">2023 (1)</button>
+    </div>
+  </div>
+</div>
+
+<div class="projects-section">
+  <div class="container">
+
+    <!-- Featured Project -->
+    <div class="featured-card" data-year="2024" data-type="research">
+      <div class="featured-img">
+        <i class="bi bi-bandaid"></i>
+        <span class="featured-badge">⭐ Featured Project</span>
+      </div>
+      <div class="featured-body">
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <span class="accuracy-badge"><i class="bi bi-graph-up me-1"></i>94.2% Accuracy</span>
+          <span class="accuracy-badge"><i class="bi bi-calendar me-1"></i>2024</span>
+        </div>
+        <div class="featured-title">MediVision – AI Skin Disease Classifier</div>
+        <p class="featured-desc">End-to-end deep learning web application for skin lesion classification with LIME-based visual explanations. Trained on the HAM10000 dataset, this system provides clinically interpretable AI diagnostics for dermatological conditions, making AI decisions transparent and trustworthy for medical practitioners.</p>
+        <div class="mb-3">
+          <span class="tech-chip">PyTorch</span>
+          <span class="tech-chip">FastAI</span>
+          <span class="tech-chip">Django</span>
+          <span class="tech-chip">OpenCV</span>
+          <span class="tech-chip">LIME</span>
+          <span class="tech-chip">PostgreSQL</span>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+          <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid Projects -->
+    <div class="row g-4" id="projectGrid">
+
+      <div class="col-md-6" data-year="2024" data-type="research">
+        <div class="project-card">
+          <div class="project-img">
+            <i class="bi bi-globe-americas"></i>
+            <span class="project-year-badge">2024</span>
+            <span class="project-type-badge">Research</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">SatelliteNet – Land Use Classification</div>
+            <div class="project-desc">CNN + Transfer Learning pipeline for land-use classification on EuroSAT satellite imagery. Supports 10 land-use categories with 96.4% accuracy. Demonstrates effectiveness of fine-tuned pre-trained models on remote sensing tasks.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">TensorFlow</span>
+              <span class="tech-chip">Keras</span>
+              <span class="tech-chip">NumPy</span>
+              <span class="tech-chip">Matplotlib</span>
+              <span class="tech-chip">Google Colab</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6" data-year="2023" data-type="research">
+        <div class="project-card">
+          <div class="project-img">
+            <i class="bi bi-activity"></i>
+            <span class="project-year-badge">2023</span>
+            <span class="project-type-badge">Research</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">ECG Arrhythmia Detector</div>
+            <div class="project-desc">LSTM-based time-series deep learning model for detecting cardiac arrhythmia from ECG signals using the MIT-BIH Arrhythmia Database. Focuses on temporal feature extraction across multi-lead ECG recordings.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">PyTorch</span>
+              <span class="tech-chip">scikit-learn</span>
+              <span class="tech-chip">Pandas</span>
+              <span class="tech-chip">Wfdb</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="mb-1">© 2025 Rashel Mahmud Rabbi &nbsp;·&nbsp; Graduate Researcher, NBIU Bangladesh</p>
+    <p class="mb-0"><a href="mailto:raselmahud6757@gmail.com">raselmahud6757@gmail.com</a></p>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  window.addEventListener('scroll',()=>{
+    document.getElementById('scrollTop').style.display=window.scrollY>300?'flex':'none';
+  });
+  function filterProjects(filter,btn){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const items=document.querySelectorAll('#projectGrid [data-year],.featured-card');
+    items.forEach(item=>{
+      if(filter==='all') item.style.display='';
+      else if(item.dataset.year===filter || item.dataset.type===filter) item.style.display='';
+      else item.style.display='none';
+    });
+  }
+</script>
+</body>
+</html>

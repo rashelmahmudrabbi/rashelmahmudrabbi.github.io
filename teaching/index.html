@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teaching – Rashel Mahmud Rabbi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#0b1e3d; --navy-mid:#10284f; --navy-lt:#1a3a6e;
+      --gold:#c8952a; --gold-lt:#e8b84b;
+      --cream:#f5f0e8; --off-white:#fafaf8;
+      --text-dark:#1a1a2e; --text-mid:#4a4a6a;
+      --border:#ddd8cd; --section-bg:#ffffff;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-dark);font-size:15px;}
+    h1,h2,h3,h4,h5{font-family:'Crimson Pro',serif;}
+
+    .navbar{background:var(--navy);padding:.75rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.35);}
+    .navbar-brand{color:var(--gold)!important;font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;}
+    .navbar .nav-link{color:#ffffff!important;font-size:.8rem;font-weight:500;letter-spacing:.4px;text-transform:uppercase;padding:.4rem .8rem!important;transition:color .2s;}
+    .navbar .nav-link:hover,.navbar .nav-link.active{color:var(--gold-lt)!important;}
+    .navbar-toggler{border-color:rgba(255,255,255,.3);}
+
+    .page-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#1a3a6e 100%);color:#fff;padding:3.5rem 0 3rem;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;margin-bottom:.5rem;}
+    .page-hero p{color:rgba(255,255,255,.75);font-size:.95rem;margin:0;}
+    .breadcrumb-nav a{color:var(--gold-lt);text-decoration:none;font-size:.82rem;}
+    .breadcrumb-nav span{color:rgba(255,255,255,.5);font-size:.82rem;margin:0 .4rem;}
+
+    /* MAIN CONTENT */
+    .content-section{padding:3.5rem 0;}
+
+    /* PHILOSOPHY CARD */
+    .philosophy-card{background:var(--navy);color:#e8e8f0;border-left:5px solid var(--gold);border-radius:10px;padding:2rem 2.2rem;margin-bottom:3rem;font-size:1rem;line-height:1.8;}
+    .philosophy-card h4{color:var(--gold-lt);font-family:'Crimson Pro',serif;font-size:1.3rem;margin-bottom:.8rem;}
+
+    /* SECTION TITLE */
+    .section-title{font-size:1.45rem;font-weight:700;color:var(--navy);position:relative;padding-bottom:.6rem;margin-bottom:1.8rem;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:45px;height:3px;background:var(--gold);border-radius:2px;}
+
+    /* COURSE CARD */
+    .course-card{background:var(--section-bg);border:1px solid var(--border);border-radius:12px;padding:1.6rem;margin-bottom:1.2rem;transition:all .25s;position:relative;overflow:hidden;}
+    .course-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold);opacity:.3;transition:opacity .2s;}
+    .course-card:hover{box-shadow:0 8px 28px rgba(11,30,61,.1);}
+    .course-card:hover::before{opacity:1;}
+    .course-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem;}
+    .course-title{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin:0;}
+    .course-code{font-size:.75rem;font-weight:700;background:rgba(11,30,61,.07);color:var(--navy);padding:.2rem .65rem;border-radius:20px;white-space:nowrap;}
+    .course-meta{display:flex;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:var(--text-mid);margin-bottom:.6rem;}
+    .course-meta span{display:flex;align-items:center;gap:.3rem;}
+    .course-meta i{color:var(--gold);}
+    .course-desc{font-size:.88rem;color:var(--text-mid);line-height:1.65;}
+    .course-topics{margin-top:.7rem;display:flex;flex-wrap:wrap;gap:.3rem;}
+    .topic-chip{font-size:.75rem;background:var(--cream);color:var(--text-mid);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px;}
+
+    /* ROLE CARDS */
+    .role-card{background:var(--section-bg);border:1px solid var(--border);border-top:4px solid var(--gold);border-radius:10px;padding:1.4rem 1.6rem;height:100%;transition:box-shadow .2s;}
+    .role-card:hover{box-shadow:0 6px 24px rgba(11,30,61,.08);}
+    .role-icon{font-size:2rem;color:var(--gold);margin-bottom:.7rem;}
+    .role-title{font-family:'Crimson Pro',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.4rem;}
+    .role-desc{font-size:.87rem;color:var(--text-mid);line-height:1.6;}
+
+    /* MENTORING */
+    .mentor-note{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1.8rem;text-align:center;}
+    .mentor-note i{font-size:2.5rem;color:var(--gold);display:block;margin-bottom:.8rem;}
+    .mentor-note h5{font-family:'Crimson Pro',serif;color:var(--navy);margin-bottom:.5rem;}
+    .mentor-note p{font-size:.9rem;color:var(--text-mid);margin:0;}
+    .mentor-note a{color:var(--gold);font-weight:500;text-decoration:none;}
+    .mentor-note a:hover{color:var(--navy);}
+
+    /* SKILLS FOR TEACHING */
+    .teaching-skill{display:flex;align-items:center;gap:.8rem;padding:.7rem .5rem;border-bottom:1px dashed var(--border);}
+    .teaching-skill:last-child{border-bottom:none;}
+    .teaching-skill i{color:var(--gold);font-size:1.1rem;flex-shrink:0;}
+    .teaching-skill-text{font-size:.9rem;color:var(--text-dark);}
+
+    footer{background:var(--navy);color:rgba(255,255,255,.55);text-align:center;padding:1.8rem 0;font-size:.82rem;}
+    footer a{color:var(--gold);text-decoration:none;}
+    #scrollTop{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;background:var(--gold);color:var(--navy);border:none;border-radius:50%;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(200,149,42,.4);cursor:pointer;z-index:999;}
+    #scrollTop:hover{background:var(--gold-lt);}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">R. M. Rabbi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="../publications/index.html">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="../projects/index.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link active" href="index.html">Teaching</a></li>
+        <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="../cv/index.html">CV</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb-nav mb-2">
+      <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Teaching</span>
+    </div>
+    <h1><i class="bi bi-mortarboard me-2" style="color:var(--gold-lt)"></i>Teaching</h1>
+    <p>Courses, workshops, and mentoring in Computer Vision, Deep Learning, and AI</p>
+  </div>
+</section>
+
+<div class="content-section">
+  <div class="container" style="max-width:900px;">
+
+    <!-- TEACHING PHILOSOPHY -->
+    <div class="philosophy-card">
+      <h4><i class="bi bi-lightbulb me-2"></i>Teaching Philosophy</h4>
+      I believe effective teaching in AI and Computer Science bridges theory and hands-on practice. My goal is to cultivate critical thinking and research curiosity — helping students not just implement models, but understand why they work, where they fail, and how to push the boundaries of existing knowledge.
+    </div>
+
+    <!-- ROLES -->
+    <div class="section-title">Teaching Roles</div>
+    <div class="row g-3 mb-5">
+      <div class="col-md-4">
+        <div class="role-card">
+          <div class="role-icon"><i class="bi bi-person-workspace"></i></div>
+          <div class="role-title">Teaching Assistant</div>
+          <div class="role-desc">Assisted in undergraduate-level CSE courses at NBIU, supporting lab sessions and student evaluations.</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="role-card">
+          <div class="role-icon"><i class="bi bi-people"></i></div>
+          <div class="role-title">Workshop Facilitator</div>
+          <div class="role-desc">Led hands-on workshops in Deep Learning and Computer Vision for fellow students and academic clubs.</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="role-card">
+          <div class="role-icon"><i class="bi bi-award"></i></div>
+          <div class="role-title">Club President</div>
+          <div class="role-desc">As President of NBIU Computer Society, organized tech talks, seminars, and research orientation sessions.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COURSES / WORKSHOPS -->
+    <div class="section-title">Courses &amp; Workshops Contributed To</div>
+
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-title">Introduction to Machine Learning &amp; Deep Learning</div>
+        <span class="course-code">CSE-4xx</span>
+      </div>
+      <div class="course-meta">
+        <span><i class="bi bi-building"></i>NBIU, Rajshahi</span>
+        <span><i class="bi bi-calendar3"></i>2023 – 2024</span>
+        <span><i class="bi bi-person-badge"></i>Teaching Assistant</span>
+      </div>
+      <div class="course-desc">Supported undergraduate students in understanding foundational machine learning concepts, neural network architectures, and practical implementations using PyTorch and scikit-learn.</div>
+      <div class="course-topics">
+        <span class="topic-chip">Linear Regression</span>
+        <span class="topic-chip">Neural Networks</span>
+        <span class="topic-chip">Backpropagation</span>
+        <span class="topic-chip">PyTorch</span>
+        <span class="topic-chip">Model Evaluation</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-title">Computer Vision Fundamentals Workshop</div>
+        <span class="course-code">Workshop</span>
+      </div>
+      <div class="course-meta">
+        <span><i class="bi bi-building"></i>NBIU Computer Society</span>
+        <span><i class="bi bi-calendar3"></i>2024</span>
+        <span><i class="bi bi-person-badge"></i>Workshop Lead</span>
+      </div>
+      <div class="course-desc">Designed and delivered a 2-day hands-on workshop covering core Computer Vision concepts, OpenCV operations, and CNN-based image classification with transfer learning on real datasets.</div>
+      <div class="course-topics">
+        <span class="topic-chip">OpenCV</span>
+        <span class="topic-chip">Image Preprocessing</span>
+        <span class="topic-chip">CNN Architecture</span>
+        <span class="topic-chip">Transfer Learning</span>
+        <span class="topic-chip">ResNet / EfficientNet</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-title">Explainable AI: Making Black Boxes Interpretable</div>
+        <span class="course-code">Seminar</span>
+      </div>
+      <div class="course-meta">
+        <span><i class="bi bi-building"></i>NBIU Research Seminar Series</span>
+        <span><i class="bi bi-calendar3"></i>2024</span>
+        <span><i class="bi bi-person-badge"></i>Speaker</span>
+      </div>
+      <div class="course-desc">Presented a research seminar on Explainable AI methods including LIME and SHAP, demonstrating their application to medical image classification models and discussing clinical relevance of model interpretability.</div>
+      <div class="course-topics">
+        <span class="topic-chip">LIME</span>
+        <span class="topic-chip">SHAP</span>
+        <span class="topic-chip">Model Interpretability</span>
+        <span class="topic-chip">Medical AI</span>
+        <span class="topic-chip">Visualization</span>
+      </div>
+    </div>
+
+    <!-- AREAS OF EXPERTISE -->
+    <div class="section-title mt-5">Areas I Can Teach</div>
+    <div class="row g-3 mb-5">
+      <div class="col-md-6">
+        <div style="background:var(--section-bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;">
+          <div class="teaching-skill"><i class="bi bi-eye"></i><div class="teaching-skill-text"><strong>Computer Vision</strong> — image classification, detection, segmentation</div></div>
+          <div class="teaching-skill"><i class="bi bi-diagram-3"></i><div class="teaching-skill-text"><strong>Deep Learning</strong> — CNNs, LSTMs, Transformers, training pipelines</div></div>
+          <div class="teaching-skill"><i class="bi bi-heart-pulse"></i><div class="teaching-skill-text"><strong>Medical Image Analysis</strong> — histology, radiology, AI diagnostics</div></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div style="background:var(--section-bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;">
+          <div class="teaching-skill"><i class="bi bi-lightbulb"></i><div class="teaching-skill-text"><strong>Explainable AI</strong> — LIME, SHAP, interpretability frameworks</div></div>
+          <div class="teaching-skill"><i class="bi bi-globe"></i><div class="teaching-skill-text"><strong>Remote Sensing</strong> — satellite imagery, land-use classification</div></div>
+          <div class="teaching-skill"><i class="bi bi-code-slash"></i><div class="teaching-skill-text"><strong>Python for Research</strong> — PyTorch, TensorFlow, OpenCV, Pandas</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENTORING -->
+    <div class="mentor-note">
+      <i class="bi bi-chat-heart"></i>
+      <h5>Open to Mentoring &amp; Collaboration</h5>
+      <p>I'm happy to help undergraduate and graduate students with research questions, project guidance, or academic writing in AI and Computer Vision. Feel free to reach out at <a href="mailto:raselmahud6757@gmail.com">raselmahud6757@gmail.com</a></p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="mb-1">© 2025 Rashel Mahmud Rabbi &nbsp;·&nbsp; Graduate Researcher, NBIU Bangladesh</p>
+    <p class="mb-0"><a href="mailto:raselmahud6757@gmail.com">raselmahud6757@gmail.com</a></p>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>window.addEventListener('scroll',()=>{document.getElementById('scrollTop').style.display=window.scrollY>300?'flex':'none';});</script>
+</body>
+</html>
