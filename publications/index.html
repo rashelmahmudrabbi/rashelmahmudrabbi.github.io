@@ -183,10 +183,11 @@
 <div class="stats-bar">
   <div class="container">
     <div class="row g-0 justify-content-center">
-      <div class="col-auto stat-item"><div class="stat-num">2</div><div class="stat-label">Total Papers</div></div>
-      <div class="col-auto stat-item"><div class="stat-num">2</div><div class="stat-label">Published</div></div>
+      <div class="col-auto stat-item"><div class="stat-num">3</div><div class="stat-label">Total Papers</div></div>
+      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Published</div></div>
       <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Conference</div></div>
       <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Journal</div></div>
+      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Thesis</div></div>
     </div>
   </div>
 </div>
@@ -196,9 +197,10 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center gap-1">
       <span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>
-      <button class="filter-btn all active" onclick="filterPubs('all',this)">All (1)</button>
+      <button class="filter-btn all active" onclick="filterPubs('all',this)">All (3)</button>
       <button class="filter-btn" onclick="filterPubs('conference',this)">Conference (1)</button>
       <button class="filter-btn" onclick="filterPubs('journal',this)">Journal (1)</button>
+      <button class="filter-btn" onclick="filterPubs('thesis',this)">Thesis (1)</button>
     </div>
   </div>
 </div>
@@ -234,12 +236,12 @@
       </div>
     </div>
     <!-- Pub 2 - JOURNAL (example) -->
-    <div class="pub-card journal" data-type="journal" data-status="published">
+    <div class="pub-card journal" data-type="journal" data-status="Under Review">
       <div class="pub-top">
         <div class="pub-number">[2]</div>
         <div class="pub-badges">
           <span class="badge-type badge-journal">Journal Article</span>
-          <span class="badge-status status-published">Published</span>
+          <span class="badge-status status-under-review">Under Review</span>
         </div>
       </div>
       <div class="pub-title">Your Journal Paper Title Here</div>
@@ -255,6 +257,29 @@
       <div class="pub-links">
         <a class="pub-link" href="#" target="_blank"><i class="bi bi-file-pdf"></i> PDF</a>
         <a class="pub-link btn-outline" href="#" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI</a>
+      </div>
+    </div>
+    <!-- Pub 2 - THESIS -->
+    <div class="pub-card thesis" data-type="thesis" data-status="Preprint">
+      <div class="pub-top">
+        <div class="pub-number">[2]</div>
+        <div class="pub-badges">
+          <span class="badge-type badge-thesis">Thesis</span>
+          <span class="badge-status status-preprint">Preprint</span>
+        </div>
+      </div>
+      <div class="pub-title">Your Thesis Title Here</div>
+      <div class="pub-authors"><strong>Rashel Mahmud Rabbi</strong></div>
+      <div class="pub-venue">B.Sc. Thesis, Department of CSE, North Bengal International University &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
+      <div class="pub-abstract-toggle" onclick="this.classList.toggle('open')">
+        <span class="abstract-label"><i class="bi bi-chevron-right abstract-arrow"></i> Abstract</span>
+        <div class="abstract-body">
+          Your thesis abstract here.
+        </div>
+      </div>
+      <div class="pub-links">
+        <a class="pub-link" href="#" target="_blank"><i class="bi bi-file-pdf"></i> PDF</a>
+        <a class="pub-link btn-outline" href="#" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Repository</a>
       </div>
     </div>
 
