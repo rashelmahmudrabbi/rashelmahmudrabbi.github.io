@@ -143,11 +143,9 @@
 <div class="stats-bar">
   <div class="container">
     <div class="row g-0 justify-content-center">
-      <div class="col-auto stat-item"><div class="stat-num">3</div><div class="stat-label">Total Papers</div></div>
-      <div class="col-auto stat-item"><div class="stat-num">2</div><div class="stat-label">Published</div></div>
-      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Under Review</div></div>
-      <div class="col-auto stat-item"><div class="stat-num">2</div><div class="stat-label">Conference</div></div>
-      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Journal</div></div>
+      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Total Papers</div></div>
+      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Published</div></div>
+      <div class="col-auto stat-item"><div class="stat-num">1</div><div class="stat-label">Conference</div></div>
     </div>
   </div>
 </div>
@@ -157,11 +155,8 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center gap-1">
       <span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>
-      <button class="filter-btn all active" onclick="filterPubs('all',this)">All (3)</button>
-      <button class="filter-btn" onclick="filterPubs('conference',this)">Conference (2)</button>
-      <button class="filter-btn" onclick="filterPubs('journal',this)">Journal (1)</button>
-      <button class="filter-btn" onclick="filterPubs('published',this)">Published (2)</button>
-      <button class="filter-btn" onclick="filterPubs('under_review',this)">Under Review (1)</button>
+      <button class="filter-btn all active" onclick="filterPubs('all',this)">All (1)</button>
+      <button class="filter-btn" onclick="filterPubs('conference',this)">Conference (1)</button>
     </div>
   </div>
 </div>
@@ -172,29 +167,7 @@
 
     <div class="year-divider"><span>2025</span></div>
 
-    <!-- Pub 2 -->
-    <div class="pub-card journal" data-type="journal" data-status="under_review">
-      <div class="pub-top">
-        <div class="pub-number">[2]</div>
-        <div class="pub-badges">
-          <span class="badge-type badge-journal">Journal Article</span>
-          <span class="badge-status status-under_review">Under Review</span>
-        </div>
-      </div>
-      <div class="pub-title">Explainable AI for Medical Skin Lesion Classification: A LIME-Based Approach</div>
-      <div class="pub-authors"><strong>Rabbi R. M.</strong>, Shafiuzzaman M., Haque M. E.</div>
-      <div class="pub-venue">Journal of Biomedical Informatics &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
-      <div class="pub-abstract collapsed" id="abs2">
-        We propose an explainable deep learning framework for skin lesion classification achieving 94.2% accuracy with LIME-based interpretability maps, providing clinically meaningful visual explanations for AI-driven diagnostic decisions.
-      </div>
-      <div class="pub-links">
-        <button class="toggle-abstract" onclick="toggleAbstract('abs2',this)">▶ Show Abstract</button>
-      </div>
-    </div>
-
-    <div class="year-divider"><span>2024</span></div>
-
-    <!-- Pub 1 -->
+    <!-- Pub 1 - REAL -->
     <div class="pub-card conference" data-type="conference" data-status="published">
       <div class="pub-top">
         <div class="pub-number">[1]</div>
@@ -203,34 +176,12 @@
           <span class="badge-status status-published">Published</span>
         </div>
       </div>
-      <div class="pub-title">Deep Learning-Based Satellite Image Classification Using CNN and Transfer Learning</div>
-      <div class="pub-authors"><strong>Rabbi R. M.</strong>, Islam M. S., Haque M. E.</div>
-      <div class="pub-venue">IEEE International Conference on Computer Vision &amp; Pattern Recognition (CVPR Workshop) &nbsp;·&nbsp; <span class="pub-year">2024</span></div>
-      <div class="pub-abstract collapsed" id="abs1">
-        This paper presents a deep learning pipeline for satellite land-use classification using CNN and transfer learning on the EuroSAT dataset, achieving 96.4% accuracy across 10 land-use categories.
-      </div>
+      <div class="pub-title">An Explainable Approach to Land-Use Classification Using CNN-LSTM and LIME</div>
+      <div class="pub-authors">Md Ashik Ahmmed; <strong>Rashel Mahmud Rabbi</strong>; Md Shafiuzzaman; Tithi Podder; Most. Tasnina Jaman; Afsana Tasnim</div>
+      <div class="pub-venue">IEEE International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN) &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
       <div class="pub-links">
-        <button class="toggle-abstract" onclick="toggleAbstract('abs1',this)">▶ Show Abstract</button>
-        <a class="pub-link" href="#"><i class="bi bi-file-pdf"></i> PDF</a>
-        <a class="pub-link btn-outline" href="#"><i class="bi bi-box-arrow-up-right"></i> DOI</a>
-      </div>
-    </div>
-
-    <!-- Pub 3 -->
-    <div class="pub-card conference" data-type="conference" data-status="published">
-      <div class="pub-top">
-        <div class="pub-number">[3]</div>
-        <div class="pub-badges">
-          <span class="badge-type badge-conference">Conference Paper</span>
-          <span class="badge-status status-published">Published</span>
-        </div>
-      </div>
-      <div class="pub-title">LSTM-Based Temporal Feature Extraction for ECG Arrhythmia Detection</div>
-      <div class="pub-authors"><strong>Rabbi R. M.</strong>, Islam M. S.</div>
-      <div class="pub-venue">International Conference on Electrical, Computer and Communication Engineering (ECCE) &nbsp;·&nbsp; <span class="pub-year">2024</span></div>
-      <div class="pub-links">
-        <a class="pub-link" href="#"><i class="bi bi-file-pdf"></i> PDF</a>
-        <a class="pub-link btn-outline" href="#"><i class="bi bi-box-arrow-up-right"></i> DOI</a>
+        <a class="pub-link" href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-file-pdf"></i> PDF</a>
+        <a class="pub-link btn-outline" href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI / IEEE</a>
       </div>
     </div>
 
