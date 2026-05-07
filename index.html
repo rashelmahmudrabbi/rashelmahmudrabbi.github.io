@@ -614,13 +614,33 @@
   <div class="container">
     <h2 class="section-title">Achievement Gallery</h2>
     <div class="gallery-grid">
+ 
+      <!-- Event index 0 : IEEE ProCon -->
       <div class="gallery-item" onclick="openLightbox(0)">
-        <img src="media/gallery/covers/20251122_185713.jpg" alt="IEEE ProCon App Idea Competition" loading="lazy"/>
+        <img src="media/gallery/ProCON/Group Photo.jpg" alt="IEEE ProCon App Idea Competition" loading="lazy"/>
+        <span class="gallery-photo-badge"><i class="bi bi-images"></i> 2</span>
         <div class="gallery-overlay">
           <div class="gallery-caption">IEEE ProCon App Idea Competition</div>
-          <div class="gallery-year"><span><i class="bi bi-calendar3 me-1"></i>2025</span></div>
+          <div class="gallery-year">
+            <span><i class="bi bi-calendar3 me-1"></i>2025</span>
+            <span><i class="bi bi-images me-1"></i>2 photos</span>
+          </div>
         </div>
       </div>
+ 
+      <!-- Event index 1 : Research Olympiad -->
+      <div class="gallery-item" onclick="openLightbox(1)">
+        <img src="media/awards/Stage Award.jpg" alt="Research Olympiad – Rajshahi Regional" loading="lazy"/>
+        <span class="gallery-photo-badge"><i class="bi bi-images"></i> 2</span>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Research Olympiad – Rajshahi Regional</div>
+          <div class="gallery-year">
+            <span><i class="bi bi-calendar3 me-1"></i>2024</span>
+            <span><i class="bi bi-images me-1"></i>2 photos</span>
+          </div>
+        </div>
+      </div>
+ 
     </div>
   </div>
 </section>
@@ -762,7 +782,15 @@
     {
       title: "IEEE ProCon App Idea Competition",
       photos: [
-        { src: "media/gallery/covers/20251122_185713.jpg", caption: "IEEE ProCon App Idea Competition 2025" }
+        { src: "media/gallery/ProCON/Group Photo.jpg", caption: "Group Photo" },
+        { src: "media/gallery/ProCON/Award Ceremony.jpg", caption: "Award Ceremony" },
+      ]
+    },
+    {
+      title: "Research Olympiad – Rajshahi Regional",
+      photos: [
+        { src: "media/gallery/Research Olympiad/Stage Award.jpg", caption: "Stage Award" },
+        { src: "media/gallery/Research Olympiad/Cover.jpg", caption: "Cover" },
       ]
     }
   ];
