@@ -249,9 +249,23 @@
         <div class="newsletter-card">
           <h4>Stay Updated</h4>
           <p>Get new posts on Computer Vision, Medical AI, and research tips straight to your inbox.</p>
-          <div class="newsletter-input">
-            <input type="email" placeholder="your@email.com" />
-            <button onclick="alert('Thank you! Newsletter coming soon.')">Subscribe</button>
+          <div id="newsletter-form-wrap">
+            <form id="newsletter-form"
+                  action="https://formspree.io/f/xykopbzj"
+                  method="POST"
+                  onsubmit="handleSubscribe(event)">
+              <input type="hidden" name="_subject" value="New subscriber – Rashel's Blog"/>
+              <div class="newsletter-input">
+                <input type="email" name="email" placeholder="your@email.com" required/>
+                <button type="submit" id="sub-btn">Subscribe</button>
+              </div>
+            </form>
+            <div id="newsletter-success" style="display:none;color:var(--gold-lt);font-size:.9rem;margin-top:.8rem;font-weight:500;">
+              ✓ Thank you! You'll hear from me when I publish new posts.
+            </div>
+            <div id="newsletter-error" style="display:none;color:#f88;font-size:.85rem;margin-top:.8rem;">
+              Something went wrong. Please try again or email me directly.
+            </div>
           </div>
         </div>
 
@@ -345,5 +359,34 @@
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="bi bi-arrow-up"></i></button>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>window.addEventListener('scroll',()=>{document.getElementById('scrollTop').style.display=window.scrollY>300?'flex':'none';});</script>
+<script>
+  async function handleSubscribe(e) {
+    e.preventDefault();
+    const btn = document.getElementById('sub-btn');
+    const form = document.getElementById('newsletter-form');
+    const successMsg = document.getElementById('newsletter-success');
+    const errorMsg = document.getElementById('newsletter-error');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    errorMsg.style.display = 'none';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      errorMsg.style.display = 'block';
+      btn.textContent = 'Subscribe';
+      btn.disabled = false;
+    }
+  }
+</script>
 </body>
 </html>
