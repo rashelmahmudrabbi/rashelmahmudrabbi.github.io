@@ -90,6 +90,44 @@
     .toggle-abstract{font-size:.78rem;color:var(--text-mid);cursor:pointer;background:none;border:none;padding:0;text-decoration:underline;transition:color .2s;}
     .toggle-abstract:hover{color:var(--navy);}
 
+    /* ABSTRACT TOGGLE */
+    .pub-abstract-toggle {
+      margin: .8rem 0 .5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .abstract-label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      letter-spacing: .3px;
+    }
+    .abstract-arrow {
+      transition: transform .25s;
+      font-size: .75rem;
+    }
+    .pub-abstract-toggle.open .abstract-arrow {
+      transform: rotate(90deg);
+    }
+    .abstract-body {
+      display: none;
+      margin-top: .6rem;
+      font-size: .88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      border-left: 3px solid var(--gold);
+      padding-left: .9rem;
+      background: rgba(200,149,42,.04);
+      border-radius: 0 6px 6px 0;
+      padding: .7rem .9rem;
+    }
+    .pub-abstract-toggle.open .abstract-body {
+      display: block;
+    }
+
     /* EMPTY STATE */
     .empty-state{text-align:center;padding:4rem 2rem;color:var(--text-mid);}
     .empty-state i{font-size:3rem;color:var(--border);display:block;margin-bottom:1rem;}
@@ -104,6 +142,7 @@
       .pub-top{flex-direction:column;gap:.5rem;}
       .filter-bar{top:56px;}
     }
+
   </style>
 </head>
 <body>
@@ -179,6 +218,13 @@
       <div class="pub-title">An Explainable Approach to Land-Use Classification Using CNN-LSTM and LIME</div>
       <div class="pub-authors">Md Ashik Ahmmed; <strong>Rashel Mahmud Rabbi</strong>; Md Shafiuzzaman; Tithi Podder; Most. Tasnina Jaman; Afsana Tasnim</div>
       <div class="pub-venue">IEEE International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN) &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
+      <!-- Abstract Toggle -->
+      <div class="pub-abstract-toggle" onclick="this.classList.toggle('open')">
+        <span class="abstract-label"><i class="bi bi-chevron-right abstract-arrow"></i> Abstract</span>
+        <div class="abstract-body">
+          This paper presents an explainable approach to land-use classification using a hybrid CNN-LSTM architecture combined with LIME (Local Interpretable Model-agnostic Explanations). The proposed model leverages CNNs for spatial feature extraction and LSTMs for temporal pattern learning on satellite imagery. LIME is applied to provide visual explanations of model predictions, improving transparency and interpretability. Experiments conducted on the EuroSAT dataset demonstrate competitive classification accuracy while offering meaningful insight into model decisions, contributing to the development of trustworthy AI systems for remote sensing applications.
+        </div>
+      </div>
       <div class="pub-links">
         <a class="pub-link" href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-file-pdf"></i> PDF</a>
         <a class="pub-link btn-outline" href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI / IEEE</a>
