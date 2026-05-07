@@ -59,14 +59,13 @@
     .pub-card.conference::before{background:rgba(0,64,133,.3);}
     .pub-card.journal::before{background:rgba(0,64,133,.3);}
     .pub-card.thesis::before{background:rgba(0,64,133,.3);}
-    .pub-card.under-review::before{background:rgba(133,100,4,.3);}
-    .pub-card.completed::before{background:rgba(0,64,133,.3);}
+    
 
     .pub-top{display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem;}
     .pub-badges{display:flex;gap:.4rem;flex-wrap:wrap;}
     .badge-type{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:.22rem .65rem;border-radius:20px;}
     .badge-conference{background:#cce5ff;color:#004085;}
-    .badge-journal { background: #cce5ff; color: #155724;}
+    .badge-journal { background: #cce5ff; color: #004085;}
     .badge-preprint{background:#fff3cd;color:#856404;}
     .badge-book_chapter{background:#f8d7da;color:#721c24;}
     .badge-thesis{background:#cce5ff;color:#4a1d96;}
@@ -75,7 +74,7 @@
     .status-under-review{background:#fff3cd;color:#856404;}
     .status-accepted{background:#d1ecf1;color:#0c5460;}
     .status-preprint{background:#e2d9f3;color:#6f42c1;}
-    .status-completed{background:#e5ffcc;color:#4a1d96;}
+    .status-completed{background:#e5ffcc;color:#000000;}
 
     .pub-number{font-family:'Crimson Pro',serif;font-size:1rem;color:var(--text-mid);font-weight:400;white-space:nowrap;}
     .pub-title{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:.4rem;line-height:1.4;}
@@ -239,12 +238,12 @@
     </div>
     <div class="year-divider"><span>2026</span></div>
     <!-- Pub 2 - JOURNAL (example) -->
-    <div class="pub-card journal" data-type="journal" data-status="Under Review">
+    <div class="pub-card journal" data-type="journal" data-status="under-review">
       <div class="pub-top">
         <div class="pub-number">[2]</div>
         <div class="pub-badges">
           <span class="badge-type badge-journal">Journal Article</span>
-          <span class="badge-status status-under_review">Under Review</span>
+          <span class="badge-status status-under-review">Under Review</span>
         </div>
       </div>
       <div class="pub-title">Your Journal Paper Title Here</div>
