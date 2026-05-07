@@ -56,9 +56,11 @@
     .pub-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--border);transition:background .2s;}
     .pub-card:hover{box-shadow:0 8px 32px rgba(11,30,61,.1);transform:translateY(-1px);}
     .pub-card:hover::before{background:var(--gold);}
-    .pub-card.journal::before{background:rgba(21,87,36,.3);}
     .pub-card.conference::before{background:rgba(0,64,133,.3);}
+    .pub-card.journal::before{background:rgba(0,64,133,.3);}
+    .pub-card.thesis::before{background:rgba(0,64,133,.3);}
     .pub-card.under-review::before{background:rgba(133,100,4,.3);}
+    .pub-card.completed::before{background:rgba(0,64,133,.3);}
 
     .pub-top{display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem;}
     .pub-badges{display:flex;gap:.4rem;flex-wrap:wrap;}
