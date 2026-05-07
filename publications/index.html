@@ -65,6 +65,7 @@
     .badge-type{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:.22rem .65rem;border-radius:20px;}
     .badge-journal{background:#d4edda;color:#155724;}
     .badge-conference{background:#cce5ff;color:#004085;}
+    .badge-journal { background: #d4edda; color: #155724;}
     .badge-preprint{background:#fff3cd;color:#856404;}
     .badge-book_chapter{background:#f8d7da;color:#721c24;}
     .badge-thesis{background:#e2d9f3;color:#4a1d96;}
@@ -196,6 +197,7 @@
       <span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>
       <button class="filter-btn all active" onclick="filterPubs('all',this)">All (1)</button>
       <button class="filter-btn" onclick="filterPubs('conference',this)">Conference (1)</button>
+      <button class="filter-btn" onclick="filterPubs('journal',this)">Journal (1)</button>
     </div>
   </div>
 </div>
@@ -228,6 +230,30 @@
       <div class="pub-links">
         <a class="pub-link" href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-file-pdf"></i> PDF</a>
         <a class="pub-link btn-outline" href="https://ieeexplore.ieee.org/document/11172239" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI / IEEE</a>
+      </div>
+    </div>
+    <!-- Pub 2 - JOURNAL (example) -->
+    <div class="pub-card journal" data-type="journal" data-status="published">
+      <div class="pub-top">
+        <div class="pub-number">[2]</div>
+        <div class="pub-badges">
+          <span class="badge-type badge-journal">Journal Article</span>
+          <span class="badge-status status-published">Published</span>
+        </div>
+      </div>
+      <div class="pub-title">Your Journal Paper Title Here</div>
+      <div class="pub-authors">Author One; <strong>Rashel Mahmud Rabbi</strong>; Author Three</div>
+      <div class="pub-venue">Journal Name &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
+      <!-- Abstract Toggle -->
+      <div class="pub-abstract-toggle" onclick="this.classList.toggle('open')">
+        <span class="abstract-label"><i class="bi bi-chevron-right abstract-arrow"></i> Abstract</span>
+        <div class="abstract-body">
+          Your abstract text goes here.
+        </div>
+      </div>
+      <div class="pub-links">
+        <a class="pub-link" href="#" target="_blank"><i class="bi bi-file-pdf"></i> PDF</a>
+        <a class="pub-link btn-outline" href="#" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI</a>
       </div>
     </div>
 
