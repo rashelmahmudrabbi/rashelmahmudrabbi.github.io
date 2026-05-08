@@ -37,14 +37,24 @@
     .filter-btn{background:transparent;border:1.5px solid var(--navy);color:var(--navy);border-radius:25px;font-size:.8rem;padding:.32rem .9rem;cursor:pointer;transition:all .2s;font-weight:500;margin:.2rem;}
     .filter-btn:hover,.filter-btn.active{background:var(--navy);color:var(--gold-lt);border-color:var(--navy);}
 
+    /* SECTION HEADERS */
+    .section-divider{padding:2.5rem 0 1rem;}
+    .section-divider h2{font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem;}
+    .section-divider h2 .section-icon{color:var(--gold);font-size:1.4rem;}
+    .section-divider p{color:var(--text-mid);font-size:.9rem;margin:0;}
+    .section-line{border:none;border-top:2px solid var(--border);margin:1rem 0 1.8rem;}
+    .section-line.gold-line{border-color:var(--gold);opacity:.4;}
+
     /* PROJECT CARDS */
-    .projects-section{padding:3rem 0;}
+    .projects-section{padding:1.5rem 0 3rem;}
     .project-card{background:var(--section-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .3s;height:100%;display:flex;flex-direction:column;}
     .project-card:hover{box-shadow:0 12px 40px rgba(11,30,61,.14);transform:translateY(-4px);}
     .project-img{height:180px;background:linear-gradient(135deg,var(--navy),var(--navy-lt));display:flex;align-items:center;justify-content:center;color:var(--gold-lt);font-size:3.5rem;position:relative;overflow:hidden;}
     .project-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(11,30,61,.3));}
+    .project-img.proj-bg{background:linear-gradient(135deg,#1e3a5f,#2c5282);}
     .project-year-badge{position:absolute;top:.8rem;right:.8rem;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;z-index:1;}
     .project-type-badge{position:absolute;top:.8rem;left:.8rem;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);color:#fff;font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:20px;z-index:1;text-transform:uppercase;letter-spacing:.4px;}
+    .project-type-badge.dev-badge{background:rgba(44,82,130,.5);}
     .project-body{padding:1.4rem 1.5rem;flex:1;display:flex;flex-direction:column;}
     .project-title{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:.6rem;line-height:1.3;}
     .project-desc{font-size:.88rem;color:var(--text-mid);line-height:1.65;margin-bottom:1rem;flex:1;}
@@ -56,7 +66,7 @@
     .project-link.secondary{border-color:var(--border);color:var(--text-mid);}
     .project-link.secondary:hover{background:var(--navy);border-color:var(--navy);color:#fff;}
 
-    /* FEATURED (first project) */
+    /* FEATURED CARD */
     .featured-card{background:var(--section-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .3s;margin-bottom:2rem;}
     .featured-card:hover{box-shadow:0 12px 40px rgba(11,30,61,.14);}
     .featured-img{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%);height:220px;display:flex;align-items:center;justify-content:center;color:var(--gold-lt);font-size:5rem;position:relative;}
@@ -64,13 +74,25 @@
     .featured-body{padding:2rem;}
     .featured-title{font-family:'Crimson Pro',serif;font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:.7rem;}
     .featured-desc{color:var(--text-mid);line-height:1.7;margin-bottom:1rem;}
-    .accuracy-badge{display:inline-block;background:rgba(200,149,42,.12);border:1px solid var(--gold);color:var(--navy);font-size:.8rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;margin-right:.5rem;}
+    .accuracy-badge{display:inline-block;background:rgba(200,149,42,.12);border:1px solid var(--gold);color:var(--navy);font-size:.8rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;margin-right:.5rem;margin-bottom:.4rem;}
+
+    /* THESIS CARD */
+    .thesis-card{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 100%);border-radius:14px;padding:2rem;margin-bottom:2rem;color:#fff;position:relative;overflow:hidden;}
+    .thesis-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(200,149,42,.08);pointer-events:none;}
+    .thesis-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+    .thesis-label{font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.6rem;}
+    .thesis-title{font-family:'Crimson Pro',serif;font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:.8rem;line-height:1.35;}
+    .thesis-desc{font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:1.2rem;}
+    .thesis-chip{display:inline-block;background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);font-size:.74rem;padding:.22rem .58rem;border-radius:20px;margin:.15rem .15rem .15rem 0;font-weight:500;border:1px solid rgba(255,255,255,.18);}
+    .thesis-link{font-size:.82rem;color:var(--gold-lt);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.3rem;border:1.5px solid var(--gold);padding:.28rem .75rem;border-radius:20px;transition:all .2s;}
+    .thesis-link:hover{background:var(--gold);color:var(--navy);}
 
     /* FOOTER */
     footer{background:var(--navy);color:rgba(255,255,255,.55);text-align:center;padding:1.8rem 0;font-size:.82rem;}
     footer a{color:var(--gold);text-decoration:none;}
     #scrollTop{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;background:var(--gold);color:var(--navy);border:none;border-radius:50%;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(200,149,42,.4);cursor:pointer;z-index:999;}
     #scrollTop:hover{background:var(--gold-lt);}
+    .filterable.hidden{display:none!important;}
   </style>
 </head>
 <body>
@@ -99,19 +121,22 @@
     <div class="breadcrumb-nav mb-2">
       <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Projects</span>
     </div>
-    <h1><i class="bi bi-cpu me-2" style="color:var(--gold-lt)"></i>Research Projects</h1>
-    <p>Deep learning systems for medical imaging, satellite classification, and signal processing</p>
+    <h1><i class="bi bi-cpu me-2" style="color:var(--gold-lt)"></i>Projects</h1>
+    <p>Research experiments in deep learning &amp; computer vision — plus full-stack web applications</p>
   </div>
 </section>
 
+<!-- FILTER BAR -->
 <div class="filter-bar">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center gap-1">
       <span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>
-      <button class="filter-btn active" onclick="filterProjects('all',this)">All (3)</button>
-      <button class="filter-btn" onclick="filterProjects('research',this)">Research (3)</button>
-      <button class="filter-btn" onclick="filterProjects('2024',this)">2024 (2)</button>
-      <button class="filter-btn" onclick="filterProjects('2023',this)">2023 (1)</button>
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All (8)</button>
+      <button class="filter-btn" onclick="filterProjects('research',this)">Research (5)</button>
+      <button class="filter-btn" onclick="filterProjects('development',this)">Development (3)</button>
+      <button class="filter-btn" onclick="filterProjects('2025',this)">2025</button>
+      <button class="filter-btn" onclick="filterProjects('2024',this)">2024</button>
+      <button class="filter-btn" onclick="filterProjects('2023',this)">2023</button>
     </div>
   </div>
 </div>
@@ -119,38 +144,67 @@
 <div class="projects-section">
   <div class="container">
 
-    <!-- Featured Project -->
-    <div class="featured-card" data-year="2024" data-type="research">
-      <div class="featured-img">
-        <i class="bi bi-bandaid"></i>
-        <span class="featured-badge">⭐ Featured Project</span>
+    <!-- ═══════════════ RESEARCH PROJECTS ═══════════════ -->
+    <div class="section-divider" id="research-section">
+      <h2><i class="bi bi-journal-code section-icon"></i>Research Projects</h2>
+      <p>Deep learning systems for medical imaging, remote sensing, and signal processing</p>
+      <hr class="section-line gold-line">
+    </div>
+
+    <!-- Thesis — dark highlight card -->
+    <div class="thesis-card filterable" data-year="2025" data-type="research">
+      <div class="thesis-label"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Thesis &middot; 2025</div>
+      <div class="thesis-title">HYBSWINEFF: Hybrid CNN-Transformer Fusion for Binary and Multi-Stage Blood Cell Cancer Classification</div>
+      <p class="thesis-desc">Created a hybrid CNN-Transformer model that performs binary and multi-stage leukemia classification of peripheral blood smear images. Incorporates Swin Transformer with CNN feature fusion and explainable AI methods (Grad-CAM, LIME) to make predictions interpretable for clinical use. Targets automated leukemia screening from microscopic blood cell images.</p>
+      <div class="mb-3">
+        <span class="thesis-chip">PyTorch</span>
+        <span class="thesis-chip">Swin Transformer</span>
+        <span class="thesis-chip">CNN</span>
+        <span class="thesis-chip">Grad-CAM</span>
+        <span class="thesis-chip">LIME</span>
+        <span class="thesis-chip">OpenCV</span>
       </div>
-      <div class="featured-body">
-        <div class="d-flex flex-wrap gap-2 mb-2">
-          <span class="accuracy-badge"><i class="bi bi-graph-up me-1"></i>94.2% Accuracy</span>
-          <span class="accuracy-badge"><i class="bi bi-calendar me-1"></i>2024</span>
-        </div>
-        <div class="featured-title">MediVision – AI Skin Disease Classifier</div>
-        <p class="featured-desc">End-to-end deep learning web application for skin lesion classification with LIME-based visual explanations. Trained on the HAM10000 dataset, this system provides clinically interpretable AI diagnostics for dermatological conditions, making AI decisions transparent and trustworthy for medical practitioners.</p>
-        <div class="mb-3">
-          <span class="tech-chip">PyTorch</span>
-          <span class="tech-chip">FastAI</span>
-          <span class="tech-chip">Django</span>
-          <span class="tech-chip">OpenCV</span>
-          <span class="tech-chip">LIME</span>
-          <span class="tech-chip">PostgreSQL</span>
-        </div>
-        <div class="d-flex gap-2 flex-wrap">
-          <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
-          <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
-        </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <a class="thesis-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+        <a class="thesis-link" href="../publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
       </div>
     </div>
 
-    <!-- Grid Projects -->
-    <div class="row g-4" id="projectGrid">
+    <!-- Research grid -->
+    <div class="row g-4">
 
-      <div class="col-md-6" data-year="2024" data-type="research">
+      <!-- Featured: MediVision -->
+      <div class="col-12 filterable" data-year="2024" data-type="research">
+        <div class="featured-card">
+          <div class="featured-img">
+            <i class="bi bi-bandaid"></i>
+            <span class="featured-badge">&#11088; Featured</span>
+          </div>
+          <div class="featured-body">
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="accuracy-badge"><i class="bi bi-graph-up me-1"></i>94.2% Accuracy</span>
+              <span class="accuracy-badge"><i class="bi bi-calendar me-1"></i>2024</span>
+            </div>
+            <div class="featured-title">MediVision – AI Skin Disease Classifier</div>
+            <p class="featured-desc">End-to-end deep learning web application for skin lesion classification with LIME-based visual explanations. Trained on the HAM10000 dataset, this system provides clinically interpretable AI diagnostics for dermatological conditions, making AI decisions transparent and trustworthy for medical practitioners.</p>
+            <div class="mb-3">
+              <span class="tech-chip">PyTorch</span>
+              <span class="tech-chip">FastAI</span>
+              <span class="tech-chip">Django</span>
+              <span class="tech-chip">OpenCV</span>
+              <span class="tech-chip">LIME</span>
+              <span class="tech-chip">PostgreSQL</span>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MRCL-ELM Satellite -->
+      <div class="col-md-6 filterable" data-year="2024" data-type="research">
         <div class="project-card">
           <div class="project-img">
             <i class="bi bi-globe-americas"></i>
@@ -158,14 +212,15 @@
             <span class="project-type-badge">Research</span>
           </div>
           <div class="project-body">
-            <div class="project-title">SatelliteNet – Land Use Classification</div>
-            <div class="project-desc">CNN + Transfer Learning pipeline for land-use classification on EuroSAT satellite imagery. Supports 10 land-use categories with 96.4% accuracy. Demonstrates effectiveness of fine-tuned pre-trained models on remote sensing tasks.</div>
+            <div class="project-title">MRCL-ELM – Multi-Class Satellite Image Classifier</div>
+            <div class="project-desc">Novel hybrid deep learning approach for satellite image classification achieving 98.33% accuracy on EuroSAT and 98.10% on UC Merced. Integrates LIME and SHAP for explainability; deployed as a real-time web application. Submitted to a Q1 journal.</div>
             <div class="tech-chips">
-              <span class="tech-chip">TensorFlow</span>
-              <span class="tech-chip">Keras</span>
-              <span class="tech-chip">NumPy</span>
-              <span class="tech-chip">Matplotlib</span>
-              <span class="tech-chip">Google Colab</span>
+              <span class="tech-chip">PyTorch</span>
+              <span class="tech-chip">LIME</span>
+              <span class="tech-chip">SHAP</span>
+              <span class="tech-chip">Flask</span>
+              <span class="tech-chip">EuroSAT</span>
+              <span class="tech-chip">UC Merced</span>
             </div>
             <div class="project-links">
               <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
@@ -175,10 +230,63 @@
         </div>
       </div>
 
-      <div class="col-md-6" data-year="2023" data-type="research">
+      <!-- CNN-LSTM Land Use -->
+      <div class="col-md-6 filterable" data-year="2024" data-type="research">
+        <div class="project-card">
+          <div class="project-img">
+            <i class="bi bi-layers"></i>
+            <span class="project-year-badge">2024</span>
+            <span class="project-type-badge">Research</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">SatelliteNet – CNN-LSTM Land-Use Classifier</div>
+            <div class="project-desc">Hybrid CNN-LSTM network for land-use classification on EuroSAT achieving 98.30% accuracy. Generates LIME-based explainability visualisations. Published and presented at IEEE QPAIN 2025.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">TensorFlow</span>
+              <span class="tech-chip">Keras</span>
+              <span class="tech-chip">LIME</span>
+              <span class="tech-chip">NumPy</span>
+              <span class="tech-chip">Google Colab</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> IEEE Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NeuroFusion Brain Tumor -->
+      <div class="col-md-6 filterable" data-year="2023" data-type="research">
         <div class="project-card">
           <div class="project-img">
             <i class="bi bi-activity"></i>
+            <span class="project-year-badge">2023</span>
+            <span class="project-type-badge">Research</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">NeuroFusion – Brain Tumor Detection</div>
+            <div class="project-desc">Hybrid CNN-Transformer framework for brain tumor detection from MRI images. Combines MobileNetV3 with channel attention and Transformer encoder architectures, using advanced augmentation and optimisation to enhance generalisation.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">PyTorch</span>
+              <span class="tech-chip">MobileNetV3</span>
+              <span class="tech-chip">Transformer</span>
+              <span class="tech-chip">OpenCV</span>
+              <span class="tech-chip">scikit-learn</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              <a class="project-link secondary" href="../publications/index.html"><i class="bi bi-journal-text"></i> Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ECG Arrhythmia -->
+      <div class="col-md-6 filterable" data-year="2023" data-type="research">
+        <div class="project-card">
+          <div class="project-img">
+            <i class="bi bi-heart-pulse"></i>
             <span class="project-year-badge">2023</span>
             <span class="project-type-badge">Research</span>
           </div>
@@ -199,13 +307,99 @@
         </div>
       </div>
 
+    </div><!-- /research grid -->
+
+
+    <!-- ═══════════════ PROJECT EXPERIENCE ═══════════════ -->
+    <div class="section-divider mt-4" id="dev-section">
+      <h2><i class="bi bi-code-square section-icon"></i>Project Experience</h2>
+      <p>Full-stack web applications built with Django, Bootstrap, and modern tooling</p>
+      <hr class="section-line">
     </div>
+
+    <div class="row g-4">
+
+      <!-- Academic Portfolio -->
+      <div class="col-md-4 filterable" data-year="2025" data-type="development">
+        <div class="project-card">
+          <div class="project-img proj-bg">
+            <i class="bi bi-person-badge"></i>
+            <span class="project-year-badge">2025</span>
+            <span class="project-type-badge dev-badge">Development</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Academic Portfolio Website</div>
+            <div class="project-desc">Designed and implemented this responsive academic portfolio using Django and Bootstrap, with a dynamic content management system leveraging the Django admin panel for easy content updates.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">Django</span>
+              <span class="tech-chip">Bootstrap 5</span>
+              <span class="tech-chip">PostgreSQL</span>
+              <span class="tech-chip">HTML/CSS/JS</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              <a class="project-link secondary" href="../index.html"><i class="bi bi-box-arrow-up-right"></i> Live Site</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RentalHub -->
+      <div class="col-md-4 filterable" data-year="2024" data-type="development">
+        <div class="project-card">
+          <div class="project-img proj-bg">
+            <i class="bi bi-house-door"></i>
+            <span class="project-year-badge">2024</span>
+            <span class="project-type-badge dev-badge">Development</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">RentalHub – E-commerce Web App</div>
+            <div class="project-desc">Responsive rental marketplace with user authentication, interactive UI, and full listing, browsing, and management of properties and items for rent. Built with Django, Tailwind CSS, and SQLite.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">Django</span>
+              <span class="tech-chip">Tailwind CSS</span>
+              <span class="tech-chip">SQLite</span>
+              <span class="tech-chip">REST API</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUR RAJSHAHI -->
+      <div class="col-md-4 filterable" data-year="2023" data-type="development">
+        <div class="project-card">
+          <div class="project-img proj-bg">
+            <i class="bi bi-map"></i>
+            <span class="project-year-badge">2023</span>
+            <span class="project-type-badge dev-badge">Development</span>
+          </div>
+          <div class="project-body">
+            <div class="project-title">OUR RAJSHAHI – Regional Info Platform</div>
+            <div class="project-desc">Comprehensive info and tour platform for the Rajshahi region with categorised local services, tourist attractions, emergency contacts, authentication, interactive navigation, and feedback modules. Monetised via Google AdSense.</div>
+            <div class="tech-chips">
+              <span class="tech-chip">Django</span>
+              <span class="tech-chip">Bootstrap</span>
+              <span class="tech-chip">SQLite</span>
+              <span class="tech-chip">Google AdSense</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dev grid -->
+
   </div>
 </div>
 
 <footer>
   <div class="container">
-    <p class="mb-1">© 2025 Rashel Mahmud Rabbi &nbsp;·&nbsp; Graduate Researcher, NBIU Bangladesh</p>
+    <p class="mb-1">&copy; 2025 Rashel Mahmud Rabbi &nbsp;&middot;&nbsp; Graduate Researcher, NBIU Bangladesh</p>
     <p class="mb-0"><a href="mailto:raselmahud6757@gmail.com">raselmahud6757@gmail.com</a></p>
   </div>
 </footer>
@@ -214,18 +408,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  window.addEventListener('scroll',()=>{
-    document.getElementById('scrollTop').style.display=window.scrollY>300?'flex':'none';
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'flex' : 'none';
   });
-  function filterProjects(filter,btn){
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+
+  function filterProjects(filter, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const items=document.querySelectorAll('#projectGrid [data-year],.featured-card');
-    items.forEach(item=>{
-      if(filter==='all') item.style.display='';
-      else if(item.dataset.year===filter || item.dataset.type===filter) item.style.display='';
-      else item.style.display='none';
+
+    document.querySelectorAll('.filterable').forEach(item => {
+      const match = filter === 'all' || item.dataset.type === filter || item.dataset.year === filter;
+      item.classList.toggle('hidden', !match);
     });
+
+    const researchHasVisible = [...document.querySelectorAll('[data-type="research"].filterable')].some(el => !el.classList.contains('hidden'));
+    const devHasVisible      = [...document.querySelectorAll('[data-type="development"].filterable')].some(el => !el.classList.contains('hidden'));
+
+    document.getElementById('research-section').style.display = researchHasVisible ? '' : 'none';
+    document.getElementById('dev-section').style.display      = devHasVisible      ? '' : 'none';
   }
 </script>
 </body>
