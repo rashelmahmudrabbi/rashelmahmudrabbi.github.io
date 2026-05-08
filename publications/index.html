@@ -246,13 +246,34 @@
           <span class="badge-status status-completed">Completed</span>
         </div>
       </div>
-      <div class="pub-title">Your Thesis Title Here</div>
+      <div class="pub-title">An Explainable Approach to Land-Use Classification Using CNN-LSTM and LIME </div>
       <div class="pub-authors"><strong>Rashel Mahmud Rabbi</strong></div>
       <div class="pub-venue">B.Sc. Thesis, Department of CSE, North Bengal International University &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
       <div class="pub-abstract-toggle" onclick="this.classList.toggle('open')">
         <span class="abstract-label"><i class="bi bi-chevron-right abstract-arrow"></i> Abstract</span>
         <div class="abstract-body">
-          Your thesis abstract here.
+          Early detection and subtyping of acute lymphoblastic leukemia (ALL) from peripheral 
+blood smears are vital for timely treatment but remain limited by manual microscopy. To 
+address this, HybSwinEff, a lightweight hybrid Convolutional Neural Network (CNN)
+Transformer architecture, is proposed for automated, interpretable, and multistage ALL 
+classification. The model employs a hierarchical pipeline: first distinguishing benign from 
+malignant cells, then conditionally subtyping malignant cases into Early Pre-B, Pre-B, and 
+Pro-B stages based on morphological features. HybSwinEff combines a pretrained 
+EfficientNetV2-RW-T backbone for local texture extraction with a Swin Transformer Tiny 
+for global context modeling. Features are mean-pooled, projected to a 128-dimensional 
+space, concatenated, and fused through a Residual Fusion Block (RFB) before dual MLP 
+heads for binary and conditional staging tasks. Trained on the Blood Cell Cancer (ALL) and 
+Acute Lymphoblastic Leukemia (ALL) datasets using PyTorch and TIMM pretrained 
+weights, with stratified train-val-test splits, three random seeds (including 42), 5-fold cross 
+validation, label smoothing, balanced class weighting, and heavy augmentations, the model 
+achieves exceptional results: 99.69% binary accuracy and 100% staging accuracy on Blood 
+Cell Cancer, and 100% across all metrics on Acute Lymphoblastic Leukemia, 
+outperforming prior state-of-the-art models. Furthermore, LIME visualizations confirm that 
+HybSwinEff focuses on clinically meaningful regions, accurately highlighting malignant 
+blast morphology and typical benign lymphocyte structures, thereby improving 
+interpretability and trust in its diagnostic decisions. With 40.54M parameters, HybSwinEff 
+offers 18% parameter efficiency over similar hybrids and real-time inference (~3.40 
+ms/image) on GPUs.
         </div>
       </div>
       <div class="pub-links">
@@ -272,14 +293,14 @@
           <span class="badge-status status-under-review">Under Review</span>
         </div>
       </div>
-      <div class="pub-title">Your Journal Paper Title Here</div>
-      <div class="pub-authors">Author One; <strong>Rashel Mahmud Rabbi</strong>; Author Three</div>
-      <div class="pub-venue">Journal Name &nbsp;·&nbsp; <span class="pub-year">2026</span></div>
+      <div class="pub-title">Enhancing Multi-Class Satellite Image Classification with MRCL-ELM: A Hybrid Explainable Deep Learning Approach</div>
+      <div class="pub-authors">Md Ashik Ahmmed; <strong>Rashel Mahmud Rabbi</strong>; Md Shafiuzzaman</div>
+      <div class="pub-venue">Journal Name &nbsp;·&nbsp; <span class="pub-year">--</span></div>
       <!-- Abstract Toggle -->
       <div class="pub-abstract-toggle" onclick="this.classList.toggle('open')">
         <span class="abstract-label"><i class="bi bi-chevron-right abstract-arrow"></i> Abstract</span>
         <div class="abstract-body">
-          Your abstract text goes here.
+          Designed a novel hybrid deep learning approach to classify images from satellites with a 98.33% accuracy accuracy on EuroSAT and 98.10% accuracy on UC Merced datasets. Developed and implemented an integrated LIME and SHAP to explainable AI, and deployed the system as a real-time web application.
         </div>
       </div>
       <div class="pub-links">
