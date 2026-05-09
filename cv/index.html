@@ -196,6 +196,38 @@
     </div>
   </div>
 
+  <!-- RESEARCH INTERESTS -->
+  <div class="cv-section">
+    <div class="cv-section-title"><i class="bi bi-lightbulb"></i>Research Interests</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Computer Vision</div>
+        <span class="skill-tag">Image Classification</span>
+        <span class="skill-tag">Object Detection</span>
+        <span class="skill-tag">Segmentation</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Medical Image Analysis</div>
+        <span class="skill-tag">AI-driven Diagnostics</span>
+        <span class="skill-tag">Histology</span>
+        <span class="skill-tag">Radiology Imaging</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Deep Learning</div>
+        <span class="skill-tag">CNN</span>
+        <span class="skill-tag">Transformer</span>
+        <span class="skill-tag">LSTM</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Explainable AI &amp; Remote Sensing</div>
+        <span class="skill-tag">LIME</span>
+        <span class="skill-tag">SHAP</span>
+        <span class="skill-tag">Grad-CAM</span>
+        <span class="skill-tag">Satellite Image Processing</span>
+      </div>
+    </div>
+  </div>
+
   <!-- EDUCATION -->
   <div class="cv-section">
     <div class="cv-section-title"><i class="bi bi-mortarboard"></i>Education</div>
@@ -264,10 +296,12 @@
           </div>
           <div class="cv-item-desc">
             <ul>
-              <li>Developed deep learning models for satellite and medical image classification</li>
-              <li>Worked with CNN, LSTM, and Transformer-based architectures</li>
-              <li>Applied Explainable AI techniques (LIME)</li>
-              <li>Experienced in dataset preprocessing, model optimization, and evaluation</li>
+              <li>Developed HYBSWINEFF — a hybrid CNN-Transformer model for binary and multi-stage blood cell cancer classification using Swin Transformer, Grad-CAM, and LIME; being extended for international journal publication</li>
+              <li>Built MRCL-ELM, a satellite image classifier achieving 98.33% on EuroSAT and 98.10% on UC Merced with LIME/SHAP explainability, deployed as a real-time web application; submitted to a Q1 journal</li>
+              <li>Developed SatelliteNet (CNN-LSTM), achieving 98.30% accuracy on EuroSAT land-use classification; published and presented at IEEE QPAIN 2025</li>
+              <li>Built NeuroFusion, a hybrid CNN-Transformer framework for brain tumor detection from MRI using MobileNetV3 with channel attention</li>
+              <li>Applied Explainable AI techniques (LIME, SHAP, Grad-CAM) across all research projects for clinical and scientific interpretability</li>
+              <li>Experienced in dataset curation, model optimisation, evaluation, and academic writing</li>
             </ul>
           </div>
         </div>
@@ -285,6 +319,60 @@
       <div class="mt-1"><a href="https://ieeexplore.ieee.org/document/11172239" target="_blank" style="font-size:.78rem;color:var(--gold);text-decoration:none;font-weight:500;"><i class="bi bi-box-arrow-up-right me-1"></i>DOI / IEEE Xplore</a></div>
     </div>
     <div class="mt-2"><a href="../publications/index.html" style="font-size:.83rem;color:var(--gold);text-decoration:none;font-weight:500;">View all publications →</a></div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="cv-section">
+    <div class="cv-section-title"><i class="bi bi-journal-code"></i>Key Projects</div>
+
+    <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-mid);margin-bottom:.6rem;">Research Projects</div>
+    <div class="cv-item-card mb-2">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem;">
+        <div style="font-weight:700;color:var(--navy);">HYBSWINEFF – Hybrid CNN-Transformer for Blood Cell Cancer Classification</div>
+        <span style="font-size:.75rem;color:var(--gold);font-weight:600;">2026</span>
+      </div>
+      <div style="font-size:.83rem;color:var(--text-mid);margin-top:.3rem;line-height:1.6;">Novel hybrid CNN-Transformer framework for binary and multi-stage leukemia classification using Swin Transformer, Grad-CAM, and LIME. Being prepared for international journal publication.</div>
+      <div style="margin-top:.4rem;"><span class="skill-tag" style="font-size:.72rem;">PyTorch</span><span class="skill-tag" style="font-size:.72rem;">Swin Transformer</span><span class="skill-tag" style="font-size:.72rem;">Grad-CAM</span><span class="skill-tag" style="font-size:.72rem;">Medical Imaging</span></div>
+    </div>
+    <div class="cv-item-card mb-2">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem;">
+        <div style="font-weight:700;color:var(--navy);">MRCL-ELM – Multi-Class Satellite Image Classifier</div>
+        <span style="font-size:.75rem;color:var(--gold);font-weight:600;">2024</span>
+      </div>
+      <div style="font-size:.83rem;color:var(--text-mid);margin-top:.3rem;line-height:1.6;">98.33% accuracy on EuroSAT, 98.10% on UC Merced. Deployed as a real-time web app with LIME/SHAP explainability. Submitted to a Q1 journal.</div>
+      <div style="margin-top:.4rem;"><span class="skill-tag" style="font-size:.72rem;">PyTorch</span><span class="skill-tag" style="font-size:.72rem;">LIME</span><span class="skill-tag" style="font-size:.72rem;">SHAP</span><span class="skill-tag" style="font-size:.72rem;">Flask</span></div>
+    </div>
+    <div class="cv-item-card mb-2">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem;">
+        <div style="font-weight:700;color:var(--navy);">SatelliteNet – CNN-LSTM Land-Use Classifier</div>
+        <span style="font-size:.75rem;color:var(--gold);font-weight:600;">2024</span>
+      </div>
+      <div style="font-size:.83rem;color:var(--text-mid);margin-top:.3rem;line-height:1.6;">98.30% accuracy on EuroSAT land-use classification with LIME explainability. Published and presented at IEEE QPAIN 2025.</div>
+      <div style="margin-top:.4rem;"><span class="skill-tag" style="font-size:.72rem;">TensorFlow</span><span class="skill-tag" style="font-size:.72rem;">Keras</span><span class="skill-tag" style="font-size:.72rem;">LIME</span></div>
+    </div>
+    <div class="cv-item-card mb-3">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem;">
+        <div style="font-weight:700;color:var(--navy);">NeuroFusion – Brain Tumor Detection</div>
+        <span style="font-size:.75rem;color:var(--gold);font-weight:600;">2026</span>
+      </div>
+      <div style="font-size:.83rem;color:var(--text-mid);margin-top:.3rem;line-height:1.6;">Hybrid CNN-Transformer for MRI brain tumor detection combining MobileNetV3 with channel attention and Transformer encoder architectures.</div>
+      <div style="margin-top:.4rem;"><span class="skill-tag" style="font-size:.72rem;">PyTorch</span><span class="skill-tag" style="font-size:.72rem;">MobileNetV3</span><span class="skill-tag" style="font-size:.72rem;">Transformer</span></div>
+    </div>
+
+    <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-mid);margin-bottom:.6rem;">Project Experience</div>
+    <div class="two-col">
+      <div class="cv-item-card">
+        <div style="font-weight:700;color:var(--navy);">RentalHub – E-commerce Web App</div>
+        <div style="font-size:.8rem;color:var(--gold);">Django · Tailwind CSS · SQLite &nbsp;·&nbsp; 2024</div>
+        <div style="font-size:.82rem;color:var(--text-mid);margin-top:.3rem;">Rental marketplace with user authentication, listing management, and interactive UI.</div>
+      </div>
+      <div class="cv-item-card">
+        <div style="font-weight:700;color:var(--navy);">OUR RAJSHAHI – Regional Info Platform</div>
+        <div style="font-size:.8rem;color:var(--gold);">Django · Bootstrap · Google AdSense &nbsp;·&nbsp; 2023</div>
+        <div style="font-size:.82rem;color:var(--text-mid);margin-top:.3rem;">Info and tour platform for Rajshahi region with local services, tourist attractions, and authentication.</div>
+      </div>
+    </div>
+    <div class="mt-2"><a href="../projects/index.html" style="font-size:.83rem;color:var(--gold);text-decoration:none;font-weight:500;">View all projects →</a></div>
   </div>
 
   <!-- SKILLS -->
@@ -309,7 +397,7 @@
       <div class="skill-group">
         <div class="skill-group-label">Tools &amp; Platforms</div>
         <span class="skill-tag">Git</span>
-        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">Jupyter Notebook</span>
         <span class="skill-tag">Google Colab</span>
         <span class="skill-tag">LaTeX</span>
         <span class="skill-tag">VS Code</span>
@@ -334,7 +422,7 @@
       </div>
       <div class="cv-item-card">
         <div style="font-weight:600;color:var(--navy);font-size:.92rem;">1st Position, Research Olympiad – Rajshahi Regional</div>
-        <div style="font-size:.8rem;color:var(--text-mid);">Rajshahi Regional Committee &nbsp;·&nbsp; 2024</div>
+        <div style="font-size:.8rem;color:var(--text-mid);">Rajshahi University Research Society (RURS) &nbsp;·&nbsp; 2024</div>
       </div>
     </div>
 
