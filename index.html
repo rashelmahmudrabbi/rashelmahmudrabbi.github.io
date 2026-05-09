@@ -248,7 +248,7 @@
         </div>
         <div class="hero-stats">
           <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">Publication</div></div>
-          <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Projects</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Projects</div></div>
           <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label">Awards</div></div>
           <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label">Certifications</div></div>
         </div>
@@ -431,15 +431,106 @@
 <section id="projects" class="section-wrapper alt-bg">
   <div class="container">
     <h2 class="section-title">Research Projects</h2>
+
+    <!-- Featured: HYBSWINEFF -->
+    <div class="project-card mb-4" style="border-radius:14px;overflow:hidden;">
+      <div class="project-img" style="height:160px;font-size:3rem;position:relative;">
+        <i class="bi bi-activity"></i>
+        <span style="position:absolute;top:.8rem;left:.8rem;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;">⭐ Featured Research · 2026</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">HYBSWINEFF – Hybrid CNN-Transformer Fusion for Blood Cell Cancer Classification</div>
+        <div class="project-desc">Developed a novel hybrid deep learning framework combining CNN feature extraction with Transformer-based contextual learning for binary and multi-stage blood cell cancer classification. Supports clinically interpretable medical image analysis via Grad-CAM and LIME. Being prepared for international journal publication.</div>
+        <div class="mb-2">
+          <span class="tech-chip">PyTorch</span><span class="tech-chip">Vision Transformer</span><span class="tech-chip">EfficientNet</span><span class="tech-chip">OpenCV</span><span class="tech-chip">Grad-CAM</span><span class="tech-chip">Medical Imaging</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+          <a href="publications/index.html"><i class="bi bi-journal-text me-1"></i>Thesis &amp; Publication</a>
+        </div>
+      </div>
+    </div>
+
     <div class="row g-4">
+      <!-- MRCL-ELM -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
-          <div class="project-img"><i class="bi bi-cpu"></i></div>
+          <div class="project-img"><i class="bi bi-globe-americas"></i></div>
           <div class="project-body">
-            <div class="project-title">MediVision – AI Skin Disease Classifier</div>
-            <div class="project-desc">End-to-end deep learning web app for skin lesion classification with LIME-based explanations. Achieves 94.2% accuracy on HAM10000 dataset.</div>
+            <div class="project-title">MRCL-ELM – Multi-Class Satellite Image Classifier</div>
+            <div class="project-desc">Novel hybrid deep learning approach for satellite image classification achieving 98.33% accuracy on EuroSAT and 98.10% on UC Merced. Integrates LIME and SHAP for explainability; deployed as a real-time web application. Submitted to a Q1 journal.</div>
             <div class="mb-2">
-              <span class="tech-chip">PyTorch</span><span class="tech-chip">FastAI</span><span class="tech-chip">Django</span><span class="tech-chip">OpenCV</span><span class="tech-chip">LIME</span><span class="tech-chip">PostgreSQL</span>
+              <span class="tech-chip">PyTorch</span><span class="tech-chip">LIME</span><span class="tech-chip">SHAP</span><span class="tech-chip">Flask</span><span class="tech-chip">EuroSAT</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+              <a href="publications/index.html"><i class="bi bi-journal-text me-1"></i>Paper</a>
+            </div>
+            <small class="text-muted">2024</small>
+          </div>
+        </div>
+      </div>
+      <!-- SatelliteNet -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img"><i class="bi bi-layers"></i></div>
+          <div class="project-body">
+            <div class="project-title">SatelliteNet – CNN-LSTM Land-Use Classifier</div>
+            <div class="project-desc">Hybrid CNN-LSTM network for land-use classification on EuroSAT achieving 98.30% accuracy. Generates LIME-based explainability visualisations. Published and presented at IEEE QPAIN 2025.</div>
+            <div class="mb-2">
+              <span class="tech-chip">TensorFlow</span><span class="tech-chip">Keras</span><span class="tech-chip">LIME</span><span class="tech-chip">NumPy</span><span class="tech-chip">Google Colab</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+              <a href="publications/index.html"><i class="bi bi-journal-text me-1"></i>IEEE Paper</a>
+            </div>
+            <small class="text-muted">2024</small>
+          </div>
+        </div>
+      </div>
+      <!-- NeuroFusion -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img"><i class="bi bi-activity"></i></div>
+          <div class="project-body">
+            <div class="project-title">NeuroFusion – Brain Tumor Detection</div>
+            <div class="project-desc">Hybrid CNN-Transformer framework for brain tumor detection from MRI images. Combines MobileNetV3 with channel attention and Transformer encoder architectures, using advanced augmentation and optimisation to enhance generalisation.</div>
+            <div class="mb-2">
+              <span class="tech-chip">PyTorch</span><span class="tech-chip">MobileNetV3</span><span class="tech-chip">Transformer</span><span class="tech-chip">OpenCV</span><span class="tech-chip">scikit-learn</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+            </div>
+            <small class="text-muted">2026</small>
+          </div>
+        </div>
+      </div>
+      <!-- Academic Portfolio -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img" style="background:linear-gradient(135deg,#1e3a5f,#2c5282);"><i class="bi bi-person-badge"></i></div>
+          <div class="project-body">
+            <div class="project-title">Academic Portfolio Website</div>
+            <div class="project-desc">Designed and implemented this responsive academic portfolio using Django and Bootstrap, with a dynamic content management system leveraging the Django admin panel for easy content updates.</div>
+            <div class="mb-2">
+              <span class="tech-chip">Django</span><span class="tech-chip">Bootstrap 5</span><span class="tech-chip">PostgreSQL</span><span class="tech-chip">HTML/CSS/JS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
+            </div>
+            <small class="text-muted">2025</small>
+          </div>
+        </div>
+      </div>
+      <!-- RentalHub -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-img" style="background:linear-gradient(135deg,#1e3a5f,#2c5282);"><i class="bi bi-house-door"></i></div>
+          <div class="project-body">
+            <div class="project-title">RentalHub – E-commerce Web App</div>
+            <div class="project-desc">Responsive rental marketplace with user authentication, interactive UI, and full listing, browsing, and management of properties and items for rent. Built with Django, Tailwind CSS, and SQLite.</div>
+            <div class="mb-2">
+              <span class="tech-chip">Django</span><span class="tech-chip">Tailwind CSS</span><span class="tech-chip">SQLite</span><span class="tech-chip">REST API</span>
             </div>
             <div class="project-links">
               <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
@@ -448,30 +539,15 @@
           </div>
         </div>
       </div>
+      <!-- OUR RAJSHAHI -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
-          <div class="project-img"><i class="bi bi-globe2"></i></div>
+          <div class="project-img" style="background:linear-gradient(135deg,#1e3a5f,#2c5282);"><i class="bi bi-map"></i></div>
           <div class="project-body">
-            <div class="project-title">SatelliteNet – Land Use Classification</div>
-            <div class="project-desc">CNN + Transfer Learning pipeline for land-use classification on EuroSAT satellite imagery. Supports 10 land-use categories with 96.4% accuracy.</div>
+            <div class="project-title">OUR RAJSHAHI – Regional Info Platform</div>
+            <div class="project-desc">Comprehensive info and tour platform for the Rajshahi region with categorised local services, tourist attractions, emergency contacts, authentication, interactive navigation, and feedback modules. Monetised via Google AdSense.</div>
             <div class="mb-2">
-              <span class="tech-chip">TensorFlow</span><span class="tech-chip">Keras</span><span class="tech-chip">NumPy</span><span class="tech-chip">Matplotlib</span><span class="tech-chip">Google Colab</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
-            </div>
-            <small class="text-muted">2024</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-img"><i class="bi bi-heart-pulse"></i></div>
-          <div class="project-body">
-            <div class="project-title">ECG Arrhythmia Detector</div>
-            <div class="project-desc">LSTM-based time-series model for detecting cardiac arrhythmia from ECG signals using the MIT-BIH dataset.</div>
-            <div class="mb-2">
-              <span class="tech-chip">PyTorch</span><span class="tech-chip">scikit-learn</span><span class="tech-chip">Pandas</span><span class="tech-chip">Wfdb</span>
+              <span class="tech-chip">Django</span><span class="tech-chip">Bootstrap</span><span class="tech-chip">SQLite</span><span class="tech-chip">Google AdSense</span>
             </div>
             <div class="project-links">
               <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
@@ -480,6 +556,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="projects/index.html" class="btn btn-outline-secondary btn-sm px-4">View All Projects →</a>
     </div>
   </div>
 </section>
