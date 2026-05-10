@@ -177,6 +177,17 @@
     .ref-contact a { font-size:.83rem; color:var(--text-mid); text-decoration:none; display:block; }
     .ref-contact a:hover { color:var(--gold); }
 
+    /* THESIS CARD */
+    .thesis-card{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 100%);border-radius:14px;padding:2rem;margin-bottom:2rem;color:#fff;position:relative;overflow:hidden;}
+    .thesis-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(200,149,42,.08);pointer-events:none;}
+    .thesis-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+    .thesis-label{font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.6rem;}
+    .thesis-title{font-family:'Crimson Pro',serif;font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:.8rem;line-height:1.35;}
+    .thesis-desc{font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:1.2rem;}
+    .thesis-chip{display:inline-block;background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);font-size:.74rem;padding:.22rem .58rem;border-radius:20px;margin:.15rem .15rem .15rem 0;font-weight:500;border:1px solid rgba(255,255,255,.18);}
+    .thesis-link{font-size:.82rem;color:var(--gold-lt);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.3rem;border:1.5px solid var(--gold);padding:.28rem .75rem;border-radius:20px;transition:all .2s;}
+    .thesis-link:hover{background:var(--gold);color:var(--navy);}
+
     /* FOOTER */
     footer { background:var(--navy); color:rgba(255,255,255,.55); text-align:center; padding:1.8rem 0; font-size:.82rem; }
     footer a { color:var(--gold); text-decoration:none; }
@@ -440,22 +451,22 @@
     </div>
     <p class="text-muted mb-3" style="font-size:.87rem;">Deep learning systems for medical imaging, remote sensing, and signal processing</p>
 
-    <!-- Featured: HYBSWINEFF -->
-    <div class="project-card mb-4" style="border-radius:14px;overflow:hidden;">
-      <div class="project-img" style="height:160px;font-size:3rem;position:relative;">
-        <i class="bi bi-activity"></i>
-        <span style="position:absolute;top:.8rem;left:.8rem;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;">⭐ Featured Research · 2026</span>
+    <!-- Thesis — dark highlight card -->
+    <div class="thesis-card">
+      <div class="thesis-label"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Thesis &middot; 2025</div>
+      <div class="thesis-title">HYBSWINEFF: Hybrid CNN-Transformer Fusion for Binary and Multi-Stage Blood Cell Cancer Classification</div>
+      <p class="thesis-desc">Created a hybrid CNN-Transformer model that performs binary and multi-stage leukemia classification of peripheral blood smear images. Incorporates Swin Transformer with CNN feature fusion and explainable AI methods (Grad-CAM, LIME) to make predictions interpretable for clinical use. Targets automated leukemia screening from microscopic blood cell images.</p>
+      <div class="mb-3">
+        <span class="thesis-chip">PyTorch</span>
+        <span class="thesis-chip">Swin Transformer</span>
+        <span class="thesis-chip">CNN</span>
+        <span class="thesis-chip">Grad-CAM</span>
+        <span class="thesis-chip">LIME</span>
+        <span class="thesis-chip">OpenCV</span>
       </div>
-      <div class="project-body">
-        <div class="project-title">HYBSWINEFF – Hybrid CNN-Transformer Fusion for Blood Cell Cancer Classification</div>
-        <div class="project-desc">Developed a novel hybrid deep learning framework combining CNN feature extraction with Transformer-based contextual learning for binary and multi-stage blood cell cancer classification. Supports clinically interpretable medical image analysis via Grad-CAM and LIME. Being prepared for international journal publication.</div>
-        <div class="mb-2">
-          <span class="tech-chip">PyTorch</span><span class="tech-chip">Vision Transformer</span><span class="tech-chip">EfficientNet</span><span class="tech-chip">OpenCV</span><span class="tech-chip">Grad-CAM</span><span class="tech-chip">Medical Imaging</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/rashelmahmudrabbi" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>
-          <a href="publications/index.html"><i class="bi bi-journal-text me-1"></i>Thesis &amp; Publication</a>
-        </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <a class="thesis-link" href="https://github.com/rashelmahmudrabbi/HybSwinEff" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+        <a class="thesis-link" href="publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
       </div>
     </div>
 
