@@ -162,7 +162,7 @@
     </div>
 
     <div class="cv-profile-card">
-      <img src="${p.avatar ? (API_BASE.replace('/api','') + '/' + p.avatar) : ''}" class="cv-avatar" alt="${escapeHtml(p.name || '')}"/>
+      <img src="${p.avatar ? ('../' + p.avatar) : ''}" class="cv-avatar" alt="${escapeHtml(p.name || '')}"/>
       <div>
         <div class="cv-name">${escapeHtml(p.name || '')}</div>
         <div class="cv-title-text">${escapeHtml(p.title || '')}</div>
