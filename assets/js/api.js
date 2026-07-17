@@ -1,6 +1,7 @@
 // ─── Backend base URL ────────────────────────────────────────────────────
-// Update this one line whenever your backend moves (Render, custom domain, etc.)
-const API_BASE = "https://portfolio-backend-oz0v.onrender.com";
+// API_BASE is declared in config.js (loaded before this file) — do not
+// redeclare it here, that causes a duplicate-declaration error that breaks
+// this whole script.
 
 // ─── Core fetch helper ───────────────────────────────────────────────────
 // Fetches JSON from the backend and fails soft (returns an empty array/object
@@ -33,41 +34,41 @@ function escapeHtml(str) {
 // even when the backend is unreachable.
 
 function getSettings() {
-  return fetchJSON('/api/settings/1', {});
+  return fetchJSON('/settings/1', {});
 }
 
 function getEducation() {
-  return fetchJSON('/api/education/1', []);
+  return fetchJSON('/education/1', []);
 }
 
 function getExperience() {
-  return fetchJSON('/api/experience/1', []);
+  return fetchJSON('/experience/1', []);
 }
 
 function getPublications() {
-  return fetchJSON('/api/publications/1', []);
+  return fetchJSON('/publications/1', []);
 }
 
 function getProjects() {
-  return fetchJSON('/api/projects/1', []);
+  return fetchJSON('/projects/1', []);
 }
 
 function getCertifications() {
-  return fetchJSON('/api/certifications/1', []);
+  return fetchJSON('/certifications/1', []);
 }
 
 function getAwards() {
-  return fetchJSON('/api/awards/1', []);
+  return fetchJSON('/awards/1', []);
 }
 
 function getActivities() {
-  return fetchJSON('/api/activities/1', []);
+  return fetchJSON('/activities/1', []);
 }
 
 function getGallery() {
-  return fetchJSON('/api/gallery/1', []);
+  return fetchJSON('/gallery/1', []);
 }
 
 function getReferences() {
-  return fetchJSON('/api/references/1', []);
+  return fetchJSON('/references/1', []);
 }
