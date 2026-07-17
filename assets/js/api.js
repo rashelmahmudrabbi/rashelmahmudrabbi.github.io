@@ -34,41 +34,41 @@ function escapeHtml(str) {
 // even when the backend is unreachable.
 
 function getSettings() {
-  return fetchJSON('/settings/1', {});
+  return fetchJSON('/settings', {});
 }
 
 function getEducation() {
-  return fetchJSON('/education/1', []);
+  return fetchJSON('/education', []);
 }
 
 function getExperience() {
-  return fetchJSON('/experience/1', []);
+  return fetchJSON('/experience', []);
 }
 
 function getPublications() {
-  return fetchJSON('/publications/1', []);
+  return fetchJSON('/publications', []);
 }
 
 function getProjects() {
-  return fetchJSON('/projects/1', []);
+  return fetchJSON('/projects', []);
 }
 
 function getCertifications() {
-  return fetchJSON('/certifications/1', []);
+  return fetchJSON('/certifications', []);
 }
 
 function getAwards() {
-  return fetchJSON('/awards/1', []);
+  return fetchJSON('/awards', []);
 }
 
 function getActivities() {
-  return fetchJSON('/activities/1', []);
+  return fetchJSON('/activities', []);
 }
 
 function getGallery() {
-  return fetchJSON('/gallery/1', []);
+  return fetchJSON('/gallery', []);
 }
 
 function getReferences() {
-  return fetchJSON('/references/1', []);
+  return fetchJSON('/references', []);
 }
