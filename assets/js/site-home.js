@@ -38,7 +38,7 @@
 
     document.getElementById('heroContainer').innerHTML = `
       <div class="col-md-auto text-center text-md-start">
-        <img src="${escapeHtml(p.avatar || '')}" class="hero-avatar" alt="${escapeHtml(p.name || '')}"/>
+        <img src="${p.avatar ? (API_BASE.replace('/api','') + '/' + p.avatar) : ''}" class="hero-avatar" alt="${escapeHtml(p.name || '')}"/>
       </div>
       <div class="col-md">
         <p class="hero-title">${escapeHtml(p.title || '')}</p>
