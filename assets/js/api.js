@@ -47,21 +47,22 @@ function resolveAssetUrl(url, isSubpage = false) {
   if (!url) return '';
   const str = String(url).trim();
   if (!str) return '';
+  let result = str;
   if (str.startsWith('data:') || str.startsWith('http://') || str.startsWith('https://') || str.startsWith('//')) {
-    return str;
-  }
-  if (str.startsWith('/api/')) {
-    return API_BASE.replace(/\/api\/?$/, '') + str;
-  }
-  if (str.startsWith('/')) {
-    return str;
-  }
-  if (isSubpage) {
-    if (str.startsWith('../')) return str;
-    return '../' + str;
+    result = str;
+  } else if (str.startsWith('/api/')) {
+    result = API_BASE.replace(/\/api\/?$/, '') + str;
+  } else if (str.startsWith('/')) {
+    result = str;
+  } else if (isSubpage) {
+    if (str.startsWith('../')) result = str;
+    else {
+      result = '../' + str;
+    }
   } else {
-    return str.replace(/^\.\.\//, '');
+    result = str.replace(/^\.\.\//, '');
   }
+  return result.replace(/ /g, '%20');
 }
 
 // ─── Fetch with timeout ──────────────────────────────────────────────────
