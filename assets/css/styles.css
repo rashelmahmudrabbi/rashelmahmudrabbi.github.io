@@ -1,46 +1,46 @@
 /* ============ DESIGN TOKENS ============ */
 :root {
-  --bg: #F7F9FC;
-  --bg-alt: #EEF3F8;
+  --bg: #F8FAFC;
+  --bg-alt: #F1F5F9;
   --surface: #FFFFFF;
-  --surface-2: #F3F6FA;
+  --surface-2: #F8FAFC;
   --ink: #0F172A;
-  --ink-soft: #475569;
-  --ink-faint: #7C8A9A;
-  --navy: #173B67;
-  --navy-light: #23528A;
-  --navy-deep: #0B1F3A;
-  --gold: #2F6FED;
-  --gold-soft: #6B9AF5;
-  --gold-tint: #E7F0FF;
-  --sage: #168B8B;
-  --line: rgba(15, 23, 42, 0.13);
-  --line-soft: rgba(15, 23, 42, 0.08);
-  --shadow: 0 24px 60px -30px rgba(11, 31, 58, 0.28);
-  --radius-s: 6px;
-  --radius-m: 12px;
-  --radius-l: 18px;
+  --ink-soft: #334155;
+  --ink-faint: #64748B;
+  --navy: #2563EB;
+  --navy-light: #3B82F6;
+  --navy-deep: #1E3A8A;
+  --gold: #0284C7;
+  --gold-soft: #38BDF8;
+  --gold-tint: #E0F2FE;
+  --sage: #10B981;
+  --line: rgba(15, 23, 42, 0.08);
+  --line-soft: rgba(15, 23, 42, 0.04);
+  --shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.08);
+  --radius-s: 8px;
+  --radius-m: 16px;
+  --radius-l: 24px;
   --ease: cubic-bezier(.22, 1, .36, 1);
 
   /* Badge semantic tokens */
-  --badge-conference-bg: #D8E7FF;
-  --badge-conference-text: #2F6FED;
-  --badge-thesis-bg: #EDE9FE;
-  --badge-thesis-text: #6D28D9;
+  --badge-conference-bg: #E0F2FE;
+  --badge-conference-text: #0284C7;
+  --badge-thesis-bg: #F3E8FF;
+  --badge-thesis-text: #7E22CE;
   --badge-preprint-bg: #FEF3C7;
   --badge-preprint-text: #D97706;
   --badge-book-bg: #FCE7F3;
   --badge-book-text: #BE185D;
-  --badge-published-bg: #DEF7EC;
-  --badge-published-text: #03543F;
-  --badge-accepted-bg: #E1EFFE;
-  --badge-accepted-text: #1E429F;
-  --badge-completed-bg: #DEF7EC;
-  --badge-completed-text: #03543F;
+  --badge-published-bg: #D1FAE5;
+  --badge-published-text: #047857;
+  --badge-accepted-bg: #DBEAFE;
+  --badge-accepted-text: #1D4ED8;
+  --badge-completed-bg: #D1FAE5;
+  --badge-completed-text: #047857;
   --badge-review-bg: #FEF08A;
-  --badge-review-text: #854D0E;
-  --badge-preprint-status-bg: #EDEBFE;
-  --badge-preprint-status-text: #5521B5;
+  --badge-review-text: #A16207;
+  --badge-preprint-status-bg: #EDE9FE;
+  --badge-preprint-status-text: #6D28D9;
   
   /* Legacy variables for backwards compatibility */
   --navy-mid: var(--navy);
@@ -57,42 +57,42 @@
 }
 
 [data-theme="dark"] {
-  --bg: #151C28;
-  --bg-alt: #1B2534;
-  --surface: #202C3D;
-  --surface-2: #263449;
-  --ink: #F1F5F9;
-  --ink-soft: #C0CBD8;
-  --ink-faint: #A0B1C5;
-  --navy: #9FC5FF;
-  --navy-deep: #10243D;
-  --gold: #78A9FF;
-  --gold-soft: #A9C8FF;
-  --gold-tint: #223754;
-  --sage: #63C7C4;
-  --line: rgba(241, 245, 249, 0.17);
-  --line-soft: rgba(241, 245, 249, 0.10);
-  --shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.48);
+  --bg: #0B0E14;
+  --bg-alt: #121822;
+  --surface: rgba(18, 24, 34, 0.7);
+  --surface-2: rgba(25, 33, 46, 0.7);
+  --ink: #F8FAFC;
+  --ink-soft: #CBD5E1;
+  --ink-faint: #94A3B8;
+  --navy: #00F2FE;
+  --navy-deep: #0ea5e9;
+  --gold: #4FACFE;
+  --gold-soft: #7DD3FC;
+  --gold-tint: rgba(0, 242, 254, 0.1);
+  --sage: #34D399;
+  --line: rgba(0, 242, 254, 0.15);
+  --line-soft: rgba(0, 242, 254, 0.05);
+  --shadow: 0 24px 70px -20px rgba(0, 242, 254, 0.25);
 
   /* Dark badge overrides */
-  --badge-conference-bg: rgba(47, 111, 237, 0.18);
-  --badge-conference-text: #93B8FF;
-  --badge-thesis-bg: rgba(109, 40, 217, 0.2);
-  --badge-thesis-text: #B794F6;
+  --badge-conference-bg: rgba(2, 132, 199, 0.2);
+  --badge-conference-text: #7DD3FC;
+  --badge-thesis-bg: rgba(126, 34, 206, 0.2);
+  --badge-thesis-text: #D8B4FE;
   --badge-preprint-bg: rgba(217, 119, 6, 0.2);
-  --badge-preprint-text: #FCD34D;
+  --badge-preprint-text: #FDE68A;
   --badge-book-bg: rgba(190, 24, 93, 0.2);
-  --badge-book-text: #F9A8D4;
-  --badge-published-bg: rgba(3, 84, 63, 0.25);
-  --badge-published-text: #31C48D;
-  --badge-accepted-bg: rgba(30, 66, 159, 0.2);
-  --badge-accepted-text: #93B8FF;
-  --badge-completed-bg: rgba(3, 84, 63, 0.25);
-  --badge-completed-text: #31C48D;
-  --badge-review-bg: rgba(133, 77, 14, 0.25);
-  --badge-review-text: #FACC15;
-  --badge-preprint-status-bg: rgba(109, 40, 217, 0.18);
-  --badge-preprint-status-text: #B794F6;
+  --badge-book-text: #FBCFE8;
+  --badge-published-bg: rgba(4, 120, 87, 0.2);
+  --badge-published-text: #6EE7B7;
+  --badge-accepted-bg: rgba(29, 78, 216, 0.2);
+  --badge-accepted-text: #93C5FD;
+  --badge-completed-bg: rgba(4, 120, 87, 0.2);
+  --badge-completed-text: #6EE7B7;
+  --badge-review-bg: rgba(161, 98, 7, 0.2);
+  --badge-review-text: #FEF08A;
+  --badge-preprint-status-bg: rgba(109, 40, 217, 0.2);
+  --badge-preprint-status-text: #C4B5FD;
 }
 
 html {
@@ -614,14 +614,13 @@ h1, h2, h3, h4, h5 {
 
 /* HERO SPOTLIGHT SLIDESHOW — Premium Design */
 .hero-spotlight-box {
-  background: linear-gradient(145deg, rgba(15, 36, 68, 0.78), rgba(8, 22, 48, 0.85));
-  border: 1px solid rgba(47, 111, 237, 0.22);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 20px;
   padding: 1.35rem 1.5rem 1.2rem;
   backdrop-filter: blur(24px) saturate(1.5);
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow: var(--shadow);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: hidden;
@@ -634,26 +633,26 @@ h1, h2, h3, h4, h5 {
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(47, 111, 237, 0.5) 30%,
-    rgba(120, 169, 255, 0.6) 50%,
-    rgba(47, 111, 237, 0.5) 70%,
+    var(--navy) 30%,
+    var(--gold) 50%,
+    var(--navy) 70%,
     transparent 100%
   );
+  opacity: 0.6;
 }
 
 [data-theme="dark"] .hero-spotlight-box {
-  background: linear-gradient(145deg, rgba(22, 33, 52, 0.82), rgba(14, 22, 38, 0.9));
-  border-color: rgba(120, 169, 255, 0.18);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
 }
 
 .hero-spotlight-box:hover {
-  border-color: rgba(47, 111, 237, 0.5);
+  border-color: var(--gold);
   transform: translateY(-3px);
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.35),
-    0 0 30px rgba(47, 111, 237, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    var(--shadow),
+    0 0 30px var(--gold-tint);
 }
 
 .spotlight-header {
@@ -1156,8 +1155,10 @@ h1, h2, h3, h4, h5 {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 2.5rem 3rem;
-  box-shadow: 0 4px 24px rgba(11, 31, 58, 0.03);
+  box-shadow: var(--shadow);
   transition: all .3s var(--ease);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 [data-theme="dark"] .about-card-unified {
@@ -1173,9 +1174,9 @@ h1, h2, h3, h4, h5 {
 }
 
 [data-theme="dark"] .about-meta-row .badge {
-  background: #1B2534 !important;
-  color: #F1F5F9 !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  background: var(--surface-2) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
 }
 
 [data-theme="dark"] .about-meta-row {
