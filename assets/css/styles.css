@@ -825,7 +825,8 @@ h1, h2, h3, h4, h5 {
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
+  max-height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;

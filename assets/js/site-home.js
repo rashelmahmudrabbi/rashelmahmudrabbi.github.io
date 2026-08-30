@@ -204,14 +204,14 @@
              </div>
              <div class="spotlight-content text-center mt-3 mb-2">
                <h4 class="spotlight-title-gradient" title="${escapeHtml(item.title || '')}">${escapeHtml(item.title || 'Research Highlight')}</h4>
-               <p class="spotlight-desc mx-auto" style="max-width:90%;">${escapeHtml(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</p>
+               <div class="spotlight-desc mx-auto" style="max-width:90%;">${formatRichText(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</div>
              </div>
            </div>`
         : `<div class="spotlight-body">
              <div class="spotlight-icon-box ${escapeHtml(item.badgeType || 'badge-pub')}"><i class="bi ${iconClass}"></i></div>
              <div class="spotlight-content">
                <h4 class="spotlight-title" title="${escapeHtml(item.title || '')}">${escapeHtml(item.title || 'Research Highlight')}</h4>
-               <p class="spotlight-desc">${escapeHtml(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</p>
+               <div class="spotlight-desc">${formatRichText(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</div>
              </div>
            </div>`;
 
