@@ -275,27 +275,17 @@
           <div class="hero-stat"><div class="hero-stat-num">${stats.certifications ?? 2}</div><div class="hero-stat-label">Certifications</div></div>
         </div>
       </div>
-
-      <div class="col-12 col-lg-4 ms-auto d-none d-lg-block">
-        <div class="hero-spotlight-box">
-          <div class="spotlight-header">
-            <span class="spotlight-kicker"><i class="bi bi-stars text-primary me-1"></i> SPOTLIGHT HIGHLIGHTS</span>
-            <div class="spotlight-header-actions">
-              <div class="spotlight-indicators" id="spotlightDots">
-                ${dotsHtml}
-              </div>
-              <div class="spotlight-nav-arrows">
-                <button class="s-nav-arrow" onclick="prevSpotlight()" aria-label="Previous highlight" title="Previous"><i class="bi bi-chevron-left"></i></button>
-                <button class="s-nav-arrow" onclick="nextSpotlight()" aria-label="Next highlight" title="Next"><i class="bi bi-chevron-right"></i></button>
-              </div>
-            </div>
-          </div>
-          
-          <div class="spotlight-carousel" id="spotlightCarousel">
-            ${cardsHtml}
-          </div>
-        </div>
       </div>`;
+
+    const dotsEl = document.getElementById('spotlightDots');
+    if (dotsEl) dotsEl.innerHTML = dotsHtml;
+    
+    const carouselEl = document.getElementById('spotlightCarousel');
+    if (carouselEl) {
+      carouselEl.innerHTML = cardsHtml;
+      const box = carouselEl.closest('.hero-spotlight-box');
+      if (box) box.classList.remove('spotlight-skeleton');
+    }
 
     if (window.initSpotlightCarousel) {
       window.initSpotlightCarousel(items.length);
