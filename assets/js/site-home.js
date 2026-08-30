@@ -129,7 +129,8 @@
         description: 'Deep Transfer Learning with Attention-guided ResNet & DenseNet models on Pap smear datasets.',
         tag: 'Journal Paper · 2025',
         linkUrl: 'publications/index.html',
-        linkLabel: 'View Paper'
+        linkLabel: 'View Paper',
+        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80'
       },
       {
         badge: 'Flagship AI Project',
