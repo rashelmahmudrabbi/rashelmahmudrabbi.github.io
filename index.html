@@ -550,7 +550,12 @@
         </div>
       </div>
       <div class="cv-modal-body">
-        <iframe id="cvIframe" class="cv-iframe" src="cv/index.html?embed=1" title="Curriculum Vitae Preview"></iframe>
+        <div class="cv-modal-loading" id="cvModalLoading">
+          <div class="cv-modal-spinner"></div>
+          <span>Loading CV…</span>
+        </div>
+        <iframe id="cvIframe" class="cv-iframe" src="about:blank" title="Curriculum Vitae Preview"
+                onload="var l=document.getElementById('cvModalLoading');if(l&&this.src!=='about:blank')l.classList.add('hidden');"></iframe>
       </div>
     </div>
   </div>

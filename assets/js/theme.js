@@ -33,23 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
   updateThemeKnob(isDark);
 });
 
-// Scroll top button
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('scrollTop');
-  if (btn) {
-    btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-  }
-});
+// Scroll top button visibility is managed by page-specific scripts using .visible class.
+// Do not add display-based visibility here — it conflicts with the class-based approach.
 
-// Scroll to top action
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('scrollTop');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-});
 
 // Optional: Intersection Observer for simple scroll reveal animations
 document.addEventListener('DOMContentLoaded', () => {

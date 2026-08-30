@@ -103,7 +103,25 @@
     const cvUrl = settings.cvDownloadUrl || (typeof API_BASE !== 'undefined' ? API_BASE + '/cv/download' : 'cv/index.html');
     window.__cvDownloadUrl = cvUrl;
 
-    const items = (spotlights && spotlights.length > 0) ? spotlights : [
+    // Validate spotlight data from API — reject gibberish/placeholder entries
+    function isValidSpotlightText(text) {
+      if (!text || typeof text !== 'string') return false;
+      const clean = text.trim();
+      if (clean.length < 4) return false;
+      // Must contain at least one space (real titles/descriptions have multiple words)
+      // or be a known short keyword
+      if (clean.length < 12 && !clean.includes(' ')) return false;
+      // Reject strings that look like keyboard mashing (no vowels in a long string)
+      const vowelRatio = (clean.match(/[aeiouAEIOU]/g) || []).length / clean.length;
+      if (clean.length > 5 && vowelRatio < 0.1) return false;
+      return true;
+    }
+
+    function isValidSpotlight(s) {
+      return isValidSpotlightText(s.title) && isValidSpotlightText(s.description);
+    }
+
+    const defaultSpotlights = [
       {
         badge: 'Top Publication',
         badgeType: 'badge-pub',
@@ -132,6 +150,13 @@
         linkLabel: 'Research Areas'
       }
     ];
+
+    // Use API spotlights only if they all pass validation, otherwise use defaults
+    const validApiSpotlights = (spotlights && spotlights.length > 0) 
+      ? spotlights.filter(s => isValidSpotlight(s))
+      : [];
+    const items = validApiSpotlights.length >= 2 ? validApiSpotlights : defaultSpotlights;
+
 
     function getSpotlightIcon(item) {
       const bType = (item.badgeType || '').toLowerCase();
@@ -235,11 +260,11 @@
         </div>
 
         <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
-          ${socials.github ? `<a class="btn btn-sm" href="${escapeHtml(socials.github)}" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>` : ''}
-          ${socials.linkedin ? `<a class="btn btn-sm" href="${escapeHtml(socials.linkedin)}" target="_blank"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>` : ''}
-          ${socials.researchgate ? `<a class="btn btn-sm" href="${escapeHtml(socials.researchgate)}" target="_blank"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>` : ''}
-          ${socials.scholar ? `<a class="btn btn-sm" href="${escapeHtml(socials.scholar)}" target="_blank"><i class="bi bi-mortarboard me-1"></i>Google Scholar</a>` : ''}
-          ${socials.orcid ? `<a class="btn btn-sm" href="${escapeHtml(socials.orcid)}" target="_blank"><i class="bi bi-person-badge me-1"></i>ORCID</a>` : ''}
+          ${socials.github ? `<a class="btn btn-sm" href="${escapeHtml(socials.github)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github me-1"></i>GitHub</a>` : ''}
+          ${socials.linkedin ? `<a class="btn btn-sm" href="${escapeHtml(socials.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>` : ''}
+          ${socials.researchgate ? `<a class="btn btn-sm" href="${escapeHtml(socials.researchgate)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>` : ''}
+          ${socials.scholar ? `<a class="btn btn-sm" href="${escapeHtml(socials.scholar)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-1"></i>Google Scholar</a>` : ''}
+          ${socials.orcid ? `<a class="btn btn-sm" href="${escapeHtml(socials.orcid)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-badge me-1"></i>ORCID</a>` : ''}
         </div>
 
         <div class="hero-stats">
@@ -608,7 +633,7 @@
           <div class="cert-inner">
             <div class="cert-face cert-front">
               ${c.image 
-                ? `<div class="badge badge-img"><img src="${escapeHtml(resolveAssetUrl(c.image, false))}" alt="${escapeHtml(c.title || '')}" loading="lazy"/></div>`
+                ? `<div class="badge badge-img" style="min-width:56px;min-height:56px;"><img src="${escapeHtml(resolveAssetUrl(c.image, false))}" alt="${escapeHtml(c.title || '')}" loading="lazy" style="max-height:64px;width:auto;"/></div>`
                 : `<div class="badge text-badge">★</div>`
               }
               <h3>${escapeHtml(c.title || '')}</h3>
