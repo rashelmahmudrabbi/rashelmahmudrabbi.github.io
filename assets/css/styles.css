@@ -387,6 +387,11 @@ h1, h2, h3, h4, h5 {
   transition: background .5s var(--ease), color .5s var(--ease);
 }
 
+#hero .container {
+  position: relative;
+  z-index: 1;
+}
+
 [data-theme="dark"] #hero {
   background: var(--surface);
   color: var(--ink);
