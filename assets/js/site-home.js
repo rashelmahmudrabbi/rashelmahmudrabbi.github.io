@@ -237,7 +237,7 @@
         </div>
       </div>
       <div class="col-12 col-lg ps-lg-4">
-        <p class="hero-title">${escapeHtml(p.title || 'Graduate Researcher – Computer Vision & AI')}</p>
+        <p class="hero-title">${escapeHtml((p.title || 'Graduate Researcher – Computer Vision & AI').replace(/–.*$/, '–').replace(/—.*$/, '—'))} <span class="typewriter-wrapper"><span id="typewriterText">Computer Vision &amp; AI</span><span class="typewriter-cursor"></span></span></p>
         <h1 class="hero-name">${escapeHtml(p.name || '')}</h1>
         
         <div class="hero-contact mt-2 mb-3">
@@ -246,7 +246,7 @@
           ${p.phone ? `<a href="tel:${escapeHtml(p.phone.replace(/[^+\d]/g, ''))}"><i class="bi bi-telephone-fill"></i>${escapeHtml(p.phone)}</a>` : ''}
         </div>
 
-        <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
+        <div class="hero-socials d-flex flex-wrap gap-2 mb-3" data-magnetic="0.25">
           ${socials.github ? `<a class="btn btn-sm" href="${escapeHtml(socials.github)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github me-1"></i>GitHub</a>` : ''}
           ${socials.linkedin ? `<a class="btn btn-sm" href="${escapeHtml(socials.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>` : ''}
           ${socials.researchgate ? `<a class="btn btn-sm" href="${escapeHtml(socials.researchgate)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>` : ''}
@@ -279,6 +279,11 @@
 
     // Fix broken hero avatar
     addImageFallbacks(document.getElementById('heroContainer'), getInitialsPlaceholder(p.name));
+
+    // Trigger stat glow animation
+    setTimeout(() => {
+      document.querySelectorAll('.hero-stat').forEach(s => s.classList.add('stat-revealed'));
+    }, 800);
   }
 
   function renderObjective(settings) {
@@ -356,8 +361,9 @@
     el.innerHTML = list
       .map(
         (ri) => `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
         <div class="research-card">
+          <div class="card-glow"></div>
           <div class="research-card-icon">
             <i class="bi ${escapeHtml(ri.icon || 'bi-star')}"></i>
           </div>
@@ -367,6 +373,11 @@
       </div>`
       )
       .join('') || '<div class="col-12 text-muted text-center">No research interests added yet.</div>';
+
+    // Mark container for stagger animation
+    el.setAttribute('data-stagger-parent', '');
+    if (window.initStaggerObserver) window.initStaggerObserver();
+    if (window.initTiltCards) setTimeout(window.initTiltCards, 100);
   }
 
   function renderExperience(experience) {
@@ -557,8 +568,9 @@
     const desc = p.description || '';
     const isLong = desc.length > 110;
     return `
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4 stagger-item">
         <div class="project-card">
+          <div class="card-glow"></div>
           <div class="project-img"><i class="bi bi-cpu"></i></div>
           <div class="project-body">
             <div class="project-title">${escapeHtml(p.title || '')}</div>
@@ -598,6 +610,14 @@
       research.map(projectCardHtml).join('') || '<div class="col-12 text-muted text-center">No research projects yet.</div>';
     document.getElementById('experienceProjectsList').innerHTML =
       dev.map(projectCardHtml).join('') || '<div class="col-12 text-muted text-center">No project-experience entries yet.</div>';
+
+    // Enable stagger animations on project containers
+    const resList = document.getElementById('researchProjectsList');
+    const expList = document.getElementById('experienceProjectsList');
+    if (resList) resList.setAttribute('data-stagger-parent', '');
+    if (expList) expList.setAttribute('data-stagger-parent', '');
+    if (window.initStaggerObserver) window.initStaggerObserver();
+    if (window.initTiltCards) setTimeout(window.initTiltCards, 100);
   }
 
   function renderCertifications(certifications) {
@@ -605,7 +625,7 @@
     el.innerHTML = certifications
       .map(
         (c) => `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
         <div class="cert">
           <div class="cert-inner">
             <div class="cert-face cert-front">
@@ -633,6 +653,10 @@
 
     // Fix any broken cert images
     addImageFallbacks(el, getGenericPlaceholder());
+
+    // Enable stagger animations on certifications
+    el.setAttribute('data-stagger-parent', '');
+    if (window.initStaggerObserver) window.initStaggerObserver();
   }
 
   function skillGroupHtml(label, icon, items) {
@@ -673,7 +697,7 @@
       awards
         .map(
           (a) => `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
         <div class="award-item">
           <div class="award-icon"><i class="bi bi-trophy-fill"></i></div>
           ${a.image ? `<img src="${escapeHtml(resolveAssetUrl(a.image, false))}" class="award-thumb" alt="${escapeHtml(a.title || '')}" loading="lazy"
@@ -690,6 +714,10 @@
 
     // Fix broken award images
     addImageFallbacks(awardsEl, getGenericPlaceholder());
+
+    // Enable stagger animations on awards
+    awardsEl.setAttribute('data-stagger-parent', '');
+    if (window.initStaggerObserver) window.initStaggerObserver();
 
     document.getElementById('activitiesList').innerHTML = activities
       .map((a) => `<div class="activity-item"><i class="bi bi-chevron-right"></i>${escapeHtml(a.text || '')}</div>`)
