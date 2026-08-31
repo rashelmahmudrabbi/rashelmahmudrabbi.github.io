@@ -246,12 +246,12 @@
           ${p.phone ? `<a href="tel:${escapeHtml(p.phone.replace(/[^+\d]/g, ''))}"><i class="bi bi-telephone-fill"></i>${escapeHtml(p.phone)}</a>` : ''}
         </div>
 
-        <div class="hero-socials d-flex flex-wrap gap-2 mb-3" data-magnetic="0.25">
-          ${socials.github ? `<a class="btn btn-sm" href="${escapeHtml(socials.github)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github me-1"></i>GitHub</a>` : ''}
-          ${socials.linkedin ? `<a class="btn btn-sm" href="${escapeHtml(socials.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>` : ''}
-          ${socials.researchgate ? `<a class="btn btn-sm" href="${escapeHtml(socials.researchgate)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>` : ''}
-          ${socials.scholar ? `<a class="btn btn-sm" href="${escapeHtml(socials.scholar)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-1"></i>Google Scholar</a>` : ''}
-          ${socials.orcid ? `<a class="btn btn-sm" href="${escapeHtml(socials.orcid)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-badge me-1"></i>ORCID</a>` : ''}
+        <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
+          ${socials.github ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.github)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github me-1"></i>GitHub</a>` : ''}
+          ${socials.linkedin ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>` : ''}
+          ${socials.researchgate ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.researchgate)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>` : ''}
+          ${socials.scholar ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.scholar)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-1"></i>Google Scholar</a>` : ''}
+          ${socials.orcid ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.orcid)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-badge me-1"></i>ORCID</a>` : ''}
         </div>
 
         <div class="hero-stats">
