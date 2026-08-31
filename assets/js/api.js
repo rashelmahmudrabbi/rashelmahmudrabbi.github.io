@@ -6,7 +6,7 @@
 // ─── Constants ───────────────────────────────────────────────────────────
 // Fallback strategy: Network -> LocalStorage Cache -> Static Data.json -> Empty
 const CACHE_KEY = 'portfolio_cache';
-const CACHE_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours (was 15 mins)
+const CACHE_TTL_MS = 60 * 1000; // 1 minute (was 12 hours)
 const FETCH_TIMEOUT_MS = 20000; // 20s network timeout before fallback
 
 // ─── HTML escaping helper ─────────────────────────────────────────────────
