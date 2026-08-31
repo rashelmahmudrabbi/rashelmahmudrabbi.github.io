@@ -121,42 +121,28 @@
       return isValidSpotlightText(s.title) && isValidSpotlightText(s.description);
     }
 
-    const defaultSpotlights = [
-      {
-        badge: 'Top Publication',
-        badgeType: 'badge-pub',
-        title: 'Cervical Cancer Cell Classification',
-        description: 'Deep Transfer Learning with Attention-guided ResNet & DenseNet models on Pap smear datasets.',
-        tag: 'Journal Paper · 2025',
-        linkUrl: 'publications/index.html',
-        linkLabel: 'View Paper',
-        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        badge: 'Flagship AI Project',
-        badgeType: 'badge-proj',
-        title: 'Oral Cancer Detection & Grading',
-        description: 'Histopathological image analysis powered by Vision Transformers and Grad-CAM interpretability.',
-        tag: 'Medical AI · PyTorch',
-        linkUrl: 'projects/index.html',
-        linkLabel: 'Explore Code'
-      },
-      {
-        badge: 'Research Vision',
-        badgeType: 'badge-xai',
-        title: 'Explainable & Trustworthy AI',
-        description: 'Building transparent diagnostic pipelines that clinical pathologists and doctors can inspect and trust.',
-        tag: 'XAI & Healthcare',
-        linkUrl: '#research',
-        linkLabel: 'Research Areas'
-      }
-    ];
-
-    // Use API spotlights only if they all pass validation, otherwise use defaults
+    // Use API spotlights only
     const validApiSpotlights = (spotlights && spotlights.length > 0) 
       ? spotlights.filter(s => isValidSpotlight(s))
       : [];
-    const items = validApiSpotlights.length >= 2 ? validApiSpotlights : defaultSpotlights;
+    const items = validApiSpotlights;
+
+    const spotlightCol = document.querySelector('.hero-spotlight-box')?.parentElement;
+    const aboutCol = document.getElementById('aboutSectionContainer')?.parentElement;
+
+    if (items.length === 0) {
+      if (spotlightCol) spotlightCol.style.display = 'none';
+      if (aboutCol) {
+        aboutCol.classList.remove('col-lg-7');
+        aboutCol.classList.add('col-lg-12');
+      }
+    } else {
+      if (spotlightCol) spotlightCol.style.display = 'block';
+      if (aboutCol) {
+        aboutCol.classList.remove('col-lg-12');
+        aboutCol.classList.add('col-lg-7');
+      }
+    }
 
 
     function getSpotlightIcon(item) {
