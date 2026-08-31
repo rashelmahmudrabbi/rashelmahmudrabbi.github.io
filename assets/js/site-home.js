@@ -276,6 +276,10 @@
     if (window.initSpotlightCarousel) {
       window.initSpotlightCarousel(items.length);
     }
+    
+    if (window.initTypewriter) {
+      window.initTypewriter();
+    }
 
     // Fix broken hero avatar
     addImageFallbacks(document.getElementById('heroContainer'), getInitialsPlaceholder(p.name));

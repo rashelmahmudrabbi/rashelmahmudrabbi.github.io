@@ -91,13 +91,13 @@
     .filterable.hidden{display:none!important;}
   </style>
 </head>
-<body>
+<body><div id="scrollProgress"></div><div class="page-transition-overlay" id="pageTransitionOverlay"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="../index.html" id="navBrand">
-      R.M. RABBI
+      RASHEL MAHMUD RABBI
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -163,6 +163,7 @@
 </nav>
 
 <section class="page-hero">
+  <canvas id="heroParticles"></canvas>
   <div class="container">
     <div class="breadcrumb-nav mb-2">
       <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Projects</span>
@@ -227,5 +228,6 @@
 <script src="../assets/js/config.js"></script>
 <script src="../assets/js/api.js"></script>
 <script src="../assets/js/site-projects.js"></script>
+<script src="../assets/js/interactions.js?v=1"></script>
 </body>
 </html>

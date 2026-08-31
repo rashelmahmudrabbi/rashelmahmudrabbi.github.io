@@ -1066,6 +1066,7 @@ h1, h2, h3, h4, h5 {
   color: #ffffff;
   padding: 1.5rem 0 1.7rem;
   position: relative;
+  overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background .5s var(--ease), color .5s var(--ease);
 }
@@ -4113,10 +4114,10 @@ footer a {
 }
 
 #hero { position: relative; }
-#hero > .container { position: relative; z-index: 1; }
+#hero > .container, .page-hero > .container { position: relative; z-index: 1; }
 
 /* ── ANIMATED GRADIENT MESH ON HERO ── */
-#hero::after {
+#hero::after, .page-hero::after {
   content: '';
   position: absolute;
   top: -50%;
@@ -4136,7 +4137,7 @@ footer a {
   100% { transform: translate(3%, -2%) rotate(3deg); }
 }
 
-[data-theme="dark"] #hero::after {
+[data-theme="dark"] #hero::after, [data-theme="dark"] .page-hero::after {
   background: radial-gradient(ellipse at 20% 50%, rgba(120, 169, 255, 0.06) 0%, transparent 50%),
               radial-gradient(ellipse at 80% 20%, rgba(47, 111, 237, 0.05) 0%, transparent 40%),
               radial-gradient(ellipse at 50% 80%, rgba(99, 199, 196, 0.04) 0%, transparent 50%);

@@ -326,6 +326,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', initTypewriter);
+  window.initTypewriter = initTypewriter;
 
   // ── 7. SCROLL PROGRESS INDICATOR ──────────────────────────────────────────
   function initScrollProgress() {
