@@ -2972,7 +2972,7 @@ footer {
   background: var(--navy-deep);
   color: rgba(255, 255, 255, .65);
   text-align: center;
-  padding: 1.2rem 0;
+  padding: 0.5rem 0;
   font-size: .82rem;
 }
 
@@ -4380,7 +4380,7 @@ footer a {
   display: flex;
   justify-content: center;
   gap: 0.8rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   flex-wrap: wrap;
 }
 
@@ -4424,7 +4424,7 @@ footer a {
   font-size: 1rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
   letter-spacing: 0.5px;
   font-style: italic;
 }
