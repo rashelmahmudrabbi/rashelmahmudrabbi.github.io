@@ -1,4 +1,4 @@
-﻿/* ============ DESIGN TOKENS ============ */
+/* ============ DESIGN TOKENS ============ */
 :root {
   --bg: #F7F9FC;
   --bg-alt: #EEF3F8;
@@ -4457,4 +4457,14 @@ footer a {
 
 @media (max-width: 576px) {
   .hero-stat-num::after { content: '+'; font-size: 0.5em; }
+}
+
+.navbar-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #fff;
+  border: 1px solid var(--line);
+  padding: 2px;
 }
