@@ -97,8 +97,8 @@
     const socials = p.socials || {};
     const stats = p.stats || {};
 
-    const brand = document.getElementById('navBrand');
-    if (brand && p.name) brand.textContent = p.name;
+    const brandText = document.getElementById('navBrandText');
+    if (brandText && p.name) brandText.textContent = p.name;
 
     const cvUrl = settings.cvDownloadUrl || (typeof API_BASE !== 'undefined' ? API_BASE + '/cv/download' : 'cv/index.html');
     window.__cvDownloadUrl = cvUrl;
