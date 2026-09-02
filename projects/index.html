@@ -106,56 +106,19 @@
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-center gap-1">
         <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="../index.html#objective">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="../index.html#research">Research</a></li>
-        <li class="nav-item"><a class="nav-link" href="../publications/index.html">Publications</a></li>
         <li class="nav-item"><a class="nav-link active" href="../projects/index.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="../publications/index.html">Publications</a></li>
         <li class="nav-item"><a class="nav-link" href="../teaching/index.html">Teaching</a></li>
-        <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
-        
-        <!-- MORE DROPDOWN -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            More
+        <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="../contact/index.html">Contact</a></li>
+
+        <!-- CV ACTION BUTTON -->
+        <li class="nav-item ms-lg-2 my-2 my-lg-0">
+          <a class="nav-cv-btn text-decoration-none" href="../cv/index.html">
+            <i class="bi bi-file-earmark-person"></i> View CV
           </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
-            <li><a class="dropdown-item" href="../index.html#education"><i class="bi bi-mortarboard"></i> Education</a></li>
-            <li><a class="dropdown-item" href="../index.html#skills"><i class="bi bi-code-slash"></i> Skills</a></li>
-            <li><a class="dropdown-item" href="../index.html#awards"><i class="bi bi-trophy"></i> Awards &amp; Honors</a></li>
-            <li><a class="dropdown-item" href="../index.html#gallery"><i class="bi bi-images"></i> Gallery</a></li>
-            <li><hr class="dropdown-divider" style="opacity:0.1;"></li>
-            <li><a class="dropdown-item" href="../blog/index.html"><i class="bi bi-newspaper"></i> Blog</a></li>
-          </ul>
         </li>
 
-        <!-- CV ACTION BUTTON WITH OPTIONS -->
-        <li class="nav-item dropdown ms-lg-2 my-2 my-lg-0">
-          <button class="nav-cv-btn dropdown-toggle" type="button" id="cvMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-file-earmark-person"></i> CV
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end cv-dropdown-menu" aria-labelledby="cvMenuBtn">
-            <li>
-              <a class="cv-dropdown-item" href="../cv/index.html">
-                <i class="bi bi-eye"></i>
-                <div>
-                  <span class="cv-dropdown-title">Show CV</span>
-                  <span class="cv-dropdown-sub">View online CV</span>
-                </div>
-              </a>
-            </li>
-            <li><hr class="dropdown-divider" style="opacity:0.1;margin:.3rem 0;"></li>
-            <li>
-              <a class="cv-dropdown-item nav-cv-download-link" href="https://portfolio-backend-u.vercel.app/api/cv/download" target="_blank">
-                <i class="bi bi-download"></i>
-                <div>
-                  <span class="cv-dropdown-title">Download CV</span>
-                  <span class="cv-dropdown-sub">PDF document</span>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        
         <!-- THEME TOGGLE -->
         <li class="nav-item ms-lg-2">
           <button id="themeToggle" aria-label="Toggle dark mode" onclick="toggleTheme()"><span class="knob">☀</span></button>

@@ -170,61 +170,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto align-items-center gap-1">
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#objective">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-          <li class="nav-item"><a class="nav-link" href="publications/index.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="projects/index.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="publications/index.html">Publications</a></li>
           <li class="nav-item"><a class="nav-link" href="teaching/index.html">Teaching</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog/index.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact/index.html">Contact</a></li>
 
-          <!-- MORE DROPDOWN -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              More
+          <!-- CV ACTION BUTTON -->
+          <li class="nav-item ms-lg-2 my-2 my-lg-0">
+            <a class="nav-cv-btn text-decoration-none" href="javascript:void(0)" onclick="openCvViewer()">
+              <i class="bi bi-file-earmark-person"></i> View CV
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
-              <li><a class="dropdown-item" href="#education"><i class="bi bi-mortarboard"></i> Education</a></li>
-              <li><a class="dropdown-item" href="#skills"><i class="bi bi-code-slash"></i> Skills</a></li>
-              <li><a class="dropdown-item" href="#awards"><i class="bi bi-trophy"></i> Awards &amp; Honors</a></li>
-              <li><a class="dropdown-item" href="#gallery"><i class="bi bi-images"></i> Gallery</a></li>
-              <li>
-                <hr class="dropdown-divider" style="opacity:0.1;">
-              </li>
-              <li><a class="dropdown-item" href="blog/index.html"><i class="bi bi-newspaper"></i> Blog</a></li>
-            </ul>
-          </li>
-
-          <!-- CV ACTION BUTTON WITH OPTIONS -->
-          <li class="nav-item dropdown ms-lg-2 my-2 my-lg-0">
-            <button class="nav-cv-btn dropdown-toggle" type="button" id="cvMenuBtn" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="bi bi-file-earmark-person"></i> CV
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end cv-dropdown-menu" aria-labelledby="cvMenuBtn">
-              <li>
-                <a class="cv-dropdown-item" href="javascript:void(0)" onclick="openCvViewer()">
-                  <i class="bi bi-eye"></i>
-                  <div>
-                    <span class="cv-dropdown-title">Show CV</span>
-                    <span class="cv-dropdown-sub">View in browser popup</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" style="opacity:0.1;margin:.3rem 0;">
-              </li>
-              <li>
-                <a class="cv-dropdown-item" id="navCvDownloadLink" href="javascript:void(0)" onclick="downloadCvPdf()">
-                  <i class="bi bi-download"></i>
-                  <div>
-                    <span class="cv-dropdown-title">Download CV</span>
-                    <span class="cv-dropdown-sub">PDF document</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
           </li>
 
           <!-- THEME TOGGLE -->
@@ -806,21 +763,6 @@
         style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8250;</button>
     </div>
 
-    <!-- CONTACT & PERSONAL INFORMATION -->
-    <section id="contact" class="section-wrapper reveal">
-      <div class="container">
-        <h2 class="section-title">Contact &amp; Personal Information</h2>
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="personal-grid" id="contactInfoLeft"></div>
-          </div>
-          <div class="col-lg-6 mt-3 mt-lg-0">
-            <div class="personal-grid" id="contactInfoRight"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- REFERENCES -->
     <section id="references" class="section-wrapper alt-bg reveal">
       <div class="container">
@@ -840,26 +782,6 @@
               <div class="skeleton skeleton-line-sm" style="width:35%;"></div>
               <div class="skeleton skeleton-line-sm" style="width:50%;margin-bottom:1rem;"></div>
               <div class="skeleton skeleton-line" style="width:48%;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section-wrapper reveal">
-      <div class="container">
-        <div class="section-header text-center mb-4">
-          <h2 class="section-title">Get In Touch</h2>
-          <p class="section-subtitle" style="color: var(--text-mid);">Feel free to reach out for collaborations or inquiries.</p>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="contact-card text-center p-4 p-md-5 rounded-4 shadow-sm" style="background: var(--surface); border: 1px solid var(--line); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-              <i class="bi bi-envelope-paper" style="font-size: 2.5rem; color: var(--gold); display: block; margin-bottom: 1rem;"></i>
-              <h3 class="mb-3" style="font-family: 'Crimson Pro', serif; font-weight: 700; color: var(--navy);">Let's Collaborate</h3>
-              <p class="mb-4" style="color: var(--text-mid); font-size: 0.95rem;">I am currently open to new research opportunities and collaborations in Computer Vision and AI.</p>
-              <a href="mailto:raselmahud6757@gmail.com" class="btn px-4 py-2" style="background: var(--gold); color: #fff; border: none; font-weight: 600; border-radius: 25px; box-shadow: 0 4px 15px rgba(217, 160, 81, 0.4);"><i class="bi bi-envelope me-2"></i> Send an Email</a>
             </div>
           </div>
         </div>
