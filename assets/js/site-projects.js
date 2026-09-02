@@ -20,7 +20,7 @@
   function renderFilterBar() {
     const el = document.getElementById('filterBarButtons');
     const buttons = [
-      `<button class="filter-btn active" onclick="filterProjects('all',this)">All (${projects.length})</button>`,
+      `<button class="filter-btn all active" onclick="filterProjects('all',this)">All (${projects.length})</button>`,
       `<button class="filter-btn" onclick="filterProjects('research',this)">Research (${research.length})</button>`,
       `<button class="filter-btn" onclick="filterProjects('development',this)">Development (${dev.length})</button>`,
       ...years.map((y) => `<button class="filter-btn" onclick="filterProjects('${escapeHtml(y)}',this)">${escapeHtml(y)}</button>`),
