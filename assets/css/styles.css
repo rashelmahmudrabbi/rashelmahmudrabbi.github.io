@@ -240,6 +240,32 @@ h1, h2, h3, h4, h5 {
   color: var(--gold) !important;
 }
 
+/* VIEW ALL BUTTON (theme-aware) */
+.btn-view-all {
+  background: transparent;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  border-radius: 25px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: all .3s ease;
+}
+.btn-view-all:hover {
+  background: var(--navy);
+  color: var(--gold-soft);
+  border-color: var(--navy);
+}
+[data-theme="dark"] .btn-view-all {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+[data-theme="dark"] .btn-view-all:hover {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-color: var(--gold);
+}
+
 /* NAVBAR CV CTA BUTTON */
 .nav-cv-btn {
   display: inline-flex;
