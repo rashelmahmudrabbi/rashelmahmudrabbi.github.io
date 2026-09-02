@@ -725,7 +725,7 @@
     if (window.initStaggerObserver) window.initStaggerObserver();
 
     document.getElementById('activitiesList').innerHTML = activities
-      .map((a) => `<div class="activity-item"><i class="bi bi-chevron-right"></i>${escapeHtml(a.text || '')}</div>`)
+      .map((a) => `<div class="activity-item"><i class="bi bi-check2-circle"></i>${escapeHtml(a.text || '')}</div>`)
       .join('');
   }
 
