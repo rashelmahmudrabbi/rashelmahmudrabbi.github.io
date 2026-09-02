@@ -51,7 +51,7 @@
     el.insertAdjacentHTML(
       'beforeend',
       `
-      <button class="filter-btn all active" onclick="filterPubs('all',this)">All (${publications.length})</button>
+      <button class="filter-btn active" onclick="filterPubs('all',this)">All (${publications.length})</button>
       ${journal ? `<button class="filter-btn" onclick="filterPubs('journal',this)">Journal (${journal})</button>` : ''}
       ${conference ? `<button class="filter-btn" onclick="filterPubs('conference',this)">Conference (${conference})</button>` : ''}
       ${thesis ? `<button class="filter-btn" onclick="filterPubs('thesis',this)">Thesis (${thesis})</button>` : ''}`
