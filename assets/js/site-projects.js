@@ -36,7 +36,7 @@
     return `
     <div class="col-12 filterable" data-year="${escapeHtml(p.year || '')}" data-type="research">
       <div class="featured-card">
-        <div class="featured-img"><i class="bi bi-activity"></i><span class="featured-badge">&#11088; Featured Research</span></div>
+        <div class="featured-img mesh-bg-1"><i class="bi bi-activity"></i><span class="featured-badge">&#11088; Featured Research</span></div>
         <div class="featured-body">
           <div class="d-flex flex-wrap gap-2 mb-2">
             <span class="accuracy-badge"><i class="bi bi-calendar me-1"></i>${escapeHtml(p.year || '')}</span>
@@ -70,10 +70,11 @@
   function projectCardHtml(p, badgeClass, badgeLabel, iconClass) {
     const desc = p.description || '';
     const isLong = desc.length > 110;
+    const meshClass = badgeClass === 'dev-badge' ? 'mesh-bg-3' : 'mesh-bg-2';
     return `
     <div class="col-md-6 col-lg-4 filterable" data-year="${escapeHtml(p.year || '')}" data-type="${escapeHtml(p.category || '')}">
       <div class="project-card">
-        <div class="project-img${badgeClass === 'dev-badge' ? ' proj-bg' : ''}">
+        <div class="project-img ${meshClass}">
           <i class="bi ${iconClass}"></i>
           <span class="project-year-badge">${escapeHtml(p.year || '')}</span>
           <span class="project-type-badge ${badgeClass}">${badgeLabel}</span>

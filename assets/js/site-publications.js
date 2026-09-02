@@ -93,13 +93,14 @@
         pub.abstract
           ? `<div class="pub-abstract-toggle" onclick="this.classList.toggle('open')">
         <span class="abstract-label"><i class="bi bi-chevron-right abstract-arrow"></i> Abstract</span>
-        <div class="abstract-body" id="${abstractId}">${formatRichText(pub.abstract)}</div>
+        <div class="abstract-wrap"><div class="abstract-body" id="${abstractId}">${formatRichText(pub.abstract)}</div></div>
       </div>`
           : ''
       }
       <div class="pub-links">
         ${pub.pdfLink ? `<a class="pub-link" href="${escapeHtml(resolveAssetUrl(pub.pdfLink, true))}" target="_blank"><i class="bi bi-file-earmark-pdf"></i> PDF</a>` : ''}
         ${pub.doiLink ? `<a class="pub-link btn-outline" href="${escapeHtml(pub.doiLink)}" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI / IEEE</a>` : ''}
+        <a class="pub-link btn-outline" href="javascript:void(0)" onclick="copyCitation(this, '${escapeHtml(pub.title || '').replace(/'/g, "\\'")}', '${escapeHtml(pub.authors || '').replace(/'/g, "\\'")}', '${escapeHtml(pub.venue || '').replace(/'/g, "\\'")}', '${escapeHtml(pub.year || '')}')"><i class="bi bi-quote"></i> Cite</a>
       </div>
     </div>`;
   }
