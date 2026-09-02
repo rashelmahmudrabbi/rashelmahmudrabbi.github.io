@@ -190,7 +190,7 @@
                <img src="${escapeHtml(resolveAssetUrl(item.image, false))}" class="spotlight-large-image" alt="${escapeHtml(item.title || '')}" />
              </div>
              <div class="spotlight-content text-center mt-3 mb-2">
-               <h4 class="spotlight-title-gradient" title="${escapeHtml(item.title || '')}">${escapeHtml(item.title || 'Research Highlight')}</h4>
+               <h4 class="spotlight-title" title="${escapeHtml(item.title || '')}">${escapeHtml(item.title || 'Research Highlight')}</h4>
                <div class="spotlight-desc mx-auto" style="max-width:90%;">${formatRichText(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</div>
              </div>
            </div>`

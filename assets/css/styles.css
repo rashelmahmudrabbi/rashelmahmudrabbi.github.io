@@ -1396,7 +1396,7 @@ h1, h2, h3, h4, h5 {
 
 .about-bio-text {
   font-size: 0.95rem;
-  color: var(--ink-soft);
+  color: var(--ink);
   line-height: 1.75;
   text-align: justify;
   text-justify: inter-word;
