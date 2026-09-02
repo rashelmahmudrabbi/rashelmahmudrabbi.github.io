@@ -49,6 +49,15 @@
     .filter-bar{background:var(--section-bg);border-bottom:1px solid var(--border);padding:.8rem 0;position:sticky;top:62px;z-index:100;}
     .filter-btn{background:transparent;border:1.5px solid var(--navy);color:var(--navy);border-radius:25px;font-size:.8rem;padding:.32rem .9rem;cursor:pointer;transition:all .2s;font-weight:500;margin:.2rem;}
     .filter-btn:hover,.filter-btn.active{background:var(--navy);color:var(--gold-lt);border-color:var(--navy);}
+    .filter-btn.all.active{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+    
+    [data-theme="dark"] .filter-btn:hover,
+    [data-theme="dark"] .filter-btn.active {
+      color: var(--navy-deep);
+    }
+    [data-theme="dark"] .filter-btn.all.active {
+      color: var(--navy-deep);
+    }
 
     /* SECTION HEADERS */
     .section-divider{padding:1.5rem 0 1rem;}
