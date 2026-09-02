@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – RASHEL MAHMUD RABBI</title>
-  <meta name="description" content="Contact and personal information for Rashel Mahmud Rabbi."/>
+  <meta name="description" content="Contact and personal information for Rashel Mahmud Rabbi." />
   <!-- Open Graph -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Contact – RASHEL MAHMUD RABBI"/>
-  <meta property="og:description" content="Contact and personal information for Rashel Mahmud Rabbi."/>
-  <meta property="og:url" content="https://rashelmahmudrabbi.github.io/contact/index.html"/>
-  <meta property="og:image" content="https://rashelmahmudrabbi.github.io/media/profile/Prof._Passport_size_image.jpg"/>
-  <meta property="og:site_name" content="RASHEL MAHMUD RABBI"/>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact – RASHEL MAHMUD RABBI" />
+  <meta property="og:description" content="Contact and personal information for Rashel Mahmud Rabbi." />
+  <meta property="og:url" content="https://rashelmahmudrabbi.github.io/contact/index.html" />
+  <meta property="og:image" content="https://rashelmahmudrabbi.github.io/media/profile/Prof._Passport_size_image.jpg" />
+  <meta property="og:site_name" content="RASHEL MAHMUD RABBI" />
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Contact – RASHEL MAHMUD RABBI"/>
-  <meta name="twitter:description" content="Contact and personal information for Rashel Mahmud Rabbi."/>
-  <meta name="twitter:image" content="https://rashelmahmudrabbi.github.io/media/profile/Prof._Passport_size_image.jpg"/>
-  <link rel="canonical" href="https://rashelmahmudrabbi.github.io/contact/index.html"/>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1e3d'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23b8862a'%3ERMR%3C/text%3E%3C/svg%3E"/>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact – RASHEL MAHMUD RABBI" />
+  <meta name="twitter:description" content="Contact and personal information for Rashel Mahmud Rabbi." />
+  <meta name="twitter:image"
+    content="https://rashelmahmudrabbi.github.io/media/profile/Prof._Passport_size_image.jpg" />
+  <link rel="canonical" href="https://rashelmahmudrabbi.github.io/contact/index.html" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1e3d'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23b8862a'%3ERMR%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://portfolio-backend-u.vercel.app">
@@ -27,10 +30,12 @@
   <link rel="preload" href="../assets/js/api.js" as="script">
   <!-- Load site-home.js for renderContactInfo -->
   <link rel="preload" href="../assets/js/site-home.js" as="script">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/styles.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,22 +51,27 @@
       border: 1px solid var(--line);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
     }
+
     .contact-social-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
       border-color: var(--gold);
     }
+
     a.contact-info-pill:hover {
       background: var(--surface) !important;
       border-color: var(--gold) !important;
       transform: translateX(4px);
     }
+
     [data-theme="dark"] .contact-social-card:hover {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
+
     [data-theme="dark"] .github-icon {
       color: #ffffff !important;
     }
+
     .btn-email-cta {
       background: var(--gold) !important;
       color: #fff !important;
@@ -71,6 +81,7 @@
       box-shadow: 0 4px 15px rgba(217, 160, 81, 0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .btn-email-cta:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(217, 160, 81, 0.6);
@@ -79,156 +90,171 @@
     }
   </style>
 </head>
-<body><div id="scrollProgress"></div><div class="page-transition-overlay" id="pageTransitionOverlay"></div>
-<a class="skip-to-content" href="#main-content">Skip to main content</a>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="../index.html" id="navBrand">
-      <img src="../media/profile/logo.png" alt="Logo" class="navbar-logo me-2" style="max-height: 40px; width: auto; object-fit: contain;">
-      RASHEL MAHMUD RABBI
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-center gap-1">
-        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="../projects/index.html">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="../publications/index.html">Publications</a></li>
-        <li class="nav-item"><a class="nav-link" href="../teaching/index.html">Teaching</a></li>
-        <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link active" href="../contact/index.html">Contact</a></li>
+<body>
+  <div id="scrollProgress"></div>
+  <div class="page-transition-overlay" id="pageTransitionOverlay"></div>
+  <a class="skip-to-content" href="#main-content">Skip to main content</a>
 
-        <!-- CV ACTION BUTTON -->
-        <li class="nav-item ms-lg-2 my-2 my-lg-0">
-          <a class="nav-cv-btn text-decoration-none" href="https://portfolio-backend-u.vercel.app/api/cv/download" target="_blank">
-            <i class="bi bi-download"></i> Download CV
-          </a>
-        </li>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="../index.html" id="navBrand">
+        <img src="../media/profile/logo.png" alt="Logo" class="navbar-logo me-2"
+          style="max-height: 40px; width: auto; object-fit: contain;">
+        RASHEL MAHMUD RABBI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../projects/index.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="../publications/index.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="../teaching/index.html">Teaching</a></li>
+          <li class="nav-item"><a class="nav-link" href="../blog/index.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../contact/index.html">Contact</a></li>
 
-        <!-- THEME TOGGLE -->
-        <li class="nav-item ms-lg-2">
-          <button id="themeToggle" aria-label="Toggle dark mode" onclick="toggleTheme()"><span class="knob">☀</span></button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<section class="page-hero">
-  <canvas id="heroParticles"></canvas>
-  <div class="container">
-    <div class="breadcrumb-nav mb-2">
-      <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Contact</span>
-    </div>
-    <h1><i class="bi bi-envelope-paper me-2" style="color:var(--gold-lt)"></i>Contact</h1>
-    <p>Feel free to reach out for collaborations or inquiries.</p>
-  </div>
-</section>
-
-<main id="main-content">
-  <section class="section-wrapper py-5">
-    <div class="container py-4">
-      <div class="row g-5 align-items-center">
-        
-        <!-- Left side: Contact text & direct info -->
-        <div class="col-lg-5">
-          <h2 class="mb-4" style="font-family:'Crimson Pro',serif; font-size: 2.5rem; color: var(--text-dark);">Let's Connect</h2>
-          <p class="mb-4" style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.6;">
-            I am currently open to new research opportunities, academic collaborations, and industry roles in Computer Vision and AI. 
-            Feel free to reach out via email or connect with me on professional platforms.
-          </p>
-          
-          <div class="d-flex flex-column gap-3 mb-4 mt-4">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank" class="btn px-4 py-2 rounded-pill d-inline-flex align-items-center justify-content-center text-decoration-none btn-email-cta">
-              <i class="bi bi-envelope-paper-fill fs-5 me-2"></i> Send an Email
+          <!-- CV ACTION BUTTON -->
+          <li class="nav-item ms-lg-2 my-2 my-lg-0">
+            <a class="nav-cv-btn text-decoration-none" href="https://portfolio-backend-u.vercel.app/api/cv/download"
+              target="_blank">
+              <i class="bi bi-download"></i> Download CV
             </a>
+          </li>
 
-            <div class="contact-info-pill d-flex align-items-center p-3 rounded-4 mt-2" style="background: var(--surface-2); border: 1px solid var(--line); color: var(--text-dark); transition: all 0.3s ease;">
-              <div class="d-flex align-items-center justify-content-center rounded-circle me-3" style="width:48px; height:48px; background: rgba(184,134,42,0.1); color: var(--gold);">
-                <i class="bi bi-geo-alt-fill fs-5"></i>
-              </div>
-              <div>
-                <span class="d-block fw-bold mb-1" style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color: var(--text-mid);">Location</span>
-                <span style="font-size:1.05rem; font-weight:500;">Rajshahi, Bangladesh</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right side: Professional links grid -->
-        <div class="col-lg-7 ps-lg-5">
-          <div class="row g-3">
-            
-            <div class="col-sm-6">
-              <a href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
-                <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                  <i class="bi bi-linkedin fs-2 mb-2 d-block" style="color: #0A66C2;"></i>
-                  <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">LinkedIn</h4>
-                  <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Professional network</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-6">
-              <a href="https://github.com/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
-                <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                  <i class="bi bi-github fs-2 mb-2 d-block github-icon" style="color: var(--text-dark);"></i>
-                  <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">GitHub</h4>
-                  <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Code repositories</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-6">
-              <a href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ" target="_blank" class="text-decoration-none">
-                <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                  <i class="bi bi-mortarboard-fill fs-2 mb-2 d-block" style="color: #4285F4;"></i>
-                  <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">Google Scholar</h4>
-                  <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Research publications</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-6">
-              <a href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank" class="text-decoration-none">
-                <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                  <i class="bi bi-journal-text fs-2 mb-2 d-block" style="color: #00CCBB;"></i>
-                  <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">ResearchGate</h4>
-                  <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Academic profile</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-6">
-              <a href="https://orcid.org/0009-0004-6070-4496" target="_blank" class="text-decoration-none">
-                <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                  <i class="bi bi-person-badge fs-2 mb-2 d-block" style="color: #A6CE39;"></i>
-                  <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">ORCID</h4>
-                  <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Researcher ID</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-6">
-              <a href="https://x.com/rashelmahmud55" target="_blank" class="text-decoration-none">
-                <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                  <i class="bi bi-twitter-x fs-2 mb-2 d-block github-icon" style="color: var(--text-dark);"></i>
-                  <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">X (Twitter)</h4>
-                  <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Research updates</p>
-                </div>
-              </a>
-            </div>
-
-          </div>
-        </div>
-
+          <!-- THEME TOGGLE -->
+          <li class="nav-item ms-lg-2">
+            <button id="themeToggle" aria-label="Toggle dark mode" onclick="toggleTheme()"><span
+                class="knob">☀</span></button>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
+
+  <section class="page-hero">
+    <canvas id="heroParticles"></canvas>
+    <div class="container">
+      <div class="breadcrumb-nav mb-2">
+        <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Contact</span>
+      </div>
+      <h1><i class="bi bi-envelope-paper me-2" style="color:var(--gold-lt)"></i>Contact</h1>
+      <p>Feel free to reach out for collaborations or inquiries.</p>
+    </div>
   </section>
-</main>
+
+  <main id="main-content">
+    <section class="section-wrapper py-5">
+      <div class="container py-4">
+        <div class="row g-5 align-items-center">
+
+          <!-- Left side: Contact text & direct info -->
+          <div class="col-lg-5">
+            <h2 class="mb-4" style="font-family:'Crimson Pro',serif; font-size: 2.5rem; color: var(--text-dark);">Let's
+              Connect</h2>
+            <p class="mb-4" style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.6;">
+              I am currently open to new research opportunities, academic collaborations, and industry roles in Computer
+              Vision and AI.
+              Feel free to reach out via email or connect with me on professional platforms.
+            </p>
+
+            <div class="d-flex flex-column gap-3 mb-4 mt-4">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank"
+                class="btn px-4 py-2 rounded-pill d-inline-flex align-items-center justify-content-center text-decoration-none btn-email-cta">
+                <i class="bi bi-envelope-paper-fill fs-5 me-2"></i> Send an Email
+              </a>
+
+              <div class="contact-info-pill d-flex align-items-center p-3 rounded-4 mt-2"
+                style="background: var(--surface-2); border: 1px solid var(--line); color: var(--text-dark); transition: all 0.3s ease;">
+                <div class="d-flex align-items-center justify-content-center rounded-circle me-3"
+                  style="width:48px; height:48px; background: rgba(184,134,42,0.1); color: var(--gold);">
+                  <i class="bi bi-geo-alt-fill fs-5"></i>
+                </div>
+                <div>
+                  <span class="d-block fw-bold mb-1"
+                    style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color: var(--text-mid);">Location</span>
+                  <span style="font-size:1.05rem; font-weight:500;">Rajshahi, Bangladesh</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: Professional links grid -->
+          <div class="col-lg-7 ps-lg-5">
+            <div class="row g-3">
+
+              <div class="col-sm-6">
+                <a href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
+                    <i class="bi bi-linkedin fs-2 mb-2 d-block" style="color: #0A66C2;"></i>
+                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">LinkedIn</h4>
+                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Professional network</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-sm-6">
+                <a href="https://github.com/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
+                    <i class="bi bi-github fs-2 mb-2 d-block github-icon" style="color: var(--text-dark);"></i>
+                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">GitHub</h4>
+                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Code repositories</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-sm-6">
+                <a href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ" target="_blank"
+                  class="text-decoration-none">
+                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
+                    <i class="bi bi-mortarboard-fill fs-2 mb-2 d-block" style="color: #4285F4;"></i>
+                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">Google Scholar</h4>
+                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Research publications</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-sm-6">
+                <a href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank"
+                  class="text-decoration-none">
+                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
+                    <i class="bi bi-journal-text fs-2 mb-2 d-block" style="color: #00CCBB;"></i>
+                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">ResearchGate</h4>
+                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Academic profile</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-sm-6">
+                <a href="https://orcid.org/0009-0004-6070-4496" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
+                    <i class="bi bi-person-badge fs-2 mb-2 d-block" style="color: #A6CE39;"></i>
+                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">ORCID</h4>
+                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Researcher ID</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-sm-6">
+                <a href="https://x.com/rashel_m_rabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
+                    <i class="bi bi-twitter-x fs-2 mb-2 d-block github-icon" style="color: var(--text-dark);"></i>
+                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">X (Twitter)</h4>
+                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Research updates</p>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ANIMATED WAVE FOOTER DIVIDER -->
   <div class="wave-divider">
@@ -255,8 +281,8 @@
           target="_blank" title="Google Scholar" aria-label="Google Scholar"><i class="bi bi-mortarboard"></i></a>
         <a class="footer-social-link" href="https://orcid.org/0009-0004-6070-4496" target="_blank" title="ORCID"
           aria-label="ORCID"><i class="bi bi-person-badge"></i></a>
-        <a class="footer-social-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank" title="Email" aria-label="Email"><i
-            class="bi bi-envelope"></i></a>
+        <a class="footer-social-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com"
+          target="_blank" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
       </div>
       <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">I certify that all information in this
         portfolio is accurate and true.</p>
@@ -269,12 +295,13 @@
     </div>
   </footer>
 
-<button id="scrollTop" aria-label="Back to top" title="Back to top"><i class="bi bi-arrow-up-short"></i></button>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/theme.js"></script>
-<script src="../assets/js/config.js"></script>
-<script src="../assets/js/api.js"></script>
-<script src="../assets/js/site-home.js"></script>
-<script src="../assets/js/interactions.js?v=1"></script>
+  <button id="scrollTop" aria-label="Back to top" title="Back to top"><i class="bi bi-arrow-up-short"></i></button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/site-home.js"></script>
+  <script src="../assets/js/interactions.js?v=1"></script>
 </body>
+
 </html>
