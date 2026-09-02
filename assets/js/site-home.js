@@ -365,14 +365,14 @@
     el.innerHTML = list
       .map(
         (ri) => `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
+      <div class="col-lg-4 col-md-6 mb-4 stagger-item">
         <div class="research-card">
           <div class="card-glow"></div>
           <div class="research-card-icon">
             <i class="bi ${escapeHtml(ri.icon || 'bi-star')}"></i>
           </div>
           <h3 class="research-card-title">${escapeHtml(ri.topic || '')}</h3>
-          <div class="research-card-desc">${escapeHtml(ri.desc || '')}</div>
+          <div class="research-card-desc">${escapeHtml(ri.description || ri.desc || '')}</div>
         </div>
       </div>`
       )
