@@ -252,6 +252,7 @@
           ${socials.researchgate ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.researchgate)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-journal-text me-1"></i>ResearchGate</a>` : ''}
           ${socials.scholar ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.scholar)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-mortarboard me-1"></i>Google Scholar</a>` : ''}
           ${socials.orcid ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.orcid)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-person-badge me-1"></i>ORCID</a>` : ''}
+          ${socials.x ? `<a class="btn btn-sm" data-magnetic="0.25" href="${escapeHtml(socials.x)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x me-1"></i>X</a>` : ''}
         </div>
 
         <div class="hero-stats">

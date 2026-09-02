@@ -225,201 +225,6 @@
               <a class="btn btn-sm" data-magnetic="0.25" href="https://github.com/rashelmahmudrabbi" target="_blank"><i
                   class="bi bi-github me-1"></i>GitHub</a>
               <a class="btn btn-sm" data-magnetic="0.25" href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank"><i
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-  <link rel="preconnect" href="https://portfolio-backend-u.vercel.app">
-  <link rel="dns-prefetch" href="https://portfolio-backend-u.vercel.app">
-  <link rel="preload" href="assets/js/config.js?v=3" as="script">
-  <link rel="preload" href="assets/js/api.js?v=3" as="script">
-  <link rel="preload" href="assets/js/site-home.js?v=3" as="script">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "RASHEL MAHMUD RABBI",
-    "url": "https://rashelmahmudrabbi.github.io/",
-    "jobTitle": "Graduate Researcher",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "North Bengal International University"
-    },
-    "knowsAbout": ["Computer Vision", "Artificial Intelligence", "Deep Learning", "Medical Image Analysis"],
-    "sameAs": []
-  }
-  </script>
-</head>
-
-<body data-bs-spy="scroll" data-bs-target="#navMenu" data-bs-offset="100" tabindex="0">
-  <a class="skip-to-content" href="#main-content">Skip to main content</a>
-
-  <!-- CUSTOM CURSOR FOLLOWER REMOVED -->
-
-  <!-- SCROLL PROGRESS INDICATOR -->
-  <div id="scrollProgress"></div>
-
-  <!-- PAGE TRANSITION OVERLAY -->
-  <div class="page-transition-overlay" id="pageTransitionOverlay"></div>
-
-  <!-- FULLSCREEN CIRCULAR COUNTDOWN PRELOADER -->
-  <div id="pagePreloader" class="page-preloader" aria-hidden="false">
-    <div class="preloader-content">
-      <div class="preloader-ring-wrap">
-        <svg class="preloader-svg" viewBox="0 0 120 120" width="120" height="120">
-          <defs>
-            <linearGradient id="preloaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#2F6FED" />
-              <stop offset="50%" stop-color="#78A9FF" />
-              <stop offset="100%" stop-color="#F3C34F" />
-            </linearGradient>
-          </defs>
-          <circle class="preloader-track" cx="60" cy="60" r="52" fill="none" stroke-width="6" />
-          <circle class="preloader-progress" id="preloaderProgressCircle" cx="60" cy="60" r="52" fill="none"
-            stroke-width="6" stroke="url(#preloaderGradient)" stroke-dasharray="326.72" stroke-dashoffset="326.72" />
-        </svg>
-        <div class="preloader-center">
-          <span class="preloader-percent" id="preloaderPercent">0%</span>
-        </div>
-      </div>
-      <div class="preloader-meta">
-        <div class="preloader-brand">RASHEL MAHMUD RABBI</div>
-        <div class="preloader-sub"><span class="preloader-pulse-dot"></span> Loading Research &amp; AI Portfolio...
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    // Instant preloader countdown initialization
-    (function () {
-      var p = 0;
-      var circle = document.getElementById('preloaderProgressCircle');
-      var text = document.getElementById('preloaderPercent');
-      var preloader = document.getElementById('pagePreloader');
-      if (!circle || !text || !preloader) return;
-
-      var circ = 2 * Math.PI * 52; // 326.72
-      circle.style.strokeDasharray = circ + 'px';
-      circle.style.strokeDashoffset = circ + 'px';
-
-      function setP(val) {
-        p = Math.min(Math.max(val, 0), 100);
-        var offset = circ - (p / 100) * circ;
-        circle.style.strokeDashoffset = offset + 'px';
-        text.textContent = Math.round(p) + '%';
-      }
-
-      // Failsafe: dismiss preloader after 15s regardless
-      var failsafe = setTimeout(function () {
-        if (window.dismissPreloader) window.dismissPreloader();
-      }, 15000);
-
-      var timer = setInterval(function () {
-        if (p < 88) {
-          setP(p + Math.random() * 6 + 2);
-        }
-      }, 40);
-
-      window.dismissPreloader = function () {
-        clearTimeout(failsafe);
-        clearInterval(timer);
-        // smoothly finish to 100%
-        var finishTimer = setInterval(function () {
-          if (p < 100) {
-            setP(p + (100 - p) * 0.2 + 1); // smooth ease to 100
-          } else {
-            clearInterval(finishTimer);
-            setP(100);
-            // Trigger completion morph animation
-            var content = document.querySelector('.preloader-content');
-            if (content) content.classList.add('preloader-complete');
-            setTimeout(function () {
-              if (preloader) {
-                preloader.classList.add('preloader-hidden');
-                setTimeout(function () {
-                  preloader.style.display = 'none';
-                }, 450);
-              }
-            }, 400);
-          }
-        }, 20);
-      };
-
-      // Failsafe timer removed so it waits for actual backend load
-    })();
-  </script>
-
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#hero" id="navBrand">
-        <img src="media/profile/logo.png" alt="Logo" class="navbar-logo me-2" style="max-height: 40px; width: auto; object-fit: contain;">
-        <span id="navBrandText">RASHEL MAHMUD RABBI</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto align-items-center gap-1">
-          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects/index.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="publications/index.html">Publications</a></li>
-          <li class="nav-item"><a class="nav-link" href="teaching/index.html">Teaching</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog/index.html">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact/index.html">Contact</a></li>
-
-          <!-- CV ACTION BUTTON -->
-          <li class="nav-item ms-lg-2 my-2 my-lg-0">
-            <a class="nav-cv-btn text-decoration-none" href="https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing" target="_blank">
-              <i class="bi bi-eye"></i> View CV
-            </a>
-          </li>
-
-          <!-- THEME TOGGLE -->
-          <li class="nav-item ms-lg-2">
-            <button id="themeToggle" aria-label="Toggle dark mode" onclick="toggleTheme()"><span
-                class="knob">☀</span></button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <main id="main-content">
-    <!-- HERO -->
-    <section id="hero">
-      <!-- PARTICLE CANVAS -->
-      <canvas id="heroParticles"></canvas>
-      <div class="container">
-        <div class="row align-items-center g-4" id="heroContainer">
-          <div class="col-12 col-md-auto text-center text-md-start">
-            <div class="hero-avatar-wrap">
-              <img src="media/profile/Prof._Passport_size_image.jpg" class="hero-avatar" alt="RASHEL MAHMUD RABBI"
-                onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 160 160\'%3E%3Crect width=\'160\' height=\'160\' rx=\'80\' fill=\'%230b1e3d\'/%3E%3Ctext x=\'80\' y=\'96\' text-anchor=\'middle\' font-family=\'DM Sans,sans-serif\' font-size=\'48\' font-weight=\'700\' fill=\'%2378A9FF\'%3ERR%3C/text%3E%3C/svg%3E'" />
-              <div class="hero-status-pill">
-                <span class="status-pulse-dot"></span> Open to research
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-lg ps-lg-4">
-            <p class="hero-title">Graduate Researcher &ndash; <span class="typewriter-wrapper"><span
-                  id="typewriterText">Computer Vision &amp; AI</span><span class="typewriter-cursor"></span></span></p>
-            <h1 class="hero-name">RASHEL MAHMUD RABBI</h1>
-
-            <div class="hero-contact mt-2 mb-3">
-              <span><i class="bi bi-geo-alt-fill"></i>Rajshahi, Bangladesh</span>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i>raselmahud6757@gmail.com</a>
-              <a href="tel:+8801613000855"><i class="bi bi-telephone-fill"></i>+8801613-000855</a>
-            </div>
-
-            <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
-              <a class="btn btn-sm" data-magnetic="0.25" href="https://github.com/rashelmahmudrabbi" target="_blank"><i
-                  class="bi bi-github me-1"></i>GitHub</a>
-              <a class="btn btn-sm" data-magnetic="0.25" href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank"><i
                   class="bi bi-linkedin me-1"></i>LinkedIn</a>
               <a class="btn btn-sm" data-magnetic="0.25" href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank"><i
                   class="bi bi-journal-text me-1"></i>ResearchGate</a>
@@ -618,7 +423,16 @@
     <!-- EDUCATION -->
     <section id="education" class="section-wrapper alt-bg reveal">
       <div class="container">
-        <h2 class="section-title">Education</h2>
+        <div class="mb-4">
+          <span class="text-uppercase"
+            style="font-family:'DM Sans', monospace; font-size:.78rem; letter-spacing:.14em; color:var(--gold); font-weight:600; display:block; margin-bottom:8px;">Academic
+            Record</span>
+          <h2 class="section-title"
+            style="font-size:clamp(1.9rem, 3.4vw, 2.5rem); margin-bottom:10px; padding-bottom:0;">The transcript, in
+            order</h2>
+          <p style="color:var(--text-mid); font-size:1rem; max-width:620px; margin-bottom:2.2rem;">Every stage that led
+            here, listed chronologically — the way a real transcript reads.</p>
+        </div>
         <div class="academic-timeline" id="educationTimeline">
           <div class="academic-timeline-item">
             <div class="skeleton skeleton-line-sm" style="width:25%;margin-bottom:.5rem;"></div>
@@ -667,7 +481,7 @@
           </div>
         </div>
         <div class="text-center mt-4">
-          <a href="publications/index.html" class="btn btn-view-all btn-sm px-4">View All Publications →</a>
+          <a href="publications/index.html" class="btn btn-outline-secondary btn-sm px-4">View All Publications →</a>
         </div>
       </div>
     </section>
@@ -757,7 +571,7 @@
         </div>
 
         <div class="text-center mt-4">
-          <a href="projects/index.html" class="btn btn-view-all btn-sm px-4">View All Projects →</a>
+          <a href="projects/index.html" class="btn btn-outline-secondary btn-sm px-4">View All Projects →</a>
         </div>
       </div>
     </section>
@@ -951,6 +765,66 @@
         style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8250;</button>
     </div>
 
+    <!-- REFERENCES -->
+    <section id="references" class="section-wrapper alt-bg reveal">
+      <div class="container">
+        <h2 class="section-title">References</h2>
+        <div class="row g-4" id="referencesList">
+          <div class="col-md-6">
+            <div class="ref-card">
+              <div class="skeleton skeleton-line-lg" style="width:50%;"></div>
+              <div class="skeleton skeleton-line-sm" style="width:40%;"></div>
+              <div class="skeleton skeleton-line-sm" style="width:55%;margin-bottom:1rem;"></div>
+              <div class="skeleton skeleton-line" style="width:45%;"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="ref-card">
+              <div class="skeleton skeleton-line-lg" style="width:55%;"></div>
+              <div class="skeleton skeleton-line-sm" style="width:35%;"></div>
+              <div class="skeleton skeleton-line-sm" style="width:50%;margin-bottom:1rem;"></div>
+              <div class="skeleton skeleton-line" style="width:48%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ANIMATED WAVE FOOTER DIVIDER -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-1" d="M0,40 C300,10 500,70 800,30 C1000,0 1100,50 1200,20 L1200,80 L0,80 Z"
+        fill="var(--navy-deep)" opacity="0.5" />
+      <path class="wave-2" d="M0,50 C200,20 400,60 700,35 C900,15 1050,55 1200,30 L1200,80 L0,80 Z"
+        fill="var(--navy-deep)" opacity="0.8" />
+      <path d="M0,60 C350,30 650,65 900,40 C1050,25 1150,50 1200,40 L1200,80 L0,80 Z" fill="var(--navy-deep)" />
+    </svg>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-tagline">"Research with purpose, build with impact."</div>
+      <div class="footer-social-row" id="footerSocials">
+        <a class="footer-social-link" href="https://github.com/rashelmahmudrabbi" target="_blank" title="GitHub"
+          aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a class="footer-social-link" href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank"
+          title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="footer-social-link" href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank"
+          title="ResearchGate" aria-label="ResearchGate"><i class="bi bi-journal-text"></i></a>
+        <a class="footer-social-link" href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ"
+          target="_blank" title="Google Scholar" aria-label="Google Scholar"><i class="bi bi-mortarboard"></i></a>
+        <a class="footer-social-link" href="https://orcid.org/0009-0004-6070-4496" target="_blank" title="ORCID"
+          aria-label="ORCID"><i class="bi bi-person-badge"></i></a>
+        <a class="footer-social-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank" title="Email" aria-label="Email"><i
+            class="bi bi-envelope"></i></a>
+      </div>
+      <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">I certify that all information in this
+        portfolio is accurate and true.</p>
+      <p class="mb-0">
+        © <span id="footerYear">2026</span> <strong style="color:#fff;" id="footerName">RASHEL MAHMUD RABBI</strong>
         &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
         <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
           class="footer-admin-link"><i class="bi bi-gear-fill"></i></a>
