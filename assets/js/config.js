@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   if (!navbar) return;
   
-  let lastScrollTop = 0;
-  
   window.addEventListener('scroll', () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
@@ -23,13 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       navbar.classList.remove('navbar-scrolled');
     }
-    
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      navbar.classList.add('navbar-hidden');
-    } else {
-      navbar.classList.remove('navbar-hidden');
-    }
-    
-    lastScrollTop = Math.max(0, scrollTop);
   }, { passive: true });
 });

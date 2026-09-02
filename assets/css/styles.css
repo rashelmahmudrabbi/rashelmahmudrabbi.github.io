@@ -124,10 +124,6 @@ h1, h2, h3, h4, h5 {
   transition: transform 0.4s var(--ease), background 0.4s var(--ease), border-color 0.4s var(--ease), padding 0.4s var(--ease);
 }
 
-.navbar.navbar-hidden {
-  transform: translateY(-100%);
-}
-
 .navbar.navbar-scrolled {
   padding: .3rem 0;
   background: color-mix(in srgb, var(--navy-deep) 85%, transparent);
