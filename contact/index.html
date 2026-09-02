@@ -40,6 +40,29 @@
     "description": "Contact and personal information for Rashel Mahmud Rabbi."
   }
   </script>
+  <style>
+    .contact-social-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .contact-social-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      border-color: var(--gold);
+    }
+    a.contact-info-pill:hover {
+      background: var(--surface) !important;
+      border-color: var(--gold) !important;
+      transform: translateX(4px);
+    }
+    [data-theme="dark"] .contact-social-card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] .github-icon {
+      color: #ffffff !important;
+    }
+  </style>
 </head>
 <body><div id="scrollProgress"></div><div class="page-transition-overlay" id="pageTransitionOverlay"></div>
 <a class="skip-to-content" href="#main-content">Skip to main content</a>
@@ -91,22 +114,88 @@
 </section>
 
 <main id="main-content">
-  <!-- CONTACT SECTION -->
-  <section class="section-wrapper">
-    <div class="container">
-      <div class="section-header text-center mb-4">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle" style="color: var(--text-mid);">Feel free to reach out for collaborations or inquiries.</p>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="contact-card text-center p-4 p-md-5 rounded-4 shadow-sm" style="background: var(--surface); border: 1px solid var(--line); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <i class="bi bi-envelope-paper" style="font-size: 2.5rem; color: var(--gold); display: block; margin-bottom: 1rem;"></i>
-            <h3 class="mb-3" style="font-family: 'Crimson Pro', serif; font-weight: 700; color: var(--navy);">Let's Collaborate</h3>
-            <p class="mb-4" style="color: var(--text-mid); font-size: 0.95rem;">I am currently open to new research opportunities and collaborations in Computer Vision and AI.</p>
-            <a href="mailto:raselmahud6757@gmail.com" class="btn px-4 py-2" style="background: var(--gold); color: #fff; border: none; font-weight: 600; border-radius: 25px; box-shadow: 0 4px 15px rgba(217, 160, 81, 0.4);"><i class="bi bi-envelope me-2"></i> Send an Email</a>
+  <section class="section-wrapper py-5">
+    <div class="container py-4">
+      <div class="row g-5 align-items-center">
+        
+        <!-- Left side: Contact text & direct info -->
+        <div class="col-lg-5">
+          <h2 class="mb-4" style="font-family:'Crimson Pro',serif; font-size: 2.5rem; color: var(--text-dark);">Let's Connect</h2>
+          <p class="mb-4" style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.6;">
+            I am currently open to new research opportunities, academic collaborations, and industry roles in Computer Vision and AI. 
+            Feel free to reach out via email or connect with me on professional platforms.
+          </p>
+          
+          <div class="d-flex flex-column gap-3 mb-4 mt-4">
+            <a href="mailto:raselmahud6757@gmail.com" class="contact-info-pill text-decoration-none d-flex align-items-center p-3 rounded-4" style="background: var(--surface-2); border: 1px solid var(--line); color: var(--text-dark); transition: all 0.3s ease;">
+              <div class="d-flex align-items-center justify-content-center rounded-circle me-3" style="width:54px; height:54px; background: rgba(184,134,42,0.1); color: var(--gold);">
+                <i class="bi bi-envelope-fill fs-4"></i>
+              </div>
+              <div>
+                <span class="d-block fw-bold mb-1" style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color: var(--text-mid);">Email</span>
+                <span style="font-size:1.05rem; font-weight:500;">raselmahud6757@gmail.com</span>
+              </div>
+            </a>
+
+            <div class="contact-info-pill d-flex align-items-center p-3 rounded-4" style="background: var(--surface-2); border: 1px solid var(--line); color: var(--text-dark); transition: all 0.3s ease;">
+              <div class="d-flex align-items-center justify-content-center rounded-circle me-3" style="width:54px; height:54px; background: rgba(184,134,42,0.1); color: var(--gold);">
+                <i class="bi bi-geo-alt-fill fs-4"></i>
+              </div>
+              <div>
+                <span class="d-block fw-bold mb-1" style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color: var(--text-mid);">Location</span>
+                <span style="font-size:1.05rem; font-weight:500;">Rajshahi, Bangladesh</span>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Right side: Professional links grid -->
+        <div class="col-lg-7 ps-lg-5">
+          <div class="row g-4">
+            
+            <div class="col-sm-6">
+              <a href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
+                <div class="contact-social-card p-4 rounded-4 text-center h-100">
+                  <i class="bi bi-linkedin fs-1 mb-3 d-block" style="color: #0A66C2;"></i>
+                  <h4 class="h5 fw-bold mb-2" style="color: var(--text-dark);">LinkedIn</h4>
+                  <p class="mb-0" style="font-size:0.95rem; color: var(--text-mid);">Professional network</p>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-sm-6">
+              <a href="https://github.com/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
+                <div class="contact-social-card p-4 rounded-4 text-center h-100">
+                  <i class="bi bi-github fs-1 mb-3 d-block github-icon" style="color: var(--text-dark);"></i>
+                  <h4 class="h5 fw-bold mb-2" style="color: var(--text-dark);">GitHub</h4>
+                  <p class="mb-0" style="font-size:0.95rem; color: var(--text-mid);">Code repositories</p>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-sm-6">
+              <a href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ" target="_blank" class="text-decoration-none">
+                <div class="contact-social-card p-4 rounded-4 text-center h-100">
+                  <i class="bi bi-mortarboard-fill fs-1 mb-3 d-block" style="color: #4285F4;"></i>
+                  <h4 class="h5 fw-bold mb-2" style="color: var(--text-dark);">Google Scholar</h4>
+                  <p class="mb-0" style="font-size:0.95rem; color: var(--text-mid);">Research publications</p>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-sm-6">
+              <a href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank" class="text-decoration-none">
+                <div class="contact-social-card p-4 rounded-4 text-center h-100">
+                  <i class="bi bi-journal-text fs-1 mb-3 d-block" style="color: #00CCBB;"></i>
+                  <h4 class="h5 fw-bold mb-2" style="color: var(--text-dark);">ResearchGate</h4>
+                  <p class="mb-0" style="font-size:0.95rem; color: var(--text-mid);">Academic profile</p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
