@@ -127,25 +127,40 @@
   </section>
 </main>
 
-<footer>
-  <div class="container">
-    <div class="d-flex flex-column align-items-center justify-content-center pt-3 pb-3">
-      <div class="mb-2">
-        <span style="font-family:'Crimson Pro',serif; font-size:1.1rem; color:#fff; letter-spacing:1px; margin-right:8px;">RASHEL MAHMUD RABBI</span>
+  <footer>
+    <div class="container">
+      <div class="footer-tagline">"Research with purpose, build with impact."</div>
+      <div class="footer-social-row" id="footerSocials">
+        <a class="footer-social-link" href="https://github.com/rashelmahmudrabbi" target="_blank" title="GitHub"
+          aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a class="footer-social-link" href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank"
+          title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="footer-social-link" href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank"
+          title="ResearchGate" aria-label="ResearchGate"><i class="bi bi-journal-text"></i></a>
+        <a class="footer-social-link" href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ"
+          target="_blank" title="Google Scholar" aria-label="Google Scholar"><i class="bi bi-mortarboard"></i></a>
+        <a class="footer-social-link" href="https://orcid.org/0009-0004-6070-4496" target="_blank" title="ORCID"
+          aria-label="ORCID"><i class="bi bi-person-badge"></i></a>
+        <a class="footer-social-link" href="mailto:raselmahud6757@gmail.com" title="Email" aria-label="Email"><i
+            class="bi bi-envelope"></i></a>
       </div>
-      <div>
-        &copy; <span id="currentYear"></span>. All rights reserved. Built dynamically with <a href="https://getbootstrap.com" target="_blank" rel="noopener">Bootstrap 5</a> &amp; Node.js.
-      </div>
+      <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">I certify that all information in this
+        portfolio is accurate and true.</p>
+      <p class="mb-0">
+        © <span id="footerYear">2026</span> <strong style="color:#fff;" id="footerName">RASHEL MAHMUD RABBI</strong>
+        &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
+        <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
+          class="footer-admin-link"><i class="bi bi-gear-fill"></i></a>
+      </p>
     </div>
-  </div>
-</footer>
+  </footer>
+
 <button id="scrollTop" aria-label="Back to top" title="Back to top"><i class="bi bi-arrow-up-short"></i></button>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/theme.js"></script>
 <script src="../assets/js/config.js"></script>
 <script src="../assets/js/api.js"></script>
 <script src="../assets/js/site-home.js"></script>
-<script>
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
+<script src="../assets/js/interactions.js?v=1"></script>
 </body>
 </html>
