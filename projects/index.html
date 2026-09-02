@@ -80,7 +80,9 @@
     .project-title{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:.6rem;line-height:1.3;}
     .project-desc{font-size:.88rem;color:var(--text-mid);line-height:1.65;margin-bottom:1rem;flex:1;text-align:justify;text-justify:inter-word;}
     .project-tech{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem;}
-    .tech-tag{font-size:.75rem;background:var(--cream);color:var(--text-mid);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px;font-weight:500;}
+    .tech-tag{font-size:.75rem;background:var(--cream);color:var(--text-mid);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px;font-weight:500;transition:all 0.25s var(--ease);}
+    .tech-tag:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-2px);box-shadow:0 4px 8px rgba(23, 59, 103, 0.15);}
+    [data-theme="dark"] .tech-tag:hover{background:var(--navy);color:var(--navy-deep);}
     .project-links{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:auto;}
     .project-link{font-size:.82rem;font-weight:600;padding:.35rem .9rem;border-radius:20px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.35rem;}
     .project-link:hover{background:var(--gold);color:var(--navy);}
@@ -103,7 +105,9 @@
     .thesis-label {font-size:.8rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;}
     .thesis-title {font-family:'Crimson Pro',serif;font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:.7rem;}
     .thesis-desc {color:var(--text-mid);line-height:1.7;margin-bottom:1rem;text-align:justify;text-justify:inter-word;}
-    .thesis-chip {font-size:.75rem;background:var(--cream);color:var(--text-mid);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px;font-weight:500;}
+    .thesis-chip {font-size:.75rem;background:var(--cream);color:var(--text-mid);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px;font-weight:500;transition:all 0.25s var(--ease);}
+    .thesis-chip:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-2px);box-shadow:0 4px 8px rgba(23, 59, 103, 0.15);}
+    [data-theme="dark"] .thesis-chip:hover{background:var(--navy);color:var(--navy-deep);}
     .thesis-link {font-size:.82rem;font-weight:600;padding:.35rem .9rem;border-radius:20px;border:1.5px solid var(--gold);color:var(--gold);text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.35rem;}
     .thesis-link:hover {background:var(--gold);color:var(--navy);}
 

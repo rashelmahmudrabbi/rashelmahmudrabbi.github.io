@@ -2372,6 +2372,18 @@ h1, h2, h3, h4, h5 {
   border: 1px solid var(--line);
 }
 
+.tech-chip:hover {
+  background: var(--navy);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(23, 59, 103, 0.15);
+}
+
+[data-theme="dark"] .tech-chip:hover {
+  background: var(--navy);
+  color: var(--navy-deep);
+}
+
 .project-links a {
   font-size: .82rem;
   color: var(--gold);
@@ -2615,6 +2627,12 @@ h1, h2, h3, h4, h5 {
   border-color: var(--navy);
   transform: scale(1.06) translateY(-3px);
   box-shadow: 0 6px 12px rgba(23, 59, 103, 0.18);
+}
+
+[data-theme="dark"] .skill-tag:hover {
+  background: var(--navy);
+  color: var(--navy-deep);
+  border-color: var(--navy);
 }
 
 /* AWARDS */
