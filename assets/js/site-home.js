@@ -28,6 +28,7 @@
   // Each render call is wrapped so one failure doesn't block the others.
   safeRender('Hero',              () => renderHero(settings, spotlights));
   safeRender('Objective',         () => renderObjective(settings));
+  safeRender('Research Statement',() => renderResearchStatement(settings));
   safeRender('Research Interests',() => renderResearchInterests(settings));
   safeRender('Experience',        () => renderExperience(experience));
   safeRender('Education',         () => renderEducation(education));
@@ -357,9 +358,22 @@
     }
   }
 
+  function renderResearchStatement(settings) {
+    const el = document.getElementById('researchStatementContent');
+    if (el) {
+      const statement = settings.about && settings.about.research_statement_text ? settings.about.research_statement_text : '<p>No research statement provided.</p>';
+      el.innerHTML = statement;
+    }
+  }
+
   function renderResearchInterests(settings) {
-    const list = settings.researchInterests || [];
+    const list = settings.interests || [];
     const el = document.getElementById('researchInterestsList');
+    if (!el) return;
+    if (list.length === 0) {
+      el.innerHTML = '<div class="col-12 text-muted text-center">No research interests added yet.</div>';
+      return;
+    }
     el.innerHTML = list
       .map(
         (ri) => `
@@ -374,7 +388,7 @@
         </div>
       </div>`
       )
-      .join('') || '<div class="col-12 text-muted text-center">No research interests added yet.</div>';
+      .join('');
 
     // Mark container for stagger animation
     el.setAttribute('data-stagger-parent', '');
