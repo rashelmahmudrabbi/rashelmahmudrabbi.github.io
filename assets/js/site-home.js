@@ -569,24 +569,186 @@
       .join('') || '<p class="text-muted">No publications yet.</p>';
   }
 
+  function getProjectVisual(p) {
+    const cat = (p.category || '').toLowerCase();
+    const title = (p.title || '').toLowerCase();
+    const isDev = cat === 'development';
+    const badgeClass = isDev ? 'dev-badge' : 'research-badge';
+    const badgeLabel = isDev ? 'Development' : (cat === 'thesis' ? 'Thesis' : 'Research');
+    const headerClass = isDev ? 'header-dev' : 'header-research';
+    const isLive = Boolean(p.paper_link || p.paperLink);
+
+    let logoSvg = '';
+
+    if (title.includes('portfolio')) {
+      // Academic Portfolio: Custom RMR Monogram & Web Framework Frame in Gold & Royal Blue
+      logoSvg = `
+        <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="rmrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1E3A8A"/>
+              <stop offset="50%" stop-color="#2F6FED"/>
+              <stop offset="100%" stop-color="#3B82F6"/>
+            </linearGradient>
+            <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B"/>
+              <stop offset="100%" stop-color="#D97706"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#rmrGrad)"/>
+          <rect x="2.75" y="2.75" width="38.5" height="38.5" rx="10.25" stroke="url(#goldRing)" stroke-width="1.5" stroke-opacity="0.85"/>
+          <circle cx="9" cy="9" r="1.5" fill="#EF4444"/>
+          <circle cx="13.5" cy="9" r="1.5" fill="#FBBF24"/>
+          <circle cx="18" cy="9" r="1.5" fill="#10B981"/>
+          <text x="22" y="28" text-anchor="middle" font-family="'Crimson Pro', serif" font-size="14" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">RMR</text>
+          <path d="M8 33H36" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M12 36L15 33M32 36L29 33" stroke="#FBBF24" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>`;
+    } else if (title.includes('rental') || title.includes('rentalhub')) {
+      // RentalHub: Modern Property E-commerce & Housing Portal
+      logoSvg = `
+        <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="rentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2563EB"/>
+              <stop offset="100%" stop-color="#0284C7"/>
+            </linearGradient>
+            <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B"/>
+              <stop offset="100%" stop-color="#EF4444"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#rentGrad)"/>
+          <path d="M22 8L8 19V34C8 35.1 8.9 36 10 36H34C35.1 36 36 35.1 36 34V19L22 8Z" fill="white" fill-opacity="0.95"/>
+          <path d="M22 6L6 18.5L8 20.5L22 9.5L36 20.5L38 18.5L22 6Z" fill="url(#roofGrad)"/>
+          <rect x="12" y="22" width="6" height="5" rx="1" fill="#2563EB"/>
+          <rect x="26" y="22" width="6" height="5" rx="1" fill="#2563EB"/>
+          <path d="M19 36V28C19 26.9 19.9 26 21 26H23C24.1 26 25 26.9 25 28V36H19Z" fill="#F59E0B"/>
+          <circle cx="23.5" cy="31" r="0.8" fill="white"/>
+        </svg>`;
+    } else if (title.includes('rajshahi')) {
+      // OUR RAJSHAHI: Cultural Heritage & Regional Info Platform
+      logoSvg = `
+        <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="rajGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#059669"/>
+              <stop offset="100%" stop-color="#0D9488"/>
+            </linearGradient>
+            <linearGradient id="rajGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B"/>
+              <stop offset="100%" stop-color="#FBBF24"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#rajGrad)"/>
+          <path d="M11 36V18L22 9L33 18V36" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 36V24C16 20.7 18.7 18 22 18C25.3 18 28 20.7 28 24V36" fill="url(#rajGold)"/>
+          <path d="M7 33C11 31 15 35 19 33C23 31 27 35 31 33C33 32 35 32.5 37 33" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.8"/>
+          <circle cx="22" cy="13.5" r="2.2" fill="url(#rajGold)"/>
+        </svg>`;
+    } else if (title.includes('hybswineff') || title.includes('cancer') || title.includes('blood')) {
+      // HybSwinEff: Blood Cell Cancer Classification & Swin Transformer
+      logoSvg = `
+        <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#BE123C"/>
+              <stop offset="60%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#4F46E5"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#medGrad)"/>
+          <circle cx="22" cy="22" r="13" stroke="white" stroke-width="1.5" stroke-dasharray="3 2" stroke-opacity="0.8"/>
+          <circle cx="22" cy="22" r="8" fill="#F43F5E" fill-opacity="0.85"/>
+          <path d="M22 13V31M13 22H31" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="22" r="3" fill="#FDE047"/>
+        </svg>`;
+    } else if (title.includes('mrcl') || title.includes('satellite') || title.includes('eurosat')) {
+      // SatelliteNet / MRCL-ELM: Earth Satellite Radar & Remote Sensing
+      logoSvg = `
+        <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="satGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0284C7"/>
+              <stop offset="60%" stop-color="#1E40AF"/>
+              <stop offset="100%" stop-color="#312E81"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#satGrad)"/>
+          <circle cx="22" cy="22" r="11" stroke="white" stroke-width="1.5" stroke-opacity="0.9"/>
+          <ellipse cx="22" cy="22" rx="11" ry="4" stroke="white" stroke-width="1.2" stroke-opacity="0.7"/>
+          <path d="M22 11V33" stroke="white" stroke-width="1.2" stroke-opacity="0.7"/>
+          <circle cx="31" cy="13" r="2.5" fill="#38BDF8"/>
+          <path d="M29 15L23 21" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1.5 1.5"/>
+          <circle cx="22" cy="22" r="2" fill="#F59E0B"/>
+        </svg>`;
+    } else if (title.includes('neuro') || title.includes('brain') || title.includes('tumor')) {
+      // NeuroFusion: Brain Tumor & Neural MRI Diagnostics
+      logoSvg = `
+        <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="brainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6366F1"/>
+              <stop offset="100%" stop-color="#A855F7"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#brainGrad)"/>
+          <path d="M14 20C14 16 17 12 21 12C21.7 12 22 13 22 14V32C22 32.5 21.5 32 21 32C16 32 14 27 14 24C13 23 13 21 14 20Z" fill="white" fill-opacity="0.9"/>
+          <path d="M30 20C30 16 27 12 23 12C22.3 12 22 13 22 14V32C22 32.5 22.5 32 23 32C28 32 30 27 30 24C31 23 31 21 30 20Z" fill="white" fill-opacity="0.7"/>
+          <circle cx="22" cy="22" r="6" stroke="#F43F5E" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+          <circle cx="22" cy="22" r="2" fill="#FDE047"/>
+        </svg>`;
+    } else {
+      if (isDev) {
+        logoSvg = `
+          <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="defDev" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0284C7"/><stop offset="100%" stop-color="#059669"/></linearGradient></defs>
+            <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#defDev)"/>
+            <path d="M14 17L9 22L14 27M30 17L35 22L30 27M24 14L20 30" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`;
+      } else {
+        logoSvg = `
+          <svg class="project-logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="defRes" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient></defs>
+            <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#defRes)"/>
+            <rect x="12" y="12" width="20" height="20" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M16 8V12M22 8V12M28 8V12M16 32V36M22 32V36M28 32V36M8 16H12M8 22H12M8 28H12M32 16H36M32 22H36M32 28H36" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="22" cy="22" r="3.5" fill="#F59E0B"/>
+          </svg>`;
+      }
+    }
+
+    return { logoSvg, badgeClass, badgeLabel, headerClass, isLive };
+  }
+
   function projectCardHtml(p) {
     const desc = p.description || '';
     const isLong = desc.length > 110;
+    const v = getProjectVisual(p);
+    const github = p.githubLink || p.github_link || '';
+    const live = p.paperLink || p.paper_link || '';
+
     return `
       <div class="col-md-6 col-lg-4 stagger-item">
         <div class="project-card">
           <div class="card-glow"></div>
-          <div class="project-img"><i class="bi bi-cpu"></i></div>
+          <div class="project-img ${v.headerClass}">
+            <span class="project-type-badge ${v.badgeClass}">${v.badgeLabel}</span>
+            <span class="project-year-badge">${escapeHtml(p.year || '')}</span>
+            ${v.isLive ? `<span class="project-live-badge"><span class="pulse-dot"></span> Live App</span>` : ''}
+            <div class="project-logo-wrap">
+              ${v.logoSvg}
+            </div>
+          </div>
           <div class="project-body">
             <div class="project-title">${escapeHtml(p.title || '')}</div>
             <div class="project-desc${isLong ? ' collapsed' : ''}">${formatRichText(desc)}</div>
             ${isLong ? `<button type="button" class="btn-learn-more" onclick="toggleProjectDesc(this)">Learn More <i class="bi bi-chevron-down ms-1"></i></button>` : ''}
-            <div class="mb-2">${(p.tech || []).map((t) => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('')}</div>
+            <div class="tech-chips">${(p.tech || []).map((t) => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('')}</div>
             <div class="project-links">
-              ${p.githubLink || p.github_link ? `<a href="${escapeHtml(p.githubLink || p.github_link)}" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a>` : ''}
-              ${p.paperLink || p.paper_link ? `<a href="${escapeHtml(p.paperLink || p.paper_link)}" target="_blank"><i class="bi bi-box-arrow-up-right me-1"></i>Live Project</a>` : ''}
+              ${github ? `<a class="project-link" href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>` : ''}
+              ${live ? `<a class="project-link secondary" href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i> Live Project</a>` : ''}
             </div>
-            <small class="text-muted mt-2 d-block">${escapeHtml(p.year || '')}</small>
           </div>
         </div>
       </div>`;
@@ -600,13 +762,16 @@
     document.getElementById('thesisCardContainer').innerHTML = thesis
       ? `
       <div class="thesis-card">
-        <div class="thesis-label"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Thesis &middot; ${escapeHtml(thesis.year || '')}</div>
+        <div class="thesis-top d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+          <div class="thesis-label"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Thesis &middot; ${escapeHtml(thesis.year || '')}</div>
+          <span class="accuracy-badge" style="background:rgba(245,158,11,0.12);color:var(--navy);border:1px solid rgba(245,158,11,0.3);padding:0.2rem 0.65rem;border-radius:20px;font-size:0.75rem;font-weight:700;"><i class="bi bi-stars text-warning me-1"></i>99.69% Accuracy</span>
+        </div>
         <div class="thesis-title">${escapeHtml(thesis.title || '')}</div>
         <div class="thesis-desc">${formatRichText(thesis.description || '')}</div>
         <div class="mb-3">${(thesis.tech || []).map((t) => `<span class="thesis-chip">${escapeHtml(t)}</span>`).join('')}</div>
         <div class="d-flex gap-2 flex-wrap">
-          ${thesis.githubLink ? `<a class="thesis-link" href="${escapeHtml(thesis.githubLink)}" target="_blank"><i class="bi bi-github"></i> GitHub</a>` : ''}
-          <a class="thesis-link" href="publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
+          ${thesis.githubLink ? `<a class="thesis-link" href="${escapeHtml(thesis.githubLink)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>` : ''}
+          <a class="thesis-link secondary" href="publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
         </div>
       </div>`
       : '';
