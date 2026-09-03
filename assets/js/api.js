@@ -154,9 +154,12 @@ async function getPortfolio(isSubpage = false) {
     }
     // Static fallback to local data.json for resilience (e.g. cold starts, offline preview)
     try {
-      const fallbackUrl = isSubpage ? '../assets/data/data.json' : 'assets/data/data.json';
-      const localRes = await fetch(fallbackUrl);
-      if (localRes.ok) {
+      const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
+      let localRes = await fetch(inSub ? '../assets/data/data.json' : 'assets/data/data.json');
+      if (!localRes.ok) {
+        localRes = await fetch(inSub ? 'assets/data/data.json' : '../assets/data/data.json');
+      }
+      if (localRes && localRes.ok) {
         const localData = await localRes.json();
         return { data: localData, error: null, fromCache: false, isOfflineFallback: true };
       }

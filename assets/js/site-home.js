@@ -93,12 +93,33 @@
   // ── RENDER FUNCTIONS ───────────────────────────────────────────────────
 
   function renderHero(settings, spotlights) {
-    const p = settings.profile || {};
-    const socials = p.socials || {};
-    const stats = p.stats || {};
+    const p = settings.profile || settings || {};
+    const name = p.name || settings.name || 'Rashel Mahmud Rabbi';
+    const title = p.title || settings.title || 'Graduate Researcher – Computer Vision & AI';
+    const email = p.email || settings.email || 'raselmahud6757@gmail.com';
+    const phone = p.phone || settings.phone || '+8801613-000855';
+    const location = p.location || settings.location || 'Rajshahi, Bangladesh';
+    const avatar = p.avatar || settings.avatar || 'media/profile/Prof._Passport_size_image.jpg';
+    const heroStatusText = p.heroStatusText || settings.heroStatusText || 'Open to research';
+
+    const socials = p.socials || {
+      github: settings.social_github || 'https://github.com/rashelmahmudrabbi',
+      linkedin: settings.social_linkedin || 'https://www.linkedin.com/in/rashelmahmudrabbi',
+      researchgate: settings.social_researchgate || 'https://www.researchgate.net/profile/rashel-mahmud-rabbi',
+      scholar: settings.social_scholar || 'https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ',
+      orcid: settings.social_orcid || 'https://orcid.org/0009-0004-6070-4496',
+      x: settings.social_x || 'https://x.com/rashel_m_rabbi'
+    };
+
+    const stats = p.stats || {
+      publications: settings.stat_publications ?? 3,
+      projects: settings.stat_projects ?? 7,
+      awards: settings.stat_awards ?? 2,
+      certifications: settings.stat_certifications ?? 2
+    };
 
     const brandText = document.getElementById('navBrandText');
-    if (brandText && p.name) brandText.textContent = p.name;
+    if (brandText && name) brandText.textContent = name;
 
     const cvUrl = settings.cvDownloadUrl || (typeof API_BASE !== 'undefined' ? API_BASE + '/cv/download' : 'cv/index.html');
     window.__cvDownloadUrl = cvUrl;
@@ -108,10 +129,7 @@
       if (!text || typeof text !== 'string') return false;
       const clean = text.trim();
       if (clean.length < 4) return false;
-      // Must contain at least one space (real titles/descriptions have multiple words)
-      // or be a known short keyword
       if (clean.length < 12 && !clean.includes(' ')) return false;
-      // Reject strings that look like keyboard mashing (no vowels in a long string)
       const vowelRatio = (clean.match(/[aeiouAEIOU]/g) || []).length / clean.length;
       if (clean.length > 5 && vowelRatio < 0.1) return false;
       return true;
@@ -121,7 +139,6 @@
       return isValidSpotlightText(s.title) && isValidSpotlightText(s.description);
     }
 
-    // Use API spotlights only
     const validApiSpotlights = (spotlights && spotlights.length > 0) 
       ? spotlights.filter(s => isValidSpotlight(s))
       : [];
@@ -144,79 +161,61 @@
       }
     }
 
-
     function getSpotlightIcon(item) {
-      const bType = (item.badgeType || '').toLowerCase();
-      const title = (item.title || '').toLowerCase();
-      const badge = (item.badge || '').toLowerCase();
-      if (bType.includes('pub') || title.includes('paper') || title.includes('classification') || badge.includes('pub')) {
-        return 'bi-journal-text';
-      }
-      if (bType.includes('proj') || title.includes('detection') || title.includes('project') || badge.includes('proj') || title.includes('model')) {
-        return 'bi-cpu-fill';
-      }
-      if (bType.includes('xai') || title.includes('explain') || title.includes('vision') || badge.includes('vision') || title.includes('trust')) {
-        return 'bi-lightbulb-fill';
-      }
-      if (title.includes('cancer') || title.includes('medical') || title.includes('health') || title.includes('diag')) {
-        return 'bi-heart-pulse-fill';
-      }
-      return 'bi-stars';
+      const type = (item.badgeType || item.badge || item.type || '').toLowerCase();
+      if (type.includes('pub') || type.includes('paper')) return { icon: 'bi-journal-text', badgeClass: 'badge-pub', label: 'Publication' };
+      if (type.includes('proj') || type.includes('thesis')) return { icon: 'bi-cpu', badgeClass: 'badge-proj', label: 'Project' };
+      if (type.includes('award') || type.includes('cert')) return { icon: 'bi-award', badgeClass: 'badge-xai', label: 'Award' };
+      return { icon: 'bi-stars', badgeClass: 'badge-pub', label: 'Highlight' };
     }
 
     const dotsHtml = items.map((_, i) => `<span class="s-dot ${i === 0 ? 'active' : ''}" onclick="switchSpotlight(${i})" title="Slide ${i+1}"></span>`).join('');
     const cardsHtml = items.map((item, i) => {
       const iconClass = getSpotlightIcon(item);
-      let targetUrl = item.linkUrl || '';
-      let targetLabel = item.linkLabel || '';
-      if (!targetUrl) {
-        const bType = (item.badgeType || '').toLowerCase();
-        if (bType.includes('pub')) {
-          targetUrl = 'publications/index.html';
-          targetLabel = targetLabel || 'View Paper';
-        } else if (bType.includes('proj')) {
-          targetUrl = 'projects/index.html';
-          targetLabel = targetLabel || 'Explore Project';
-        } else {
-          targetUrl = '#research';
-          targetLabel = targetLabel || 'Learn More';
-        }
-      }
-      if (!targetLabel) targetLabel = 'Explore';
+      const isFirst = i === 0 ? 'active' : '';
+      const badgeText = item.badge || iconClass.label;
+      const targetUrl = item.link || (item.badgeType === 'pub' ? 'publications/index.html' : 'projects/index.html');
+      const targetLabel = item.linkLabel || (item.badgeType === 'pub' ? 'View Paper' : 'Explore Project');
 
-      const thumbHtml = item.image
-        ? `<div class="spotlight-body-large">
-             <div class="spotlight-image-wrap" onclick="if(typeof showImageModal === 'function') showImageModal('${escapeHtml(resolveAssetUrl(item.image, false))}', '${escapeHtml(item.title || '')}')">
-               <img src="${escapeHtml(resolveAssetUrl(item.image, false))}" class="spotlight-large-image" alt="${escapeHtml(item.title || '')}" />
-             </div>
-             <div class="spotlight-content text-center mt-3 mb-2">
-               <h4 class="spotlight-title" title="${escapeHtml(item.title || '')}">${escapeHtml(item.title || 'Research Highlight')}</h4>
-               <div class="spotlight-desc mx-auto" style="max-width:90%;">${formatRichText(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</div>
-             </div>
-           </div>`
-        : `<div class="spotlight-body">
-             <div class="spotlight-icon-box ${escapeHtml(item.badgeType || 'badge-pub')}"><i class="bi ${iconClass}"></i></div>
-             <div class="spotlight-content">
-               <h4 class="spotlight-title" title="${escapeHtml(item.title || '')}">${escapeHtml(item.title || 'Research Highlight')}</h4>
-               <div class="spotlight-desc">${formatRichText(item.description || 'Pioneering intelligent machine learning methodologies and reproducible research.')}</div>
-             </div>
-           </div>`;
+      let bodyHtml = '';
+      if (item.image) {
+        bodyHtml = `
+          <div class="spotlight-body-large">
+            <div class="spotlight-image-wrap">
+              <img src="${escapeHtml(resolveAssetUrl(item.image, false))}" alt="${escapeHtml(item.title || '')}" class="spotlight-large-image" onerror="this.parentElement.style.display='none'"/>
+            </div>
+          </div>
+          <div class="spotlight-title-gradient">${escapeHtml(item.title || '')}</div>
+          <p class="spotlight-desc">${escapeHtml(item.description || '')}</p>
+        `;
+      } else {
+        bodyHtml = `
+          <div class="spotlight-body">
+            <div class="spotlight-icon-box ${iconClass.badgeClass}">
+              <i class="bi ${iconClass.icon}"></i>
+            </div>
+            <div class="spotlight-content">
+              <div class="spotlight-title">${escapeHtml(item.title || '')}</div>
+              <p class="spotlight-desc">${escapeHtml(item.description || '')}</p>
+            </div>
+          </div>
+        `;
+      }
 
       return `
-      <div class="spotlight-card ${i === 0 ? 'active' : ''}" data-slide="${i}">
-        <div class="spotlight-top-row" ${item.image ? 'style="margin-bottom:0.75rem;"' : ''}>
-          <div class="spotlight-badge ${escapeHtml(item.badgeType || 'badge-pub')}">
-            <i class="bi ${iconClass}"></i> ${escapeHtml(item.badge || 'Featured Highlight')}
-          </div>
-          ${item.tag ? `<span class="spotlight-tag"><i class="bi bi-tag-fill me-1" style="font-size:0.65rem;"></i>${escapeHtml(item.tag)}</span>` : ''}
-        </div>
-        
-        ${thumbHtml}
-
-        <div class="spotlight-footer" ${item.image ? 'style="margin-top:0.5rem;"' : ''}>
+      <div class="spotlight-card ${isFirst}" data-spotlight-index="${i}">
+        <div class="spotlight-top-row">
+          <span class="spotlight-badge ${iconClass.badgeClass}">
+            <i class="bi ${iconClass.icon}"></i> ${escapeHtml(badgeText)}
+          </span>
           <span class="spotlight-counter">
-            <i class="bi bi-lightning-charge-fill text-warning"></i>
-            <span>${i + 1} of ${items.length}</span>
+            <i class="bi bi-collection me-1"></i> ${i + 1} / ${items.length}
+          </span>
+        </div>
+        ${bodyHtml}
+        <div class="spotlight-footer">
+          <span class="spotlight-tag">
+            <i class="bi bi-lightning-charge-fill me-1"></i> Featured Highlight
           </span>
           <a href="${escapeHtml(targetUrl)}" class="spotlight-link">
             <span>${escapeHtml(targetLabel)}</span>
@@ -229,21 +228,21 @@
     document.getElementById('heroContainer').innerHTML = `
       <div class="col-12 col-md-auto text-center text-md-start">
         <div class="hero-avatar-wrap">
-          <img src="${p.avatar ? escapeHtml(resolveAssetUrl(p.avatar, false)) : getInitialsPlaceholder(p.name)}" class="hero-avatar" alt="${escapeHtml(p.name || '')}"
-               onerror="this.onerror=null;this.src='${getInitialsPlaceholder(p.name)}'"/>
+          <img src="${avatar ? escapeHtml(resolveAssetUrl(avatar, false)) : getInitialsPlaceholder(name)}" class="hero-avatar" alt="${escapeHtml(name)}"
+               onerror="this.onerror=null;this.src='${getInitialsPlaceholder(name)}'"/>
           <div class="hero-status-pill">
-            <span class="status-pulse-dot"></span> ${escapeHtml(p.heroStatusText || 'Open to research')}
+            <span class="status-pulse-dot"></span> ${escapeHtml(heroStatusText)}
           </div>
         </div>
       </div>
       <div class="col-12 col-lg ps-lg-4">
-        <p class="hero-title">${escapeHtml((p.title || 'Graduate Researcher – Computer Vision & AI').replace(/–.*$/, '–').replace(/—.*$/, '—'))} <span class="typewriter-wrapper"><span id="typewriterText">Computer Vision &amp; AI</span><span class="typewriter-cursor"></span></span></p>
-        <h1 class="hero-name">${escapeHtml(p.name || '')}</h1>
+        <p class="hero-title">${escapeHtml((title).replace(/–.*$/, '–').replace(/—.*$/, '—'))} <span class="typewriter-wrapper"><span id="typewriterText">Computer Vision &amp; AI</span><span class="typewriter-cursor"></span></span></p>
+        <h1 class="hero-name">${escapeHtml(name)}</h1>
         
         <div class="hero-contact mt-2 mb-3">
-          ${p.location ? `<span><i class="bi bi-geo-alt-fill"></i>${escapeHtml(p.location.includes('Rajshahi') ? p.location : 'Rajshahi, Bangladesh')}</span>` : ''}
-          ${p.email ? `<a href="mailto:${escapeHtml(p.email)}"><i class="bi bi-envelope-fill"></i>${escapeHtml(p.email)}</a>` : ''}
-          ${p.phone ? `<a href="tel:${escapeHtml(p.phone.replace(/[^+\d]/g, ''))}"><i class="bi bi-telephone-fill"></i>${escapeHtml(p.phone)}</a>` : ''}
+          ${location ? `<span><i class="bi bi-geo-alt-fill"></i>${escapeHtml(location.includes('Rajshahi') ? location : 'Rajshahi, Bangladesh')}</span>` : ''}
+          ${email ? `<a href="mailto:${escapeHtml(email)}"><i class="bi bi-envelope-fill"></i>${escapeHtml(email)}</a>` : ''}
+          ${phone ? `<a href="tel:${escapeHtml(phone.replace(/[^+\d]/g, ''))}"><i class="bi bi-telephone-fill"></i>${escapeHtml(phone)}</a>` : ''}
         </div>
 
         <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
@@ -261,7 +260,6 @@
           <div class="hero-stat"><div class="hero-stat-num">${stats.awards ?? 2}</div><div class="hero-stat-label">Awards</div></div>
           <div class="hero-stat"><div class="hero-stat-num">${stats.certifications ?? 2}</div><div class="hero-stat-label">Certifications</div></div>
         </div>
-      </div>
       </div>`;
 
     const dotsEl = document.getElementById('spotlightDots');
@@ -283,7 +281,7 @@
     }
 
     // Fix broken hero avatar
-    addImageFallbacks(document.getElementById('heroContainer'), getInitialsPlaceholder(p.name));
+    addImageFallbacks(document.getElementById('heroContainer'), getInitialsPlaceholder(name));
 
     // Trigger stat glow animation
     setTimeout(() => {
@@ -292,7 +290,7 @@
   }
 
   function renderObjective(settings) {
-    const p = settings.profile || {};
+    const p = settings.profile || settings || {};
     const about = settings.about || {};
 
     const kickerEl = document.getElementById('aboutKicker');
@@ -308,7 +306,7 @@
       const statusText = about.statusText || 'Open to research opportunities';
       
       let pillsHtml = `
-        <span class="badge rounded-pill text-bg-light border px-3 py-2 text-dark" style="font-size:0.83rem;font-weight:500;">
+        <span class="about-pill">
           <i class="bi bi-geo-alt-fill text-primary me-1"></i> <span>${escapeHtml(locText)}</span>
         </span>
       `;
@@ -318,7 +316,7 @@
           const icon = pill.icon || 'bi-cpu';
           const colorClass = pill.colorType ? `text-${pill.colorType}` : 'text-primary';
           return `
-            <span class="badge rounded-pill text-bg-light border px-3 py-2 text-dark" style="font-size:0.83rem;font-weight:500;">
+            <span class="about-pill">
               <i class="bi ${escapeHtml(icon)} ${escapeHtml(colorClass)} me-1"></i> <span>${escapeHtml(pill.label || '')}</span>
             </span>
           `;
@@ -326,17 +324,17 @@
       } else {
         // Fallback default pills if none added yet
         pillsHtml += `
-          <span class="badge rounded-pill text-bg-light border px-3 py-2 text-dark" style="font-size:0.83rem;font-weight:500;">
+          <span class="about-pill">
             <i class="bi bi-cpu text-primary me-1"></i> <span>AI &amp; Computer Vision</span>
           </span>
-          <span class="badge rounded-pill text-bg-light border px-3 py-2 text-dark" style="font-size:0.83rem;font-weight:500;">
+          <span class="about-pill">
             <i class="bi bi-heart-pulse-fill text-danger me-1"></i> <span>Medical Image Analysis</span>
           </span>
         `;
       }
 
       pillsHtml += `
-        <span class="badge rounded-pill text-bg-light border px-3 py-2 text-dark" style="font-size:0.83rem;font-weight:500;">
+        <span class="about-pill">
           <span class="status-pulse-dot me-1"></span> <span>${escapeHtml(statusText)}</span>
         </span>
       `;
@@ -387,19 +385,23 @@
 
   function renderExperience(experience) {
     const el = document.getElementById('experienceTimeline');
-    el.innerHTML = experience
-      .map(
-        (exp) => `
+    if (!el) return;
+    el.innerHTML = (experience || [])
+      .map((exp) => {
+        const bullets = Array.isArray(exp.bullets)
+          ? exp.bullets
+          : (typeof exp.bullets === 'string' ? exp.bullets.split('\n').map(s => s.trim()).filter(Boolean) : []);
+        return `
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <h5>${escapeHtml(exp.title || exp.role || '')}</h5>
           <div class="org">${escapeHtml(exp.org || exp.company || '')}</div>
           <div class="period">${escapeHtml(exp.period || exp.date_range || '')}</div>
-          <ul>${(exp.bullets || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
+          <ul>${bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
         </div>
-      </div>`
-      )
+      </div>`;
+      })
       .join('') || '<p class="text-muted">No experience entries yet.</p>';
   }
 
@@ -744,7 +746,7 @@
             <div class="project-title">${escapeHtml(p.title || '')}</div>
             <div class="project-desc${isLong ? ' collapsed' : ''}">${formatRichText(desc)}</div>
             ${isLong ? `<button type="button" class="btn-learn-more" onclick="toggleProjectDesc(this)">Learn More <i class="bi bi-chevron-down ms-1"></i></button>` : ''}
-            <div class="tech-chips">${(p.tech || []).map((t) => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('')}</div>
+            <div class="tech-chips">${(Array.isArray(p.tech) ? p.tech : (typeof p.tech === 'string' ? p.tech.split(',').map(s => s.trim()).filter(Boolean) : [])).map((t) => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('')}</div>
             <div class="project-links">
               ${github ? `<a class="project-link" href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>` : ''}
               ${live ? `<a class="project-link secondary" href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i> Live Project</a>` : ''}
@@ -759,6 +761,8 @@
     const research = projects.filter((p) => p.category === 'research');
     const dev = projects.filter((p) => p.category === 'development');
 
+    const thesisTech = thesis ? (Array.isArray(thesis.tech) ? thesis.tech : (typeof thesis.tech === 'string' ? thesis.tech.split(',').map(s => s.trim()).filter(Boolean) : [])) : [];
+
     document.getElementById('thesisCardContainer').innerHTML = thesis
       ? `
       <div class="thesis-card">
@@ -768,7 +772,7 @@
         </div>
         <div class="thesis-title">${escapeHtml(thesis.title || '')}</div>
         <div class="thesis-desc">${formatRichText(thesis.description || '')}</div>
-        <div class="mb-3">${(thesis.tech || []).map((t) => `<span class="thesis-chip">${escapeHtml(t)}</span>`).join('')}</div>
+        <div class="mb-3">${thesisTech.map((t) => `<span class="thesis-chip">${escapeHtml(t)}</span>`).join('')}</div>
         <div class="d-flex gap-2 flex-wrap">
           ${thesis.githubLink ? `<a class="thesis-link" href="${escapeHtml(thesis.githubLink)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>` : ''}
           <a class="thesis-link secondary" href="publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
@@ -920,15 +924,24 @@
   }
 
   function renderContactInfo(settings) {
-    const p = settings.profile || {};
+    const p = settings.profile || settings || {};
     const info = settings.personalInfo || {};
+    const email = p.email || settings.email;
+    const phone = p.phone || settings.phone;
+    const location = p.location || settings.location;
+    const socials = p.socials || {
+      github: settings.social_github,
+      linkedin: settings.social_linkedin,
+      scholar: settings.social_scholar,
+      orcid: settings.social_orcid
+    };
     const leftEl = document.getElementById('contactInfoLeft');
     const rightEl = document.getElementById('contactInfoRight');
     if (leftEl) {
       leftEl.innerHTML = `
-        ${p.email ? `<div class="info-row"><span class="info-label"><i class="bi bi-envelope me-2"></i>Email</span><span class="info-value"><a href="mailto:${escapeHtml(p.email)}" style="color:var(--gold);text-decoration:none;">${escapeHtml(p.email)}</a></span></div>` : ''}
-        ${p.phone ? `<div class="info-row"><span class="info-label"><i class="bi bi-telephone me-2"></i>Phone</span><span class="info-value"><a href="tel:${escapeHtml(p.phone.replace(/[^+\d]/g, ''))}" style="color:var(--text-dark);text-decoration:none;">${escapeHtml(p.phone)}</a></span></div>` : ''}
-        ${p.location ? `<div class="info-row"><span class="info-label"><i class="bi bi-geo-alt me-2"></i>Location</span><span class="info-value">${escapeHtml(p.location)}</span></div>` : ''}
+        ${email ? `<div class="info-row"><span class="info-label"><i class="bi bi-envelope me-2"></i>Email</span><span class="info-value"><a href="mailto:${escapeHtml(email)}" style="color:var(--gold);text-decoration:none;">${escapeHtml(email)}</a></span></div>` : ''}
+        ${phone ? `<div class="info-row"><span class="info-label"><i class="bi bi-telephone me-2"></i>Phone</span><span class="info-value"><a href="tel:${escapeHtml(phone.replace(/[^+\d]/g, ''))}" style="color:var(--text-dark);text-decoration:none;">${escapeHtml(phone)}</a></span></div>` : ''}
+        ${location ? `<div class="info-row"><span class="info-label"><i class="bi bi-geo-alt me-2"></i>Location</span><span class="info-value">${escapeHtml(location)}</span></div>` : ''}
         ${info.fatherName ? `<div class="info-row"><span class="info-label"><i class="bi bi-person me-2"></i>Father's Name</span><span class="info-value">${escapeHtml(info.fatherName)}</span></div>` : ''}
         ${info.motherName ? `<div class="info-row"><span class="info-label"><i class="bi bi-person-heart me-2"></i>Mother's Name</span><span class="info-value">${escapeHtml(info.motherName)}</span></div>` : ''}
         ${info.dob ? `<div class="info-row"><span class="info-label"><i class="bi bi-calendar-event me-2"></i>Date of Birth</span><span class="info-value">${escapeHtml(info.dob)}</span></div>` : ''}
@@ -936,7 +949,6 @@
         ${info.nid ? `<div class="info-row"><span class="info-label"><i class="bi bi-person-vcard me-2"></i>NID</span><span class="info-value">${escapeHtml(info.nid)}</span></div>` : ''}`;
     }
     if (rightEl) {
-      const socials = p.socials || {};
       rightEl.innerHTML = `
         ${info.maritalStatus ? `<div class="info-row"><span class="info-label"><i class="bi bi-heart me-2"></i>Marital Status</span><span class="info-value">${escapeHtml(info.maritalStatus)}</span></div>` : ''}
         ${info.bloodGroup ? `<div class="info-row"><span class="info-label"><i class="bi bi-droplet-half me-2"></i>Blood Group</span><span class="info-value">${escapeHtml(info.bloodGroup)}</span></div>` : ''}
@@ -970,11 +982,13 @@
   }
 
   function renderFooter(settings) {
-    const p = settings.profile || {};
+    const p = settings.profile || settings || {};
     if (settings.footerText) document.getElementById('footerText').textContent = settings.footerText;
     document.getElementById('footerYear').textContent = new Date().getFullYear();
-    if (p.name) document.getElementById('footerName').textContent = p.name;
-    if (p.title) document.getElementById('footerTitle').textContent = p.title;
+    const footerName = p.name || settings.name || 'RASHEL MAHMUD RABBI';
+    const footerTitle = p.title || settings.title || 'Graduate Researcher · Computer Vision & AI';
+    document.getElementById('footerName').textContent = footerName;
+    document.getElementById('footerTitle').textContent = footerTitle;
   }
 })();
 

@@ -274,9 +274,11 @@
   document.addEventListener('DOMContentLoaded', initParticles);
 
   // ── 6. TYPEWRITER EFFECT ──────────────────────────────────────────────────
+  let typewriterRunning = false;
   function initTypewriter() {
     const el = document.getElementById('typewriterText');
-    if (!el || prefersReducedMotion) return;
+    if (!el || prefersReducedMotion || typewriterRunning) return;
+    typewriterRunning = true;
 
     const phrases = [
       'Computer Vision & AI',

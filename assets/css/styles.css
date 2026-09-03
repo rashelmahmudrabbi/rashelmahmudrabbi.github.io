@@ -546,6 +546,7 @@ h1, h2, h3, h4, h5 {
   border-radius: 50%;
   border: 4px solid #FFFFFF;
   object-fit: cover;
+  object-position: center 15%;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12), 0 0 0 2px rgba(47, 111, 237, 0.25);
   display: block;
   transition: all .3s var(--ease);
@@ -948,11 +949,15 @@ h1, h2, h3, h4, h5 {
 
 .spotlight-carousel {
   position: relative;
-  min-height: 155px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .spotlight-card {
   display: none;
+  width: 100%;
   animation: spotlightSlideIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
@@ -1422,6 +1427,33 @@ h1, h2, h3, h4, h5 {
   background: var(--surface);
   border-color: var(--line);
   box-shadow: var(--shadow);
+}
+
+.about-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.83rem;
+  font-weight: 500;
+  padding: 0.38rem 0.9rem;
+  border-radius: 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s var(--ease);
+}
+
+.about-pill:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(47, 111, 237, 0.12);
+}
+
+[data-theme="dark"] .about-pill {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--ink);
+  box-shadow: none;
 }
 
 .about-meta-row .badge {
@@ -2902,17 +2934,17 @@ h1, h2, h3, h4, h5 {
 }
 
 [data-theme="dark"] .research-card:hover {
-  background: var(--navy);
-  border-color: var(--navy);
-  box-shadow: 0 16px 32px rgba(159, 197, 255, 0.15);
+  background: var(--surface-2);
+  border-color: var(--gold);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .research-card:hover .research-card-title {
-  color: var(--bg);
+  color: #FFFFFF;
 }
 
 [data-theme="dark"] .research-card:hover .research-card-desc {
-  color: var(--navy-deep);
+  color: var(--ink-soft);
 }
 
 /* CERTIFICATIONS */
@@ -3223,17 +3255,17 @@ h1, h2, h3, h4, h5 {
 
 /* Hover State - Dark Theme */
 [data-theme="dark"] .lang-card:hover {
-  background: var(--navy);
-  border-color: var(--navy);
-  box-shadow: 0 16px 32px rgba(159, 197, 255, 0.15);
+  background: var(--surface-2);
+  border-color: var(--gold);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .lang-card:hover .lang-name {
-  color: var(--bg);
+  color: #FFFFFF;
 }
 
 [data-theme="dark"] .lang-card:hover .lang-level {
-  color: var(--navy-deep);
+  color: var(--gold-soft);
 }
 
 /* ACTIVITIES */
@@ -3247,10 +3279,16 @@ h1, h2, h3, h4, h5 {
   border-radius: 12px;
   margin-bottom: 0.8rem;
   font-size: 0.95rem;
-  color: var(--navy-deep);
+  color: var(--ink);
   font-weight: 500;
   transition: all 0.3s var(--ease);
   box-shadow: 0 2px 8px rgba(11, 31, 58, 0.02);
+}
+
+[data-theme="dark"] .activity-item {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
 }
 
 .activity-item:hover {
@@ -3655,7 +3693,8 @@ h1, h2, h3, h4, h5 {
 }
 
 [data-theme="dark"] .featured-badge {
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: #0B1F3A;
 }
 
 .featured-body {
@@ -4002,18 +4041,18 @@ footer a:hover {
 }
 
 [data-theme="dark"] .cert-back {
-  background: var(--navy);
-  border-color: var(--navy);
-  color: var(--bg);
-  box-shadow: 0 16px 32px rgba(159, 197, 255, 0.15);
+  background: var(--surface-2);
+  border-color: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .cert-back h4 {
-  color: var(--bg) !important;
+  color: #FFFFFF !important;
 }
 
 [data-theme="dark"] .cert-back .cert-link {
-  color: var(--navy-deep) !important;
+  color: var(--gold-soft) !important;
 }
 
 .cert-back .issuer {

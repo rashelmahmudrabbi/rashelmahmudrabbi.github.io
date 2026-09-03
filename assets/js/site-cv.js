@@ -53,16 +53,19 @@
 
   const experienceHtml = experience
     .map(
-      (exp) => `
+      (exp) => {
+        const bullets = Array.isArray(exp.bullets) ? exp.bullets : (typeof exp.bullets === 'string' ? exp.bullets.split('\n').map(s => s.trim()).filter(Boolean) : []);
+        return `
     <div class="cv-item">
       <div class="cv-dot"></div>
       <div class="cv-item-card">
         <div class="cv-item-title">${escapeHtml(exp.title || '')}</div>
         <div class="cv-item-org">${escapeHtml(exp.org || '')}</div>
         <div class="cv-item-meta"><span><i class="bi bi-calendar3"></i>${escapeHtml(exp.period || '')}</span></div>
-        <div class="cv-item-desc"><ul>${(exp.bullets || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul></div>
+        <div class="cv-item-desc"><ul>${bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul></div>
       </div>
-    </div>`
+    </div>`;
+      }
     )
     .join('');
 
@@ -86,25 +89,31 @@
   const dev = projects.filter((pr) => pr.category === 'development');
   const researchProjectsHtml = research
     .map(
-      (pr) => `
+      (pr) => {
+        const techList = Array.isArray(pr.tech) ? pr.tech : (typeof pr.tech === 'string' ? pr.tech.split(',').map(s => s.trim()).filter(Boolean) : []);
+        return `
     <div class="cv-item-card mb-2">
       <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem;">
         <div style="font-weight:700;color:var(--navy);">${escapeHtml(pr.title || '')}</div>
         <span style="font-size:.75rem;color:var(--gold);font-weight:600;">${escapeHtml(pr.year || '')}</span>
       </div>
       <div style="font-size:.83rem;color:var(--text-mid);margin-top:.3rem;line-height:1.6;">${formatRichText(pr.description || '')}</div>
-      <div style="margin-top:.4rem;">${(pr.tech || []).map((t) => `<span class="skill-tag" style="font-size:.72rem;">${escapeHtml(t)}</span>`).join('')}</div>
-    </div>`
+      <div style="margin-top:.4rem;">${techList.map((t) => `<span class="skill-tag" style="font-size:.72rem;">${escapeHtml(t)}</span>`).join('')}</div>
+    </div>`;
+      }
     )
     .join('');
   const devProjectsHtml = dev
     .map(
-      (pr) => `
+      (pr) => {
+        const techList = Array.isArray(pr.tech) ? pr.tech : (typeof pr.tech === 'string' ? pr.tech.split(',').map(s => s.trim()).filter(Boolean) : []);
+        return `
     <div class="cv-item-card">
       <div style="font-weight:700;color:var(--navy);">${escapeHtml(pr.title || '')}</div>
-      <div style="font-size:.8rem;color:var(--gold);">${(pr.tech || []).join(' · ')} &nbsp;·&nbsp; ${escapeHtml(pr.year || '')}</div>
+      <div style="font-size:.8rem;color:var(--gold);">${techList.join(' · ')} &nbsp;·&nbsp; ${escapeHtml(pr.year || '')}</div>
       <div style="font-size:.82rem;color:var(--text-mid);margin-top:.3rem;">${formatRichText(pr.description || '')}</div>
-    </div>`
+    </div>`;
+      }
     )
     .join('');
 

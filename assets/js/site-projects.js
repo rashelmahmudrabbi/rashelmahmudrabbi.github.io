@@ -29,7 +29,8 @@
   }
 
   function techChips(tech, cls) {
-    return (tech || []).map((t) => `<span class="${cls}">${escapeHtml(t)}</span>`).join('');
+    const list = Array.isArray(tech) ? tech : (typeof tech === 'string' ? tech.split(',').map(t => t.trim()).filter(Boolean) : []);
+    return list.map((t) => `<span class="${cls}">${escapeHtml(t)}</span>`).join('');
   }
 
   function getProjectVisual(p) {
