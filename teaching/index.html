@@ -86,9 +86,7 @@
     .teaching-skill i{color:var(--gold);font-size:1.1rem;flex-shrink:0;}
     .teaching-skill-text{font-size:.9rem;color:var(--text-dark);}
 
-    footer{background:var(--navy-deep);color:rgba(255,255,255,.65);text-align:center;padding:0.2rem 0 1.8rem;font-size:.82rem;}
-    [data-theme="dark"] footer{background:#0D1522;border-top:1px solid var(--line);color:var(--ink-faint);}
-    footer a{color:var(--gold);text-decoration:none;}
+    /* FOOTER handled by styles.css */
     #scrollTop{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;background:var(--gold);color:#ffffff;border:none;border-radius:50%;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(47,111,237,.4);cursor:pointer;z-index:999;transition:all .2s;}
     #scrollTop:hover{background:var(--gold-soft);transform:translateY(-2px);}
     [data-theme="dark"] #scrollTop{color:#0B1F3A;}
@@ -134,7 +132,7 @@
 <section class="page-hero"><canvas id="heroParticles"></canvas>
   <div class="container">
     <div class="breadcrumb-nav mb-2">
-      <a href="../index.html">Home</a><span>/</span><span style="color:#fff">Teaching</span>
+      <a href="../index.html">Home</a><span>/</span><span class="breadcrumb-current">Teaching</span>
     </div>
     <h1><i class="bi bi-mortarboard me-2" style="color:var(--gold-lt)"></i>Teaching</h1>
     <p>Courses, workshops, and mentoring in Computer Vision, Deep Learning, and AI</p>
@@ -183,7 +181,7 @@
       <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">I certify that all information in this
         portfolio is accurate and true.</p>
       <p class="mb-0">
-        © <span id="footerYear">2026</span> <strong style="color:#fff;" id="footerName">RASHEL MAHMUD RABBI</strong>
+        © <span id="footerYear">2026</span> <strong id="footerName" class="footer-name">RASHEL MAHMUD RABBI</strong>
         &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
         <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
           class="footer-admin-link"><i class="bi bi-gear-fill"></i></a>
