@@ -72,91 +72,9 @@
   <!-- PAGE TRANSITION OVERLAY -->
   <div class="page-transition-overlay" id="pageTransitionOverlay"></div>
 
-  <!-- FULLSCREEN CIRCULAR COUNTDOWN PRELOADER -->
-  <div id="pagePreloader" class="page-preloader" aria-hidden="false">
-    <div class="preloader-content">
-      <div class="preloader-ring-wrap">
-        <svg class="preloader-svg" viewBox="0 0 120 120" width="120" height="120">
-          <defs>
-            <linearGradient id="preloaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#2F6FED" />
-              <stop offset="50%" stop-color="#78A9FF" />
-              <stop offset="100%" stop-color="#F3C34F" />
-            </linearGradient>
-          </defs>
-          <circle class="preloader-track" cx="60" cy="60" r="52" fill="none" stroke-width="6" />
-          <circle class="preloader-progress" id="preloaderProgressCircle" cx="60" cy="60" r="52" fill="none"
-            stroke-width="6" stroke="url(#preloaderGradient)" stroke-dasharray="326.72" stroke-dashoffset="326.72" />
-        </svg>
-        <div class="preloader-center">
-          <span class="preloader-percent" id="preloaderPercent">0%</span>
-        </div>
-      </div>
-      <div class="preloader-meta">
-        <div class="preloader-brand">RASHEL MAHMUD RABBI</div>
-        <div class="preloader-sub"><span class="preloader-pulse-dot"></span> Loading Research &amp; AI Portfolio...
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- PRELOADER REMOVED FOR INSTANT ACADEMIC ACCESSIBILITY -->
   <script>
-    // Instant preloader countdown initialization
-    (function () {
-      var p = 0;
-      var circle = document.getElementById('preloaderProgressCircle');
-      var text = document.getElementById('preloaderPercent');
-      var preloader = document.getElementById('pagePreloader');
-      if (!circle || !text || !preloader) return;
-
-      var circ = 2 * Math.PI * 52; // 326.72
-      circle.style.strokeDasharray = circ + 'px';
-      circle.style.strokeDashoffset = circ + 'px';
-
-      function setP(val) {
-        p = Math.min(Math.max(val, 0), 100);
-        var offset = circ - (p / 100) * circ;
-        circle.style.strokeDashoffset = offset + 'px';
-        text.textContent = Math.round(p) + '%';
-      }
-
-      // Failsafe: dismiss preloader after 15s regardless
-      var failsafe = setTimeout(function () {
-        if (window.dismissPreloader) window.dismissPreloader();
-      }, 15000);
-
-      var timer = setInterval(function () {
-        if (p < 88) {
-          setP(p + Math.random() * 6 + 2);
-        }
-      }, 40);
-
-      window.dismissPreloader = function () {
-        clearTimeout(failsafe);
-        clearInterval(timer);
-        // smoothly finish to 100%
-        var finishTimer = setInterval(function () {
-          if (p < 100) {
-            setP(p + (100 - p) * 0.2 + 1); // smooth ease to 100
-          } else {
-            clearInterval(finishTimer);
-            setP(100);
-            // Trigger completion morph animation
-            var content = document.querySelector('.preloader-content');
-            if (content) content.classList.add('preloader-complete');
-            setTimeout(function () {
-              if (preloader) {
-                preloader.classList.add('preloader-hidden');
-                setTimeout(function () {
-                  preloader.style.display = 'none';
-                }, 450);
-              }
-            }, 400);
-          }
-        }, 20);
-      };
-
-      // Failsafe timer removed so it waits for actual backend load
-    })();
+    window.dismissPreloader = function () {};
   </script>
 
   <nav class="navbar navbar-expand-lg">
@@ -198,8 +116,6 @@
   <main id="main-content">
     <!-- HERO -->
     <section id="hero">
-      <!-- PARTICLE CANVAS -->
-      <canvas id="heroParticles"></canvas>
       <div class="container">
         <div class="row align-items-center g-4" id="heroContainer">
           <div class="col-12 col-md-auto text-center text-md-start">
@@ -207,7 +123,7 @@
               <img src="media/profile/Prof._Passport_size_image.jpg" class="hero-avatar" alt="RASHEL MAHMUD RABBI"
                 onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 160 160\'%3E%3Crect width=\'160\' height=\'160\' rx=\'80\' fill=\'%230b1e3d\'/%3E%3Ctext x=\'80\' y=\'96\' text-anchor=\'middle\' font-family=\'DM Sans,sans-serif\' font-size=\'48\' font-weight=\'700\' fill=\'%2378A9FF\'%3ERR%3C/text%3E%3C/svg%3E'" />
               <div class="hero-status-pill">
-                <span class="status-pulse-dot"></span> Open to research
+                <i class="bi bi-mortarboard-fill text-primary me-1"></i> Seeking PhD Opportunities &middot; Fall 2026
               </div>
             </div>
           </div>
@@ -248,11 +164,11 @@
               </div>
               <div class="hero-stat">
                 <div class="hero-stat-num">2</div>
-                <div class="hero-stat-label">Awards</div>
+                <div class="hero-stat-label">Honors</div>
               </div>
               <div class="hero-stat">
-                <div class="hero-stat-num">2</div>
-                <div class="hero-stat-label">Certifications</div>
+                <div class="hero-stat-num">3.87</div>
+                <div class="hero-stat-label">B.Sc. CGPA</div>
               </div>
             </div>
           </div>
@@ -574,47 +490,29 @@
     <section id="certifications" class="section-wrapper reveal">
       <div class="container">
         <h2 class="section-title">Certifications</h2>
-        <div class="row g-3" id="certificationsList">
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div class="cert">
-              <div class="cert-inner">
-                <div class="cert-face cert-front">
-                  <div class="skeleton skeleton-circle" style="width:40px;height:40px;margin:0 auto .7rem;"></div>
-                  <div class="skeleton skeleton-line" style="width:70%;margin:0 auto .4rem;"></div>
-                  <div class="skeleton skeleton-line-sm" style="width:90%;margin:0 auto;"></div>
+        <div class="row g-4" id="certificationsList">
+          <div class="col-lg-6 col-md-6 mb-3">
+            <div class="academic-cert-card" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;align-items:center;gap:1.2rem;">
+              <div class="skeleton" style="width:68px;height:68px;border-radius:10px;flex-shrink:0;"></div>
+              <div style="flex-grow:1;">
+                <div class="skeleton skeleton-line" style="width:70%;margin-bottom:.5rem;"></div>
+                <div class="skeleton skeleton-line-sm" style="width:45%;margin-bottom:.8rem;"></div>
+                <div class="d-flex gap-2">
+                  <div class="skeleton" style="width:80px;height:26px;border-radius:6px;"></div>
+                  <div class="skeleton" style="width:80px;height:26px;border-radius:6px;"></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div class="cert">
-              <div class="cert-inner">
-                <div class="cert-face cert-front">
-                  <div class="skeleton skeleton-circle" style="width:40px;height:40px;margin:0 auto .7rem;"></div>
-                  <div class="skeleton skeleton-line" style="width:65%;margin:0 auto .4rem;"></div>
-                  <div class="skeleton skeleton-line-sm" style="width:85%;margin:0 auto;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div class="cert">
-              <div class="cert-inner">
-                <div class="cert-face cert-front">
-                  <div class="skeleton skeleton-circle" style="width:40px;height:40px;margin:0 auto .7rem;"></div>
-                  <div class="skeleton skeleton-line" style="width:75%;margin:0 auto .4rem;"></div>
-                  <div class="skeleton skeleton-line-sm" style="width:80%;margin:0 auto;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div class="cert">
-              <div class="cert-inner">
-                <div class="cert-face cert-front">
-                  <div class="skeleton skeleton-circle" style="width:40px;height:40px;margin:0 auto .7rem;"></div>
-                  <div class="skeleton skeleton-line" style="width:60%;margin:0 auto .4rem;"></div>
-                  <div class="skeleton skeleton-line-sm" style="width:85%;margin:0 auto;"></div>
+          <div class="col-lg-6 col-md-6 mb-3">
+            <div class="academic-cert-card" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;align-items:center;gap:1.2rem;">
+              <div class="skeleton" style="width:68px;height:68px;border-radius:10px;flex-shrink:0;"></div>
+              <div style="flex-grow:1;">
+                <div class="skeleton skeleton-line" style="width:65%;margin-bottom:.5rem;"></div>
+                <div class="skeleton skeleton-line-sm" style="width:40%;margin-bottom:.8rem;"></div>
+                <div class="d-flex gap-2">
+                  <div class="skeleton" style="width:80px;height:26px;border-radius:6px;"></div>
+                  <div class="skeleton" style="width:80px;height:26px;border-radius:6px;"></div>
                 </div>
               </div>
             </div>
@@ -786,17 +684,6 @@
 
   </main>
 
-  <!-- ANIMATED WAVE FOOTER DIVIDER -->
-  <div class="wave-divider">
-    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="wave-1" d="M0,40 C300,10 500,70 800,30 C1000,0 1100,50 1200,20 L1200,80 L0,80 Z"
-        fill="var(--navy-deep)" opacity="0.5" />
-      <path class="wave-2" d="M0,50 C200,20 400,60 700,35 C900,15 1050,55 1200,30 L1200,80 L0,80 Z"
-        fill="var(--navy-deep)" opacity="0.8" />
-      <path d="M0,60 C350,30 650,65 900,40 C1050,25 1150,50 1200,40 L1200,80 L0,80 Z" fill="var(--navy-deep)" />
-    </svg>
-  </div>
-
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -815,13 +702,10 @@
         <a class="footer-social-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank" title="Email" aria-label="Email"><i
             class="bi bi-envelope"></i></a>
       </div>
-      <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">I certify that all information in this
-        portfolio is accurate and true.</p>
+      <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">Designed for academic and research evaluation &middot; Updated 2026</p>
       <p class="mb-0">
         © <span id="footerYear">2026</span> <strong id="footerName" class="footer-name">RASHEL MAHMUD RABBI</strong>
         &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
-        <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
-          class="footer-admin-link"><i class="bi bi-gear-fill"></i></a>
       </p>
     </div>
   </footer>

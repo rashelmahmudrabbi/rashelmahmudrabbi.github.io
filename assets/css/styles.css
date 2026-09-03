@@ -5261,3 +5261,24 @@ footer a:hover {
   border: 1px solid var(--line);
   padding: 2px;
 }
+
+/* ============ ACADEMIC CERTIFICATE CARDS ============ */
+.academic-cert-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease);
+}
+.academic-cert-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+[data-theme="dark"] .academic-cert-card {
+  background: var(--surface);
+  border-color: var(--line);
+}
+[data-theme="dark"] .academic-cert-card:hover {
+  border-color: var(--gold);
+}
+

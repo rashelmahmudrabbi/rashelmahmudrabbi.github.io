@@ -42,9 +42,10 @@
     .content-section{padding:1.5rem 0;}
 
     /* PHILOSOPHY CARD */
-    .philosophy-card{background:var(--navy-deep);color:#e8e8f0;border-left:5px solid var(--gold);border-radius:10px;padding:2rem 2.2rem;margin-bottom:3rem;font-size:1rem;line-height:1.8;}
-    .philosophy-card h4{color:var(--gold-lt);font-family:'Crimson Pro',serif;font-size:1.3rem;margin-bottom:.8rem;}
+    .philosophy-card{background:var(--surface);color:var(--text-dark);border:1px solid var(--border);border-left:5px solid var(--gold);border-radius:10px;padding:2rem 2.2rem;margin-bottom:3rem;font-size:1rem;line-height:1.8;box-shadow:0 4px 20px rgba(11,31,58,0.03);}
+    .philosophy-card h4{color:var(--navy);font-family:'Crimson Pro',serif;font-size:1.3rem;margin-bottom:.8rem;}
     [data-theme="dark"] .philosophy-card{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--gold);color:var(--ink-soft);}
+    [data-theme="dark"] .philosophy-card h4{color:var(--gold);}
 
     /* SECTION TITLE */
     .section-title{font-size:1.45rem;font-weight:700;color:var(--navy);position:relative;padding-bottom:.6rem;margin-bottom:1.8rem;}
@@ -129,7 +130,7 @@
   </div>
 </nav>
 
-<section class="page-hero"><canvas id="heroParticles"></canvas>
+<section class="page-hero">
   <div class="container">
     <div class="breadcrumb-nav mb-2">
       <a href="../index.html">Home</a><span>/</span><span class="breadcrumb-current">Teaching</span>
@@ -146,17 +147,6 @@
     <div class="course-card"><div class="skeleton skeleton-line-lg" style="width:50%;"></div><div class="skeleton skeleton-line-sm" style="width:30%;"></div><div class="skeleton skeleton-line mt-3" style="width:85%;"></div><div class="skeleton skeleton-line" style="width:65%;"></div></div>
   </div>
 </div>
-
-  <!-- ANIMATED WAVE FOOTER DIVIDER -->
-  <div class="wave-divider">
-    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="wave-1" d="M0,40 C300,10 500,70 800,30 C1000,0 1100,50 1200,20 L1200,80 L0,80 Z"
-        fill="var(--navy-deep)" opacity="0.5" />
-      <path class="wave-2" d="M0,50 C200,20 400,60 700,35 C900,15 1050,55 1200,30 L1200,80 L0,80 Z"
-        fill="var(--navy-deep)" opacity="0.8" />
-      <path d="M0,60 C350,30 650,65 900,40 C1050,25 1150,50 1200,40 L1200,80 L0,80 Z" fill="var(--navy-deep)" />
-    </svg>
-  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -178,13 +168,10 @@
         <a class="footer-social-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=raselmahud6757@gmail.com" target="_blank" title="Email" aria-label="Email"><i
             class="bi bi-envelope"></i></a>
       </div>
-      <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">I certify that all information in this
-        portfolio is accurate and true.</p>
+      <p class="mb-1" id="footerText" style="font-size:.75rem;opacity:.7;">Designed for academic and research evaluation &middot; Updated 2026</p>
       <p class="mb-0">
         © <span id="footerYear">2026</span> <strong id="footerName" class="footer-name">RASHEL MAHMUD RABBI</strong>
         &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
-        <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
-          class="footer-admin-link"><i class="bi bi-gear-fill"></i></a>
       </p>
     </div>
   </footer>

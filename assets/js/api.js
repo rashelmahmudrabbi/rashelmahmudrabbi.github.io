@@ -5,7 +5,7 @@
 
 // ─── Constants ───────────────────────────────────────────────────────────
 // Fallback strategy: Network -> LocalStorage Cache -> Static Data.json -> Empty
-const CACHE_KEY = 'portfolio_cache';
+const CACHE_KEY = 'portfolio_cache_v3';
 const CACHE_TTL_MS = 60 * 1000; // 1 minute (was 12 hours)
 const FETCH_TIMEOUT_MS = 20000; // 20s network timeout before fallback
 
@@ -132,6 +132,22 @@ function isCacheFresh(cached) {
 // Fetches the combined portfolio endpoint.
 // Returns { data: {...}, error: null|Error, fromCache: bool }
 async function getPortfolio(isSubpage = false) {
+  // If local development, always load local data.json directly to reflect edits immediately
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+  if (isLocal) {
+    try {
+      const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
+      let localRes = await fetch(inSub ? '../assets/data/data.json' : 'assets/data/data.json');
+      if (!localRes.ok) localRes = await fetch(inSub ? 'assets/data/data.json' : '../assets/data/data.json');
+      if (localRes && localRes.ok) {
+        const localData = await localRes.json();
+        return { data: localData, error: null, fromCache: false };
+      }
+    } catch (e) {
+      console.warn('Local data fetch failed, falling back to network:', e);
+    }
+  }
+
   const cached = getCachedPortfolio();
 
   // If cache exists and is fresh, return it immediately
@@ -148,10 +164,6 @@ async function getPortfolio(isSubpage = false) {
     return { data: fresh, error: null, fromCache: false };
   } catch (err) {
     console.warn('Could not load /portfolio from backend:', err.message);
-    // Fall back to cached data if available
-    if (cached) {
-      return { data: cached.data, error: err, fromCache: true };
-    }
     // Static fallback to local data.json for resilience (e.g. cold starts, offline preview)
     try {
       const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
@@ -165,6 +177,10 @@ async function getPortfolio(isSubpage = false) {
       }
     } catch (localErr) {
       console.warn('Local data.json fallback failed:', localErr.message);
+    }
+    // Fall back to cached data if available
+    if (cached) {
+      return { data: cached.data, error: null, fromCache: true };
     }
     // No cache, no network, no local data — return empty structure
     return {

@@ -34,7 +34,7 @@
   safeRender('Publications',      () => renderPublications(publications));
   safeRender('Projects',          () => renderProjects(projects));
   safeRender('Certifications',    () => renderCertifications(certifications));
-  safeRender('Skills',            () => renderSkills(settings));
+  safeRender('Skills',            () => renderSkills(settings, d.spokenLanguages));
   safeRender('Awards',            () => renderAwardsAndActivities(awards, activities));
   safeRender('Gallery',           () => renderGallery(gallery));
   safeRender('Contact Info',     () => renderContactInfo(settings));
@@ -100,7 +100,7 @@
     const phone = p.phone || settings.phone || '+8801613-000855';
     const location = p.location || settings.location || 'Rajshahi, Bangladesh';
     const avatar = p.avatar || settings.avatar || 'media/profile/Prof._Passport_size_image.jpg';
-    const heroStatusText = p.heroStatusText || settings.heroStatusText || 'Open to research';
+    const heroStatusText = p.heroStatusText || settings.heroStatusText || 'Seeking PhD Opportunities · Fall 2026';
 
     const socials = p.socials || {
       github: settings.social_github || 'https://github.com/rashelmahmudrabbi',
@@ -115,7 +115,7 @@
       publications: settings.stat_publications ?? 3,
       projects: settings.stat_projects ?? 7,
       awards: settings.stat_awards ?? 2,
-      certifications: settings.stat_certifications ?? 2
+      cgpa: '3.87'
     };
 
     const brandText = document.getElementById('navBrandText');
@@ -231,7 +231,7 @@
           <img src="${avatar ? escapeHtml(resolveAssetUrl(avatar, false)) : getInitialsPlaceholder(name)}" class="hero-avatar" alt="${escapeHtml(name)}"
                onerror="this.onerror=null;this.src='${getInitialsPlaceholder(name)}'"/>
           <div class="hero-status-pill">
-            <span class="status-pulse-dot"></span> ${escapeHtml(heroStatusText)}
+            <i class="bi bi-mortarboard-fill text-primary me-1"></i> ${escapeHtml(heroStatusText)}
           </div>
         </div>
       </div>
@@ -257,8 +257,8 @@
         <div class="hero-stats">
           <div class="hero-stat"><div class="hero-stat-num">${stats.publications ?? 3}</div><div class="hero-stat-label">Publications</div></div>
           <div class="hero-stat"><div class="hero-stat-num">${stats.projects ?? 7}</div><div class="hero-stat-label">Projects</div></div>
-          <div class="hero-stat"><div class="hero-stat-num">${stats.awards ?? 2}</div><div class="hero-stat-label">Awards</div></div>
-          <div class="hero-stat"><div class="hero-stat-num">${stats.certifications ?? 2}</div><div class="hero-stat-label">Certifications</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">${stats.awards ?? 2}</div><div class="hero-stat-label">Honors</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">3.87</div><div class="hero-stat-label">B.Sc. CGPA</div></div>
         </div>
       </div>`;
 
@@ -409,7 +409,13 @@
     const el = document.getElementById('educationTimeline');
     if (!el) return;
 
-    if (!education.length) {
+    // Academic portfolio standard: exclude elementary and middle school credentials
+    const filteredEducation = (education || []).filter(e => {
+      const deg = (e.degree || '').toLowerCase();
+      return !deg.includes('jsc') && !deg.includes('psc') && !deg.includes('junior') && !deg.includes('primary');
+    });
+
+    if (!filteredEducation.length) {
       el.innerHTML = '<p class="text-muted">No education records found.</p>';
       return;
     }
@@ -501,7 +507,7 @@
       return gpaStr || extra || '';
     }
 
-    el.innerHTML = education
+    el.innerHTML = filteredEducation
       .map(
         (e) => `
       <div class="academic-timeline-item">
@@ -763,27 +769,35 @@
 
     const thesisTech = thesis ? (Array.isArray(thesis.tech) ? thesis.tech : (typeof thesis.tech === 'string' ? thesis.tech.split(',').map(s => s.trim()).filter(Boolean) : [])) : [];
 
-    document.getElementById('thesisCardContainer').innerHTML = thesis
-      ? `
-      <div class="thesis-card">
-        <div class="thesis-top d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
-          <div class="thesis-label"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Thesis &middot; ${escapeHtml(thesis.year || '')}</div>
-          <span class="accuracy-badge" style="background:rgba(245,158,11,0.12);color:var(--navy);border:1px solid rgba(245,158,11,0.3);padding:0.2rem 0.65rem;border-radius:20px;font-size:0.75rem;font-weight:700;"><i class="bi bi-stars text-warning me-1"></i>99.69% Accuracy</span>
-        </div>
-        <div class="thesis-title">${escapeHtml(thesis.title || '')}</div>
-        <div class="thesis-desc">${formatRichText(thesis.description || '')}</div>
-        <div class="mb-3">${thesisTech.map((t) => `<span class="thesis-chip">${escapeHtml(t)}</span>`).join('')}</div>
-        <div class="d-flex gap-2 flex-wrap">
-          ${thesis.githubLink ? `<a class="thesis-link" href="${escapeHtml(thesis.githubLink)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>` : ''}
-          <a class="thesis-link secondary" href="publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
-        </div>
-      </div>`
-      : '';
+    const tc = document.getElementById('thesisCardContainer');
+    if (tc) {
+      tc.innerHTML = thesis
+        ? `
+        <div class="thesis-card">
+          <div class="thesis-top d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+            <div class="thesis-label"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Thesis &middot; ${escapeHtml(thesis.year || '')}</div>
+            <span class="accuracy-badge" style="background:rgba(245,158,11,0.12);color:var(--navy);border:1px solid rgba(245,158,11,0.3);padding:0.2rem 0.65rem;border-radius:20px;font-size:0.75rem;font-weight:700;"><i class="bi bi-stars text-warning me-1"></i>99.69% Accuracy</span>
+          </div>
+          <div class="thesis-title">${escapeHtml(thesis.title || '')}</div>
+          <div class="thesis-desc">${formatRichText(thesis.description || '')}</div>
+          <div class="mb-3">${thesisTech.map((t) => `<span class="thesis-chip">${escapeHtml(t)}</span>`).join('')}</div>
+          <div class="d-flex gap-2 flex-wrap">
+            ${thesis.githubLink ? `<a class="thesis-link" href="${escapeHtml(thesis.githubLink)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>` : ''}
+            <a class="thesis-link secondary" href="publications/index.html"><i class="bi bi-journal-text"></i> Related Paper</a>
+          </div>
+        </div>`
+        : '';
+    }
 
-    document.getElementById('researchProjectsList').innerHTML =
-      research.map(projectCardHtml).join('') || '<div class="col-12 text-muted text-center">No research projects yet.</div>';
-    document.getElementById('experienceProjectsList').innerHTML =
-      dev.map(projectCardHtml).join('') || '<div class="col-12 text-muted text-center">No project-experience entries yet.</div>';
+    const rp = document.getElementById('researchProjectsList');
+    if (rp) {
+      rp.innerHTML = research.map(projectCardHtml).join('') || '<div class="col-12 text-muted text-center">No research projects yet.</div>';
+    }
+
+    const ep = document.getElementById('experienceProjectsList');
+    if (ep) {
+      ep.innerHTML = dev.map(projectCardHtml).join('') || '<div class="col-12 text-muted text-center">No project-experience entries yet.</div>';
+    }
 
     // Enable stagger animations on project containers
     const resList = document.getElementById('researchProjectsList');
@@ -796,28 +810,24 @@
 
   function renderCertifications(certifications) {
     const el = document.getElementById('certificationsList');
-    el.innerHTML = certifications
+    if (!el) return;
+    el.innerHTML = (certifications || [])
       .map(
         (c) => `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
-        <div class="cert">
-          <div class="cert-inner">
-            <div class="cert-face cert-front">
-              ${c.image 
-                ? `<div class="badge badge-img" style="min-width:56px;min-height:56px;"><img src="${escapeHtml(resolveAssetUrl(c.image, false))}" alt="${escapeHtml(c.title || '')}" loading="lazy" style="max-height:64px;width:auto;"/></div>`
-                : `<div class="badge text-badge">★</div>`
-              }
-              <h3>${escapeHtml(c.title || '')}</h3>
-              <div class="hint">Hover to verify</div>
-            </div>
-            <div class="cert-face cert-back" style="padding:15px; text-align:center; display:flex; flex-direction:column; justify-content:center;">
-              <h4 style="color:var(--gold-soft); font-family:'DM Sans', sans-serif; font-size:1rem; margin-bottom:5px;">${escapeHtml(c.issuer || '')}</h4>
-              <div style="font-size:0.8rem; margin-bottom:6px;">Issued ${escapeHtml(c.year || '')}</div>
-              <div style="font-size:0.7rem; margin-bottom:12px; opacity:0.8;">ID: ${escapeHtml(c.id || 'N/A')}</div>
-              <div style="display:flex; justify-content:center; gap: 8px; flex-wrap:wrap;">
-                ${(c.pdf_link || c.pdfLink) ? `<a href="${escapeHtml(resolveAssetUrl(c.pdf_link || c.pdfLink, false))}" class="cert-link" target="_blank" title="View Certificate"><i class="bi bi-file-earmark-pdf"></i> View</a>` : ''}
-                ${(c.verify_link || c.verifyLink) ? `<a href="${escapeHtml(c.verify_link || c.verifyLink)}" class="cert-link" target="_blank" title="Verify Certificate"><i class="bi bi-shield-check"></i> Verify</a>` : ''}
-              </div>
+      <div class="col-lg-6 col-md-6 mb-3 stagger-item">
+        <div class="academic-cert-card" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;align-items:center;gap:1.2rem;box-shadow:var(--shadow-sm);transition:transform .2s ease, box-shadow .2s ease;">
+          <div class="cert-img-box" style="width:68px;height:68px;flex-shrink:0;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center;">
+            ${c.image 
+              ? `<img src="${escapeHtml(resolveAssetUrl(c.image, false))}" alt="${escapeHtml(c.title || '')}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"/>`
+              : `<i class="bi bi-award" style="font-size:1.8rem;color:var(--gold);"></i>`
+            }
+          </div>
+          <div style="flex-grow:1;min-width:0;">
+            <h3 style="font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin:0 0 0.25rem 0;">${escapeHtml(c.title || '')}</h3>
+            <div style="font-size:0.85rem;color:var(--ink-soft);margin-bottom:0.6rem;">${escapeHtml(c.issuer || '')} &bull; ${escapeHtml(c.year || '')}</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              ${(c.pdf_link || c.pdfLink) ? `<a href="${escapeHtml(resolveAssetUrl(c.pdf_link || c.pdfLink, false))}" class="btn btn-sm btn-outline-secondary py-1 px-2" style="font-size:0.75rem;border-radius:6px;" target="_blank" title="View Certificate"><i class="bi bi-file-earmark-pdf me-1"></i>View PDF</a>` : ''}
+              ${(c.verify_link || c.verifyLink) ? `<a href="${escapeHtml(c.verify_link || c.verifyLink)}" class="btn btn-sm btn-outline-primary py-1 px-2" style="font-size:0.75rem;border-radius:6px;" target="_blank" title="Verify Certificate"><i class="bi bi-shield-check me-1"></i>Verify</a>` : ''}
             </div>
           </div>
         </div>
@@ -833,6 +843,13 @@
     if (window.initStaggerObserver) window.initStaggerObserver();
   }
 
+  function toList(val) {
+    if (!val) return [];
+    if (Array.isArray(val)) return val;
+    if (typeof val === 'string') return val.split(',').map(s => s.trim()).filter(Boolean);
+    return [];
+  }
+
   function skillGroupHtml(label, icon, items) {
     if (!items || !items.length) return '';
     return `
@@ -842,85 +859,106 @@
       </div>`;
   }
 
-  function renderSkills(settings) {
+  function renderSkills(settings, rootLangs) {
     const s = settings.skills || {};
-    document.getElementById('skillsGroups').innerHTML = `
-      <div class="col-md-6">
-        ${skillGroupHtml('Programming Languages', 'bi-code-slash', s.languages)}
-        ${skillGroupHtml('Libraries & Frameworks', 'bi-layers', s.frameworks)}
-      </div>
-      <div class="col-md-6">
-        ${skillGroupHtml('Tools & Platforms', 'bi-tools', s.tools)}
-        ${skillGroupHtml('Research Methods', 'bi-search', s.researchMethods)}
-      </div>`;
+    const languages = toList(s.languages || settings.skills_languages || ["Python", "C/C++", "Java"]);
+    const frameworks = toList(s.frameworks || settings.skills_frameworks || ["PyTorch", "TensorFlow", "OpenCV", "Scikit-learn", "FastAI", "Django"]);
+    const tools = toList(s.tools || settings.skills_tools || ["Git", "Jupyter Notebook", "Google Colab", "LaTeX", "VS Code"]);
+    const researchMethods = toList(s.researchMethods || settings.skills_research_methods || ["LIME / SHAP", "Statistical Analysis", "Dataset Curation", "Academic Writing"]);
 
-    const langs = settings.spokenLanguages || [];
-    document.getElementById('spokenLanguagesList').innerHTML = langs
-      .map(
-        (l) => `
-      <div class="col-4 col-md-3 col-lg-2">
-        <div class="lang-card"><div class="lang-name">${escapeHtml(l.name || '')}</div><div class="lang-level">${escapeHtml(l.level || '')}</div></div>
-      </div>`
-      )
-      .join('');
+    const skillsEl = document.getElementById('skillsGroups');
+    if (skillsEl) {
+      skillsEl.innerHTML = `
+        <div class="col-md-6">
+          ${skillGroupHtml('Programming Languages', 'bi-code-slash', languages)}
+          ${skillGroupHtml('Libraries & Frameworks', 'bi-layers', frameworks)}
+        </div>
+        <div class="col-md-6">
+          ${skillGroupHtml('Tools & Platforms', 'bi-tools', tools)}
+          ${skillGroupHtml('Research Methods', 'bi-search', researchMethods)}
+        </div>`;
+    }
+
+    const langs = (rootLangs && rootLangs.length)
+      ? rootLangs
+      : (settings.spokenLanguages || [
+          { name: "Bangla", level: "Native" },
+          { name: "English", level: "Fluent" },
+          { name: "Hindi", level: "Fluent" }
+        ]);
+
+    const langEl = document.getElementById('spokenLanguagesList');
+    if (langEl) {
+      langEl.innerHTML = langs
+        .map(
+          (l) => `
+        <div class="col-4 col-md-3 col-lg-2">
+          <div class="lang-card"><div class="lang-name">${escapeHtml(l.name || '')}</div><div class="lang-level">${escapeHtml(l.level || '')}</div></div>
+        </div>`
+        )
+        .join('');
+    }
   }
 
   function renderAwardsAndActivities(awards, activities) {
     const awardsEl = document.getElementById('awardsList');
-    awardsEl.innerHTML =
-      awards
-        .map(
-          (a) => `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
-        <div class="award-item">
-          <div class="award-icon"><i class="bi bi-trophy-fill"></i></div>
-          ${a.image ? `<img src="${escapeHtml(resolveAssetUrl(a.image, false))}" class="award-thumb" alt="${escapeHtml(a.title || '')}" loading="lazy"
-               onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"
-               onclick="showImageModal(this.src,'${escapeHtml(a.title || '')}')"/>` : ''}
-          <div>
-            <div class="award-title">${escapeHtml(a.title || '')}</div>
-            <div class="award-meta">${escapeHtml(a.org || '')} · ${escapeHtml(a.year || '')}</div>
+    if (awardsEl) {
+      awardsEl.innerHTML =
+        (awards || [])
+          .map(
+            (a) => `
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-3 stagger-item">
+          <div class="award-item">
+            <div class="award-icon"><i class="bi bi-trophy-fill"></i></div>
+            ${a.image ? `<img src="${escapeHtml(resolveAssetUrl(a.image, false))}" class="award-thumb" alt="${escapeHtml(a.title || '')}" loading="lazy"
+                 onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"
+                 onclick="showImageModal(this.src,'${escapeHtml(a.title || '')}')"/>` : ''}
+            <div>
+              <div class="award-title">${escapeHtml(a.title || '')}</div>
+              <div class="award-meta">${escapeHtml(a.org || '')} · ${escapeHtml(a.year || '')}</div>
+            </div>
           </div>
-        </div>
-      </div>`
-        )
-        .join('') || '<p class="text-muted">No awards yet.</p>';
+        </div>`
+          )
+          .join('') || '<p class="text-muted">No awards yet.</p>';
 
-    // Fix broken award images
-    addImageFallbacks(awardsEl, getGenericPlaceholder());
+      addImageFallbacks(awardsEl, getGenericPlaceholder());
+      awardsEl.setAttribute('data-stagger-parent', '');
+      if (window.initStaggerObserver) window.initStaggerObserver();
+    }
 
-    // Enable stagger animations on awards
-    awardsEl.setAttribute('data-stagger-parent', '');
-    if (window.initStaggerObserver) window.initStaggerObserver();
-
-    document.getElementById('activitiesList').innerHTML = activities
-      .map((a) => `<div class="activity-item"><i class="bi bi-check2-circle"></i>${escapeHtml(a.text || '')}</div>`)
-      .join('');
+    const actEl = document.getElementById('activitiesList');
+    if (actEl) {
+      actEl.innerHTML = (activities || [])
+        .map((a) => `<div class="activity-item"><i class="bi bi-check2-circle"></i>${escapeHtml(a.text || '')}</div>`)
+        .join('');
+    }
   }
 
   function renderGallery(gallery) {
-    galleryEvents = gallery; // used by the lightbox functions already defined inline in index.html
+    window.galleryEvents = gallery || [];
     const el = document.getElementById('galleryGrid');
-    el.innerHTML = gallery
-      .map(
-        (ev, idx) => `
-      <div class="gallery-item" onclick="openLightbox(${idx})">
-        <img src="${escapeHtml(resolveAssetUrl((ev.photos && ev.photos[0] && ev.photos[0].src) || '', false))}" alt="${escapeHtml(ev.title || '')}" loading="lazy"
-             onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"/>
-        <span class="gallery-photo-badge"><i class="bi bi-images"></i> ${(ev.photos || []).length}</span>
-        <div class="gallery-overlay">
-          <div class="gallery-caption">${escapeHtml(ev.title || '')}</div>
-          <div class="gallery-year">
-            <span><i class="bi bi-calendar3 me-1"></i>${escapeHtml(ev.year || '')}</span>
-            <span><i class="bi bi-images me-1"></i>${(ev.photos || []).length} photos</span>
+    if (el) {
+      el.innerHTML = (gallery || [])
+        .map(
+          (ev, idx) => `
+        <div class="gallery-item" onclick="openLightbox(${idx})">
+          <img src="${escapeHtml(resolveAssetUrl((ev.photos && ev.photos[0] && ev.photos[0].src) || '', false))}" alt="${escapeHtml(ev.title || '')}" loading="lazy"
+               onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"/>
+          <span class="gallery-photo-badge"><i class="bi bi-images"></i> ${(ev.photos || []).length}</span>
+          <div class="gallery-overlay">
+            <div class="gallery-caption">${escapeHtml(ev.title || '')}</div>
+            <div class="gallery-year">
+              <span><i class="bi bi-calendar3 me-1"></i>${escapeHtml(ev.year || '')}</span>
+              <span><i class="bi bi-images me-1"></i>${(ev.photos || []).length} photos</span>
+            </div>
           </div>
-        </div>
-      </div>`
-      )
-      .join('') || '<div class="text-muted text-center">No gallery events yet.</div>';
+        </div>`
+        )
+        .join('') || '<div class="text-muted text-center">No gallery events yet.</div>';
 
-    // Fix broken gallery images
-    addImageFallbacks(el, getGenericPlaceholder());
+      addImageFallbacks(el, getGenericPlaceholder());
+    }
   }
 
   function renderContactInfo(settings) {
@@ -962,7 +1000,9 @@
   }
 
   function renderReferences(references) {
-    document.getElementById('referencesList').innerHTML = references
+    const el = document.getElementById('referencesList');
+    if (!el) return;
+    el.innerHTML = (references || [])
       .map(
         (r) => `
       <div class="col-md-6">
@@ -972,7 +1012,6 @@
           <div class="ref-org">${escapeHtml(r.org || '')}</div>
           ${r.note ? `<div class="ref-mini-org"><b>${escapeHtml(r.note)}</b></div>` : ''}
           <div class="ref-contact">
-            ${r.phone ? `<a href="tel:${escapeHtml(r.phone.replace(/[^+\d]/g, ''))}"><i class="bi bi-telephone me-1"></i>${escapeHtml(r.phone)}</a>` : ''}
             ${r.email ? `<a href="mailto:${escapeHtml(r.email)}"><i class="bi bi-envelope me-1"></i>${escapeHtml(r.email)}</a>` : ''}
           </div>
         </div>

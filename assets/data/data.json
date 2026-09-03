@@ -21,20 +21,41 @@
     "skills_frameworks": "PyTorch, TensorFlow, OpenCV, Scikit-learn, FastAI, Django",
     "skills_tools": "Git, Jupyter Notebook, Google Colab, LaTeX, VS Code",
     "skills_research_methods": "LIME / SHAP, Statistical Analysis, Dataset Curation, Academic Writing",
-    "father_name": "",
-    "mother_name": "",
-    "dob": "",
-    "religion": "",
-    "nid": "",
-    "marital_status": "",
-    "blood_group": "",
+    "skills": {
+      "languages": ["Python", "C/C++", "Java"],
+      "frameworks": ["PyTorch", "TensorFlow", "OpenCV", "Scikit-learn", "FastAI", "Django"],
+      "tools": ["Git", "Jupyter Notebook", "Google Colab", "LaTeX", "VS Code"],
+      "researchMethods": ["LIME / SHAP", "Statistical Analysis", "Dataset Curation", "Academic Writing"]
+    },
     "nationality": "Bangladeshi",
     "address": "Rajshahi, Bangladesh",
     "teaching_philosophy": "I believe effective teaching in AI and Computer Science bridges theory and hands-on practice. My goal is to cultivate critical thinking and research curiosity — helping students not just implement models, but understand why they work, where they fail, and how to push the boundaries of existing knowledge.",
     "teaching_mentoring_text": "I'm happy to help undergraduate and graduate students with research questions, project guidance, or academic writing in AI and Computer Vision.",
-    "footer_text": "I certify that all information in this portfolio is accurate and true.",
-    "cv_last_updated": "2025",
-    "cv_download_url": ""
+    "teaching": {
+      "philosophy": "I believe effective teaching in AI and Computer Science bridges theory and hands-on practice. My goal is to cultivate critical thinking and research curiosity — helping students not just implement models, but understand why they work, where they fail, and how to push the boundaries of existing knowledge.",
+      "mentoringText": "I'm happy to help undergraduate and graduate students with research questions, project guidance, or academic writing in AI and Computer Vision.",
+      "roles": [
+        {
+          "title": "Club President",
+          "desc": "As President of NBIU Computer Society, organized tech talks, seminars, and research orientation sessions."
+        },
+        {
+          "title": "Workshop Facilitator",
+          "desc": "Led hands-on workshops in Deep Learning and Computer Vision for fellow students and academic clubs."
+        }
+      ],
+      "areas": [
+        { "topic": "Computer Vision", "desc": "image classification, detection, segmentation" },
+        { "topic": "Deep Learning", "desc": "CNNs, LSTMs, Transformers, training pipelines" },
+        { "topic": "Medical Image Analysis", "desc": "histology, radiology, AI diagnostics" },
+        { "topic": "Explainable AI", "desc": "LIME, SHAP, interpretability frameworks" },
+        { "topic": "Remote Sensing", "desc": "satellite imagery, land-use classification" },
+        { "topic": "Python for Research", "desc": "PyTorch, TensorFlow, OpenCV, Pandas" }
+      ]
+    },
+    "footer_text": "Designed for academic and research evaluation · Updated 2026",
+    "cv_last_updated": "2026",
+    "cv_download_url": "https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing"
   },
   "researchInterests": [
     {
@@ -139,20 +160,6 @@
       "institution": "Rajshahi",
       "year": "2018",
       "grade": "5.00/5.00"
-    },
-    {
-      "degree": "JSC",
-      "major": "–",
-      "institution": "Rajshahi",
-      "year": "2016",
-      "grade": "4.65/5.00"
-    },
-    {
-      "degree": "PSC",
-      "major": "–",
-      "institution": "Bagmara, Rajshahi",
-      "year": "2012",
-      "grade": "4.25/5.00"
     }
   ],
   "experience": [
@@ -408,8 +415,7 @@
       "name": "Md. Emdadul Haque",
       "role": "Lecturer & Head, Department of CSE",
       "org": "North Bengal International University",
-      "note": "",
-      "phone": "+8801773-897585",
+      "note": "Department Head",
       "email": "haque.emdadul.one5@gmail.com"
     },
     {
@@ -417,7 +423,6 @@
       "role": "Lecturer, Department of CSE",
       "org": "North Bengal International University",
       "note": "Research Supervisor",
-      "phone": "+8801780-165924",
       "email": "shafiuzzaman.ruet@gmail.com"
     },
     {
@@ -425,7 +430,6 @@
       "role": "Lecturer, Department of CSE",
       "org": "North Bengal International University",
       "note": "Thesis External Examiner",
-      "phone": "+8801738-663624",
       "email": "saifur.naim30@gmail.com"
     }
   ],

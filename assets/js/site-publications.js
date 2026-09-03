@@ -98,8 +98,8 @@
           : ''
       }
       <div class="pub-links">
-        ${pub.pdfLink ? `<a class="pub-link" href="${escapeHtml(resolveAssetUrl(pub.pdfLink, true))}" target="_blank"><i class="bi bi-file-earmark-pdf"></i> PDF</a>` : ''}
-        ${pub.doiLink ? `<a class="pub-link btn-outline" href="${escapeHtml(pub.doiLink)}" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI / IEEE</a>` : ''}
+        ${(pub.pdfLink || pub.pdf_link) ? `<a class="pub-link" href="${escapeHtml(resolveAssetUrl(pub.pdfLink || pub.pdf_link, true))}" target="_blank"><i class="bi bi-file-earmark-pdf"></i> PDF</a>` : ''}
+        ${(pub.doiLink || pub.doi_link) ? `<a class="pub-link btn-outline" href="${escapeHtml(pub.doiLink || pub.doi_link)}" target="_blank"><i class="bi bi-box-arrow-up-right"></i> DOI / IEEE</a>` : ''}
         <a class="pub-link btn-outline" href="javascript:void(0)" onclick="copyCitation(this, '${escapeHtml(pub.title || '').replace(/'/g, "\\'")}', '${escapeHtml(pub.authors || '').replace(/'/g, "\\'")}', '${escapeHtml(pub.venue || '').replace(/'/g, "\\'")}', '${escapeHtml(pub.year || '')}')"><i class="bi bi-quote"></i> Cite</a>
       </div>
     </div>`;
