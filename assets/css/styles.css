@@ -170,9 +170,11 @@ h1, h2, h3, h4, h5 {
 
 .navbar.navbar-scrolled {
   padding: .35rem 0;
-  background: var(--navbar-bg-scrolled);
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
-  border-bottom-color: var(--line);
+  background: var(--navbar-bg-scrolled) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid var(--navbar-border) !important;
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
 }
 
 [data-theme="dark"] .navbar {
@@ -181,8 +183,9 @@ h1, h2, h3, h4, h5 {
 }
 
 [data-theme="dark"] .navbar.navbar-scrolled {
-  background: var(--navbar-bg-scrolled);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: var(--navbar-bg-scrolled) !important;
+  border-bottom: 1px solid var(--navbar-border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .navbar-brand {
@@ -357,7 +360,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   gap: .4rem;
   background: var(--gold);
-  color: var(--navy-deep) !important;
+  color: #FFFFFF !important;
   border: 1px solid var(--gold);
   padding: .4rem 1.1rem !important;
   border-radius: 25px;
@@ -369,16 +372,16 @@ h1, h2, h3, h4, h5 {
   text-decoration: none;
   cursor: pointer;
   transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(184, 134, 42, 0.2);
+  box-shadow: 0 4px 12px rgba(47, 111, 237, 0.25);
 }
 
 .nav-cv-btn:hover,
 .nav-cv-btn:focus {
   background: var(--gold-soft);
   border-color: var(--gold-soft);
-  color: var(--navy-deep) !important;
+  color: #FFFFFF !important;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 18px rgba(184, 134, 42, 0.35);
+  box-shadow: 0 6px 18px rgba(47, 111, 237, 0.35);
 }
 
 [data-theme="dark"] .nav-cv-btn {
@@ -4230,20 +4233,6 @@ footer a:hover {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
-/* ============ NAVBAR SCROLL GLASS EFFECT ============ */
-.navbar.navbar-scrolled {
-  background: color-mix(in srgb, var(--navy-deep) 88%, transparent) !important;
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border-bottom: 1px solid rgba(47, 111, 237, 0.15);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .navbar.navbar-scrolled {
-  background: color-mix(in srgb, var(--bg) 85%, transparent) !important;
-  border-bottom: 1px solid rgba(120, 169, 255, 0.12);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-}
 
 /* ============ HERO TEXT REVEAL ANIMATION ============ */
 .hero-name {
