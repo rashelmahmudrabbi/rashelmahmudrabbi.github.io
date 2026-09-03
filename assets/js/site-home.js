@@ -242,7 +242,6 @@
         <div class="hero-contact mt-2 mb-3">
           ${location ? `<span><i class="bi bi-geo-alt-fill"></i>${escapeHtml(location.includes('Rajshahi') ? location : 'Rajshahi, Bangladesh')}</span>` : ''}
           ${email ? `<a href="mailto:${escapeHtml(email)}"><i class="bi bi-envelope-fill"></i>${escapeHtml(email)}</a>` : ''}
-          ${phone ? `<a href="tel:${escapeHtml(phone.replace(/[^+\d]/g, ''))}"><i class="bi bi-telephone-fill"></i>${escapeHtml(phone)}</a>` : ''}
         </div>
 
         <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
@@ -942,7 +941,7 @@
       el.innerHTML = (gallery || [])
         .map(
           (ev, idx) => `
-        <div class="gallery-item" onclick="openLightbox(${idx})">
+        <div class="gallery-item" role="button" tabindex="0" onclick="window.openLightbox ? window.openLightbox(${idx}) : openLightbox(${idx})">
           <img src="${escapeHtml(resolveAssetUrl((ev.photos && ev.photos[0] && ev.photos[0].src) || '', false))}" alt="${escapeHtml(ev.title || '')}" loading="lazy"
                onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"/>
           <span class="gallery-photo-badge"><i class="bi bi-images"></i> ${(ev.photos || []).length}</span>

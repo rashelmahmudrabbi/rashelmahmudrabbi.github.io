@@ -134,7 +134,6 @@
             <div class="hero-contact mt-2 mb-3">
               <span><i class="bi bi-geo-alt-fill"></i>Rajshahi, Bangladesh</span>
               <a href="mailto:raselmahud6757@gmail.com"><i class="bi bi-envelope-fill"></i>raselmahud6757@gmail.com</a>
-              <a href="tel:+8801613000855"><i class="bi bi-telephone-fill"></i>+8801613-000855</a>
             </div>
 
             <div class="hero-socials d-flex flex-wrap gap-2 mb-3">
@@ -943,62 +942,81 @@
       new bootstrap.Modal(document.getElementById('imageModal')).show();
     }
 
-    // ── GALLERY DATA ─────────────────────────────────────────────────────────
-    // Populated at runtime by assets/js/site.js once it fetches /api/gallery.
-    let galleryEvents = [];
-
-    // ── LIGHTBOX ──────────────────────────────────────────────────────────────
+    // ── GALLERY DATA & LIGHTBOX ──────────────────────────────────────────────
+    window.galleryEvents = window.galleryEvents || [];
     let lbPhotos = [], lbIndex = 0, lbEventTitle = '';
 
-    function openLightbox(eventIndex) {
-      const ev = galleryEvents[eventIndex];
-      if (!ev || !ev.photos.length) return;
+    window.openLightbox = function (eventIndex) {
+      const list = (window.galleryEvents && window.galleryEvents.length) ? window.galleryEvents : ((window.__portfolioData && window.__portfolioData.gallery) || []);
+      const ev = list[eventIndex];
+      if (!ev || !ev.photos || !ev.photos.length) return;
       lbPhotos = ev.photos;
-      lbEventTitle = ev.title;
+      lbEventTitle = ev.title || 'Gallery Event';
       lbIndex = 0;
-      document.getElementById('lightboxModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      lbRender();
-    }
+      const modal = document.getElementById('lightboxModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        lbRender();
+      }
+    };
 
-    function closeLightbox() {
-      document.getElementById('lightboxModal').style.display = 'none';
+    window.closeLightbox = function () {
+      const modal = document.getElementById('lightboxModal');
+      if (modal) modal.style.display = 'none';
       document.body.style.overflow = '';
-    }
+    };
 
     function lbRender() {
+      if (!lbPhotos || !lbPhotos.length) return;
       const p = lbPhotos[lbIndex];
-      document.getElementById('lbImage').src = resolveAssetUrl(p.src, false);
-      document.getElementById('lbCaption').textContent = p.caption || '';
-      document.getElementById('lbTitle').textContent = lbEventTitle;
-      document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + lbPhotos.length;
-      document.getElementById('lbPrevBtn').style.opacity = lbIndex === 0 ? '0.3' : '1';
-      document.getElementById('lbNextBtn').style.opacity = lbIndex === lbPhotos.length - 1 ? '0.3' : '1';
+      const imgEl = document.getElementById('lbImage');
+      const photoSrc = p.src || p.url || p;
+      const resolved = (typeof resolveAssetUrl === 'function') ? resolveAssetUrl(photoSrc, false) : photoSrc;
+      if (imgEl) {
+        imgEl.src = resolved;
+        imgEl.alt = p.caption || lbEventTitle || 'Gallery photo';
+      }
+      const capEl = document.getElementById('lbCaption');
+      if (capEl) capEl.textContent = p.caption || '';
+      const titleEl = document.getElementById('lbTitle');
+      if (titleEl) titleEl.textContent = lbEventTitle;
+      const countEl = document.getElementById('lbCounter');
+      if (countEl) countEl.textContent = (lbIndex + 1) + ' / ' + lbPhotos.length;
+
+      const prevBtn = document.getElementById('lbPrevBtn');
+      if (prevBtn) prevBtn.style.opacity = lbIndex === 0 ? '0.3' : '1';
+      const nextBtn = document.getElementById('lbNextBtn');
+      if (nextBtn) nextBtn.style.opacity = lbIndex === lbPhotos.length - 1 ? '0.3' : '1';
+
       const strip = document.getElementById('lbThumbs');
-      strip.innerHTML = '';
-      lbPhotos.forEach((ph, i) => {
-        const img = document.createElement('img');
-        img.src = resolveAssetUrl(ph.src, false);
-        img.style.cssText = `height:54px;width:72px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid ${i === lbIndex ? 'var(--gold)' : 'transparent'};opacity:${i === lbIndex ? '1' : '0.55'};transition:all .2s;flex-shrink:0;`;
-        img.onclick = () => { lbIndex = i; lbRender(); };
-        strip.appendChild(img);
-      });
-      strip.children[lbIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      if (strip) {
+        strip.innerHTML = '';
+        lbPhotos.forEach((ph, i) => {
+          const thumb = document.createElement('img');
+          const thumbSrc = ph.src || ph.url || ph;
+          thumb.src = (typeof resolveAssetUrl === 'function') ? resolveAssetUrl(thumbSrc, false) : thumbSrc;
+          thumb.style.cssText = `height:54px;width:72px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid ${i === lbIndex ? 'var(--gold)' : 'transparent'};opacity:${i === lbIndex ? '1' : '0.55'};transition:all .2s;flex-shrink:0;`;
+          thumb.onclick = () => { lbIndex = i; lbRender(); };
+          strip.appendChild(thumb);
+        });
+        strip.children[lbIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
     }
 
-    function lbPrev() { if (lbIndex > 0) { lbIndex--; lbRender(); } }
-    function lbNext() { if (lbIndex < lbPhotos.length - 1) { lbIndex++; lbRender(); } }
+    window.lbPrev = function () { if (lbIndex > 0) { lbIndex--; lbRender(); } };
+    window.lbNext = function () { if (lbIndex < lbPhotos.length - 1) { lbIndex++; lbRender(); } };
 
     document.addEventListener('keydown', e => {
       if (document.getElementById('lightboxModal')?.style.display === 'flex') {
-        if (e.key === 'ArrowRight') lbNext();
-        else if (e.key === 'ArrowLeft') lbPrev();
-        else if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') window.lbNext();
+        else if (e.key === 'ArrowLeft') window.lbPrev();
+        else if (e.key === 'Escape') window.closeLightbox();
       }
     });
 
     document.getElementById('lightboxModal')?.addEventListener('click', function (e) {
-      if (e.target === this) closeLightbox();
+      if (e.target === this) window.closeLightbox();
     });
   </script>
   <script defer src="assets/js/config.js?v=3.5"></script>

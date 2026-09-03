@@ -4,10 +4,15 @@
 // this whole script.
 
 // ─── Constants ───────────────────────────────────────────────────────────
-// Fallback strategy: Network -> LocalStorage Cache -> Static Data.json -> Empty
-const CACHE_KEY = 'portfolio_cache_v5';
-const CACHE_TTL_MS = 60 * 1000; // 1 minute (was 12 hours)
+// Fallback strategy: Direct data.json -> LocalStorage Cache -> Backend /portfolio
+const CACHE_KEY = 'portfolio_cache_v6';
+const CACHE_TTL_MS = 60 * 1000; // 1 minute
 const FETCH_TIMEOUT_MS = 20000; // 20s network timeout before fallback
+
+// Clear legacy caches to prevent stale data divergence
+try {
+  ['portfolio_cache_v1', 'portfolio_cache_v2', 'portfolio_cache_v3', 'portfolio_cache_v4', 'portfolio_cache_v5'].forEach(k => localStorage.removeItem(k));
+} catch (e) {}
 
 // ─── Data Normalizer ──────────────────────────────────────────────────────
 // Guarantees camelCase & snake_case parity for publications, teaching, projects, certs
@@ -203,30 +208,28 @@ function isCacheFresh(cached) {
 // Fetches the combined portfolio endpoint.
 // Returns { data: {...}, error: null|Error, fromCache: bool }
 async function getPortfolio(isSubpage = false) {
-  // If local development, always load local data.json directly to reflect edits immediately
-  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
-  if (isLocal) {
-    try {
-      const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
-      let localRes = await fetch(inSub ? '../assets/data/data.json' : 'assets/data/data.json');
-      if (!localRes.ok) localRes = await fetch(inSub ? 'assets/data/data.json' : '../assets/data/data.json');
-      if (localRes && localRes.ok) {
-        const localData = await localRes.json();
-        return { data: normalizePortfolioData(localData), error: null, fromCache: false };
-      }
-    } catch (e) {
-      console.warn('Local data fetch failed, falling back to network:', e);
+  // Canonical source of truth: assets/data/data.json (always present, versioned with git, 100% identical on localhost and GitHub Pages)
+  try {
+    const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
+    let localRes = await fetch((inSub ? '../assets/data/data.json?v=6' : 'assets/data/data.json?v=6'), { cache: 'no-cache' });
+    if (!localRes.ok) {
+      localRes = await fetch((inSub ? 'assets/data/data.json?v=6' : '../assets/data/data.json?v=6'), { cache: 'no-cache' });
     }
+    if (localRes && localRes.ok) {
+      const localData = await localRes.json();
+      setCachedPortfolio(localData);
+      return { data: normalizePortfolioData(localData), error: null, fromCache: false };
+    }
+  } catch (e) {
+    console.warn('Direct data.json fetch failed, falling back to cache/backend:', e);
   }
 
   const cached = getCachedPortfolio();
-
-  // If cache exists and is fresh, return it immediately
   if (cached && isCacheFresh(cached)) {
     return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
   }
 
-  // If cache exists but stale, return it but also revalidate
+  // Secondary fallback to remote backend if static asset cannot be read (e.g. file:/// protocol)
   try {
     const res = await fetchWithTimeout(API_BASE + '/portfolio');
     if (!res.ok) throw new Error('Request failed: ' + res.status);
@@ -235,25 +238,9 @@ async function getPortfolio(isSubpage = false) {
     return { data: normalizePortfolioData(fresh), error: null, fromCache: false };
   } catch (err) {
     console.warn('Could not load /portfolio from backend:', err.message);
-    // Static fallback to local data.json for resilience (e.g. cold starts, offline preview)
-    try {
-      const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
-      let localRes = await fetch(inSub ? '../assets/data/data.json' : 'assets/data/data.json');
-      if (!localRes.ok) {
-        localRes = await fetch(inSub ? 'assets/data/data.json' : '../assets/data/data.json');
-      }
-      if (localRes && localRes.ok) {
-        const localData = await localRes.json();
-        return { data: normalizePortfolioData(localData), error: null, fromCache: false, isOfflineFallback: true };
-      }
-    } catch (localErr) {
-      console.warn('Local data.json fallback failed:', localErr.message);
-    }
-    // Fall back to cached data if available
     if (cached) {
       return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
     }
-    // No cache, no network, no local data — return empty structure
     return {
       data: normalizePortfolioData({
         settings: {}, education: [], experience: [], publications: [],
@@ -323,15 +310,11 @@ function errorStateHtml(sectionName, retryFnName) {
 
 // ─── Dynamic backend link synchronization ────────────────────────────────
 function syncBackendLinks() {
-  const base = typeof API_BASE !== 'undefined' ? API_BASE : (window.API_BASE || 'https://portfolio-backend-u.vercel.app/api');
-  const adminUrl = typeof getAdminUrl === 'function' ? getAdminUrl() : (base.replace(/\/api\/?$/, '') + '/admin');
-  const cvUrl = typeof getCvDownloadUrl === 'function' ? getCvDownloadUrl() : (base + '/cv/download');
-  
-  document.querySelectorAll('a[title="Admin Dashboard"], a.footer-admin-link').forEach(link => {
-    link.href = adminUrl;
-  });
+  const cvUrl = 'https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing';
   document.querySelectorAll('a.nav-cv-download-link, #modalCvDownloadBtn').forEach(link => {
     link.href = cvUrl;
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
   });
 }
 document.addEventListener('DOMContentLoaded', syncBackendLinks);

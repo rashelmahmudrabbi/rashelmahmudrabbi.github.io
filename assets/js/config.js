@@ -1,12 +1,8 @@
 window.API_BASE = window.API_BASE || 'https://portfolio-backend-u.vercel.app/api';
 var API_BASE = window.API_BASE;
 
-function getAdminUrl() {
-  return (window.API_BASE || 'https://portfolio-backend-u.vercel.app/api').replace(/\/api\/?$/, '') + '/admin';
-}
-
 function getCvDownloadUrl() {
-  return (window.API_BASE || 'https://portfolio-backend-u.vercel.app/api') + '/cv/download';
+  return 'https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing';
 }
 
 // Smart Scroll Navbar Logic
