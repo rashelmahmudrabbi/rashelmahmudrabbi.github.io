@@ -21,6 +21,9 @@
   --radius-m: 12px;
   --radius-l: 18px;
   --ease: cubic-bezier(.22, 1, .36, 1);
+  --accent-warm: #D4A84B;
+  --accent-warm-soft: #E8C97D;
+  --accent-warm-tint: rgba(212, 168, 75, 0.08);
 
   /* Badge semantic tokens */
   --badge-conference-bg: #D8E7FF;
@@ -95,6 +98,9 @@
   --line: rgba(241, 245, 249, 0.17);
   --line-soft: rgba(241, 245, 249, 0.10);
   --shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.48);
+  --accent-warm: #E8C97D;
+  --accent-warm-soft: #F5E0AA;
+  --accent-warm-tint: rgba(232, 201, 125, 0.1);
 
   /* Dark Header, Hero, Spotlight & Footer Overrides */
   --navbar-bg: color-mix(in srgb, var(--bg) 90%, transparent);
@@ -1632,8 +1638,16 @@ h1, h2, h3, h4, h5 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--sage);
+  color: var(--accent-warm);
   margin-bottom: 0.6rem;
+}
+
+/* RESEARCH STATEMENT */
+.research-statement-content p {
+  margin-bottom: 1rem;
+}
+.research-statement-content p:last-child {
+  margin-bottom: 0;
 }
 
 .about-headline {
@@ -5224,7 +5238,7 @@ footer a:hover {
   font-family: 'Crimson Pro', serif;
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--footer-color);
+  color: var(--accent-warm);
   margin-bottom: 0.8rem;
   letter-spacing: 0.5px;
   font-style: italic;

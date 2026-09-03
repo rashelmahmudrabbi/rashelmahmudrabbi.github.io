@@ -5,9 +5,80 @@
 
 // ─── Constants ───────────────────────────────────────────────────────────
 // Fallback strategy: Network -> LocalStorage Cache -> Static Data.json -> Empty
-const CACHE_KEY = 'portfolio_cache_v3';
+const CACHE_KEY = 'portfolio_cache_v5';
 const CACHE_TTL_MS = 60 * 1000; // 1 minute (was 12 hours)
 const FETCH_TIMEOUT_MS = 20000; // 20s network timeout before fallback
+
+// ─── Data Normalizer ──────────────────────────────────────────────────────
+// Guarantees camelCase & snake_case parity for publications, teaching, projects, certs
+function normalizePortfolioData(d) {
+  if (!d || typeof d !== 'object') return d;
+  d.settings = d.settings || {};
+  const s = d.settings;
+
+  // Teaching defaults and fallbacks
+  s.teaching = s.teaching || {};
+  if (!s.teaching.philosophy) {
+    s.teaching.philosophy = s.teaching_philosophy || d.teachingPhilosophy ||
+      "I believe effective teaching in AI and Computer Science bridges theory and hands-on practice. My goal is to cultivate critical thinking and research curiosity — helping students not just implement models, but understand why they work, where they fail, and how to push the boundaries of existing knowledge.";
+  }
+  if (!s.teaching.mentoringText) {
+    s.teaching.mentoringText = s.teaching_mentoring_text || d.teachingMentoringText ||
+      "I'm happy to help undergraduate and graduate students with research questions, project guidance, or academic writing in AI and Computer Vision.";
+  }
+  if (!s.teaching.roles || !s.teaching.roles.length) {
+    s.teaching.roles = [
+      { title: "Graduate Research Mentoring", desc: "Guiding undergraduate peers in dataset curation, deep learning model evaluation, and Explainable AI methods (LIME/SHAP)." },
+      { title: "Workshop Facilitator & Peer Mentor", desc: "Conducting technical sessions and hands-on coding tutorials on PyTorch, OpenCV, and practical computer vision pipelines." }
+    ];
+  }
+  if (!s.teaching.areas || !s.teaching.areas.length) {
+    s.teaching.areas = [
+      { topic: "Computer Vision & Image Processing", desc: "Convolutional Neural Networks, Vision Transformers, transfer learning, and feature visualization." },
+      { topic: "Deep Learning & Neural Networks", desc: "PyTorch fundamentals, backpropagation, optimization techniques, and sequence modeling with LSTM." },
+      { topic: "Medical Image Computing", desc: "Preprocessing medical modalities, handling class imbalance in biomedical datasets, and diagnostic classification." },
+      { topic: "Explainable Artificial Intelligence (XAI)", desc: "Local and global interpretability, feature attribution with LIME, SHAP, and Grad-CAM." }
+    ];
+  }
+
+  // Publications link parity
+  if (Array.isArray(d.publications)) {
+    d.publications.forEach(p => {
+      const pdf = p.pdfLink || p.pdf_link || '';
+      p.pdfLink = pdf;
+      p.pdf_link = pdf;
+      const doi = p.doiLink || p.doi_link || '';
+      p.doiLink = doi;
+      p.doi_link = doi;
+    });
+  }
+
+  // Certifications link parity
+  if (Array.isArray(d.certifications)) {
+    d.certifications.forEach(c => {
+      const pdf = c.pdfLink || c.pdf_link || '';
+      c.pdfLink = pdf;
+      c.pdf_link = pdf;
+      const verify = c.verifyLink || c.verify_link || '';
+      c.verifyLink = verify;
+      c.verify_link = verify;
+    });
+  }
+
+  // Projects link parity
+  if (Array.isArray(d.projects)) {
+    d.projects.forEach(p => {
+      const gh = p.githubLink || p.github_link || '';
+      p.githubLink = gh;
+      p.github_link = gh;
+      const paper = p.paperLink || p.paper_link || '';
+      p.paperLink = paper;
+      p.paper_link = paper;
+    });
+  }
+
+  return d;
+}
 
 // ─── HTML escaping helper ─────────────────────────────────────────────────
 function escapeHtml(str) {
@@ -141,7 +212,7 @@ async function getPortfolio(isSubpage = false) {
       if (!localRes.ok) localRes = await fetch(inSub ? 'assets/data/data.json' : '../assets/data/data.json');
       if (localRes && localRes.ok) {
         const localData = await localRes.json();
-        return { data: localData, error: null, fromCache: false };
+        return { data: normalizePortfolioData(localData), error: null, fromCache: false };
       }
     } catch (e) {
       console.warn('Local data fetch failed, falling back to network:', e);
@@ -152,7 +223,7 @@ async function getPortfolio(isSubpage = false) {
 
   // If cache exists and is fresh, return it immediately
   if (cached && isCacheFresh(cached)) {
-    return { data: cached.data, error: null, fromCache: true };
+    return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
   }
 
   // If cache exists but stale, return it but also revalidate
@@ -161,7 +232,7 @@ async function getPortfolio(isSubpage = false) {
     if (!res.ok) throw new Error('Request failed: ' + res.status);
     const fresh = await res.json();
     setCachedPortfolio(fresh);
-    return { data: fresh, error: null, fromCache: false };
+    return { data: normalizePortfolioData(fresh), error: null, fromCache: false };
   } catch (err) {
     console.warn('Could not load /portfolio from backend:', err.message);
     // Static fallback to local data.json for resilience (e.g. cold starts, offline preview)
@@ -173,22 +244,22 @@ async function getPortfolio(isSubpage = false) {
       }
       if (localRes && localRes.ok) {
         const localData = await localRes.json();
-        return { data: localData, error: null, fromCache: false, isOfflineFallback: true };
+        return { data: normalizePortfolioData(localData), error: null, fromCache: false, isOfflineFallback: true };
       }
     } catch (localErr) {
       console.warn('Local data.json fallback failed:', localErr.message);
     }
     // Fall back to cached data if available
     if (cached) {
-      return { data: cached.data, error: null, fromCache: true };
+      return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
     }
     // No cache, no network, no local data — return empty structure
     return {
-      data: {
+      data: normalizePortfolioData({
         settings: {}, education: [], experience: [], publications: [],
         projects: [], certifications: [], awards: [], activities: [],
         gallery: [], references: [],
-      },
+      }),
       error: err,
       fromCache: false,
     };
@@ -252,8 +323,9 @@ function errorStateHtml(sectionName, retryFnName) {
 
 // ─── Dynamic backend link synchronization ────────────────────────────────
 function syncBackendLinks() {
-  const adminUrl = typeof getAdminUrl === 'function' ? getAdminUrl() : (API_BASE.replace(/\/api\/?$/, '') + '/admin');
-  const cvUrl = typeof getCvDownloadUrl === 'function' ? getCvDownloadUrl() : (API_BASE + '/cv/download');
+  const base = typeof API_BASE !== 'undefined' ? API_BASE : (window.API_BASE || 'https://portfolio-backend-u.vercel.app/api');
+  const adminUrl = typeof getAdminUrl === 'function' ? getAdminUrl() : (base.replace(/\/api\/?$/, '') + '/admin');
+  const cvUrl = typeof getCvDownloadUrl === 'function' ? getCvDownloadUrl() : (base + '/cv/download');
   
   document.querySelectorAll('a[title="Admin Dashboard"], a.footer-admin-link').forEach(link => {
     link.href = adminUrl;

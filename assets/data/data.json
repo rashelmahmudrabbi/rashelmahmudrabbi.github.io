@@ -6,7 +6,7 @@
     "phone": "+8801613-000855",
     "location": "Bangladesh",
     "avatar": "media/profile/Prof._Passport_size_image.jpg",
-    "objective": "Aspiring AI researcher and deep learning engineer passionate about computer vision, medical image analysis, and explainable AI. Focused on developing intelligent healthcare solutions through innovative research in CNNs, Transformers, and hybrid deep learning architectures. Experienced in dataset curation, model development, and academic writing with a strong publication record. Committed to advancing AI research for real-world impact in healthcare and remote sensing.",
+    "objective": "I build hybrid CNN-Transformer architectures for medical image classification and satellite remote sensing, with a focus on making deep learning models interpretable for clinical and real-world decision-making. My B.Sc. thesis — HybSwinEff — achieved 99.69% binary accuracy and 100% staging accuracy for leukemia classification, while my MRCL-ELM framework reached 98.33% on EuroSAT for satellite image classification (published in Neural Computing and Applications). I am seeking PhD opportunities to advance research at the intersection of Computer Vision, Medical AI, and Explainable AI.",
     "stat_publications": 3,
     "stat_projects": 7,
     "stat_awards": 2,
@@ -61,32 +61,22 @@
     {
       "icon": "bi-eye",
       "topic": "Computer Vision",
-      "description": "Image classification, object detection, segmentation"
+      "description": "Image classification, object detection, and segmentation using hybrid CNN-Transformer architectures"
     },
     {
       "icon": "bi-heart-pulse",
       "topic": "Medical Image Analysis",
-      "description": "AI-driven diagnostics, histology, radiology imaging"
-    },
-    {
-      "icon": "bi-diagram-3",
-      "topic": "Deep Learning",
-      "description": "CNN, Transformer, LSTM architectures"
+      "description": "AI-driven diagnostics for histopathology and radiology, including leukemia classification from blood smears"
     },
     {
       "icon": "bi-lightbulb",
-      "topic": "Explainable AI",
-      "description": "LIME, SHAP, model interpretability"
+      "topic": "Explainable AI (XAI)",
+      "description": "LIME, SHAP, and Grad-CAM for transparent, clinically trustworthy deep learning pipelines"
     },
     {
-      "icon": "bi-globe",
-      "topic": "Remote Sensing",
-      "description": "Satellite image processing and analysis"
-    },
-    {
-      "icon": "bi-chat-text",
-      "topic": "Natural Language Processing",
-      "description": "Text classification, information extraction"
+      "icon": "bi-diagram-3",
+      "topic": "Deep Learning Architectures",
+      "description": "Designing lightweight hybrid models combining CNNs, Transformers, LSTMs, and ELMs for resource-efficient inference"
     }
   ],
   "spokenLanguages": [
@@ -145,19 +135,20 @@
       "major": "Computer Science & Engineering",
       "institution": "North Bengal International University",
       "year": "2025",
-      "grade": "3.87/4.00"
+      "grade": "3.87/4.00",
+      "coursework": "Computer Vision, Machine Learning, Neural Networks, Data Structures, Algorithms, Linear Algebra, Statistics"
     },
     {
       "degree": "HSC",
       "major": "Science",
-      "institution": "Mymensingh - 01",
+      "institution": "Notre Dame College, Mymensingh",
       "year": "2020",
       "grade": "5.00/5.00"
     },
     {
       "degree": "SSC",
       "major": "Science",
-      "institution": "Rajshahi",
+      "institution": "Hat Gangopara High School, Rajshahi",
       "year": "2018",
       "grade": "5.00/5.00"
     }
@@ -167,7 +158,7 @@
       "title": "Graduate Researcher – Computer Vision / Medical Imaging",
       "org": "North Bengal International University",
       "period": "2023 – 2025",
-      "bullets": "Developed deep learning models for satellite and medical image classification\nWorked with CNN, LSTM, and Transformer-based architectures\nApplied Explainable AI techniques (LIME)\nExperienced in dataset preprocessing, model optimization, and evaluation"
+      "bullets": "Designed HybSwinEff, a hybrid CNN-Transformer achieving 99.69% binary accuracy and 100% staging accuracy for automated leukemia classification (B.Sc. thesis)\nDeveloped MRCL-ELM, a novel deep learning architecture achieving 98.33% accuracy on EuroSAT and 98.10% on UC Merced for satellite image classification (published in Neural Computing and Applications, Q1)\nPublished and presented a CNN-LSTM land-use classifier with LIME explainability at IEEE QPAIN 2025\nCurated and preprocessed medical imaging and satellite datasets; implemented LIME, SHAP, and Grad-CAM for model interpretability"
     }
   ],
   "publications": [
@@ -180,7 +171,9 @@
       "year": "2025",
       "abstract": "The evolution of landscapes has opened the opportunity to utilize previously unused land for various purposes, such as agriculture and urban development. This approach promotes sustainable land management and addresses economic and societal needs. By repurposing land effectively, growth and sustainability in communities can be fostered. This study introduces a hybrid CNN-LSTM model for classifying satellite images in the EuroSAT dataset, encompassing land use categories. The Convolutional Neural Network (CNN)efficiently extracts spatial features, while the Long Short-Term Memory (LSTM) captures temporal patterns, achieving an impressive accuracy of 98.30%. Preprocessing includes grayscale conversion, contrast enhancement, and spatial-temporal augmentations to optimize data quality. Explainable AI, implemented via Local Interpretable Model-agnostic Explanations (LIME), provides insights into influential features guiding predictions and enhances interpretability.",
       "doi_link": "https://ieeexplore.ieee.org/document/11172239",
-      "pdf_link": "https://drive.google.com/file/d/1bRxEvEslm9k4yLljqfe7U8iZJb9wUWYS/view?usp=sharing"
+      "pdf_link": "https://drive.google.com/file/d/1bRxEvEslm9k4yLljqfe7U8iZJb9wUWYS/view?usp=sharing",
+      "doiLink": "https://ieeexplore.ieee.org/document/11172239",
+      "pdfLink": "https://drive.google.com/file/d/1bRxEvEslm9k4yLljqfe7U8iZJb9wUWYS/view?usp=sharing"
     },
     {
       "type": "journal",
@@ -191,7 +184,9 @@
       "year": "2026",
       "abstract": "Satellite image classification has many important applications that play a crucial role in the areas of urban planning, agriculture, as well as environmental monitoring. Nevertheless, the high accuracy and interpretability of deep learning models with such complex datasets is still a big challenge. To solve this, a new hybrid deep-learning architecture, MRCL-ELM is proposed to improve the performance of satellite image classification. The model uses EfficientNetB0 as its building block in terms of ability to learn rich features in an efficient manner with optimization of the network depth and size to minimize memory and processing requirements. It combines the Multi-Residual Convolutional (MRC) networks to learn spatial features robustly with the aid of multiple residual paths, in each block, in MRC, to enhance the learning of features and gradient flow. It uses a Long Short-Term Memory (LSTM) time series modeling layer, and an Extreme Learning Machine (ELM) to quickly and non-iteratively classify data and is therefore lightweight, accurate, and more scalable than other common deep learning architectures. To enhance the interpretability of the proposed model, Local Interpretable Model-agnostic Explanations (LIME) explains individual predictions by testing small variations in the input, whereas SHapley Additive exPlanations (SHAP) provides feature importance scores throughout the model, along with improving model interpretability and trust. The proposed model provides the highest possible results, with 98.33% accuracy on the EuroSAT dataset and 98.10% accuracy on the UC Merced Land Use dataset, being higher than the use of existing Convolutional Neural Networks (CNN) and transformer-based techniques. The training using fixed random seeds and 5-fold cross-validation is used to ensure robustness. Lastly, MRCL-ELM was implemented as a real-time web-based application and tested with real-life Google Maps imagery, and thus needs real-time, precise, and interpretable satellite image classification for the end-users.",
       "doi_link": "https://link.springer.com/article/10.1007/s00521-026-12192-y",
-      "pdf_link": "https://drive.google.com/file/d/1B8MU_tQevLZyDqzm3KHu28c4sDnOmFRZ/view?usp=drive_link"
+      "pdf_link": "https://drive.google.com/file/d/1B8MU_tQevLZyDqzm3KHu28c4sDnOmFRZ/view?usp=drive_link",
+      "doiLink": "https://link.springer.com/article/10.1007/s00521-026-12192-y",
+      "pdfLink": "https://drive.google.com/file/d/1B8MU_tQevLZyDqzm3KHu28c4sDnOmFRZ/view?usp=drive_link"
     },
     {
       "type": "thesis",
@@ -202,7 +197,9 @@
       "year": "2025",
       "abstract": "Early detection and subtyping of acute lymphoblastic leukemia (ALL) from peripheral blood smears are vital for timely treatment but remain limited by manual microscopy. To address this, HybSwinEff, a lightweight hybrid Convolutional Neural Network (CNN)-Transformer architecture, is proposed for automated, interpretable, and multistage ALL classification. The model employs a hierarchical pipeline: first distinguishing benign from malignant cells, then conditionally subtyping malignant cases into Early Pre-B, Pre-B, and Pro-B stages based on morphological features. HybSwinEff combines a pretrained EfficientNetV2-RW-T backbone for local texture extraction with a Swin Transformer Tiny for global context modeling. Features are mean-pooled, projected to a 128-dimensional space, concatenated, and fused through a Residual Fusion Block (RFB) before dual MLP heads for binary and conditional staging tasks. Trained on the Blood Cell Cancer (ALL) and Acute Lymphoblastic Leukemia (ALL) datasets using PyTorch and TIMM pretrained weights, with stratified train-val-test splits, three random seeds (including 42), 5-fold cross validation, label smoothing, balanced class weighting, and heavy augmentations, the model achieves exceptional results: 99.69% binary accuracy and 100% staging accuracy on Blood Cell Cancer, and 100% across all metrics on Acute Lymphoblastic Leukemia, outperforming prior state-of-the-art models. Furthermore, LIME visualizations confirm that HybSwinEff focuses on clinically meaningful regions, accurately highlighting malignant blast morphology and typical benign lymphocyte structures, thereby improving interpretability and trust in its diagnostic decisions. With 40.54M parameters, HybSwinEff offers 18% parameter efficiency over similar hybrids and real-time inference (~3.40 ms/image) on GPUs.",
       "doi_link": "",
-      "pdf_link": "https://drive.google.com/file/d/10IeYdPdJPAQw3afi7ItVoYfZRQgBWlhm/view?usp=drive_link"
+      "pdf_link": "https://drive.google.com/file/d/10IeYdPdJPAQw3afi7ItVoYfZRQgBWlhm/view?usp=drive_link",
+      "doiLink": "",
+      "pdfLink": "https://drive.google.com/file/d/10IeYdPdJPAQw3afi7ItVoYfZRQgBWlhm/view?usp=drive_link"
     }
   ],
   "projects": [
