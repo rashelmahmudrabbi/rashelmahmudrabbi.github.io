@@ -46,6 +46,41 @@ function normalizePortfolioData(d) {
     ];
   }
 
+  // Legacy fallback for data.json structure
+  if (!s.researchInterests || !s.researchInterests.length) {
+    s.researchInterests = [
+      {
+        icon: "bi-eye",
+        topic: "Computer Vision",
+        desc: "Image classification, object detection, and segmentation using hybrid CNN-Transformer architectures"
+      },
+      {
+        icon: "bi-heart-pulse",
+        topic: "Medical Image Analysis",
+        desc: "AI-driven diagnostics for histopathology and radiology, including leukemia classification from blood smears"
+      },
+      {
+        icon: "bi-lightbulb",
+        topic: "Explainable AI (XAI)",
+        desc: "LIME, SHAP, and Grad-CAM for transparent, clinically trustworthy deep learning pipelines"
+      },
+      {
+        icon: "bi-diagram-3",
+        topic: "Deep Learning Architectures",
+        desc: "Designing lightweight hybrid models combining CNNs, Transformers, LSTMs, and ELMs for resource-efficient inference"
+      }
+    ];
+  }
+  
+  s.about = s.about || {};
+  if (!s.about.research_statement_text) {
+    s.about.research_statement_text = d.research_statement || d.researchStatement || `
+      <p>My research lies at the intersection of <strong style="color: var(--ink);">Computer Vision</strong>, <strong style="color: var(--ink);">Medical Image Analysis</strong>, and <strong style="color: var(--ink);">Explainable AI</strong>. I am driven by a fundamental question: <em>How can we build deep learning systems that are not only accurate but also transparent enough for clinicians and domain experts to trust?</em></p>
+      <p>During my undergraduate research, I developed <strong style="color: var(--ink);">HybSwinEff</strong> — a hybrid CNN-Transformer architecture that fuses EfficientNetV2 with Swin Transformer for automated leukemia classification from peripheral blood smears, achieving 99.69% binary accuracy and 100% staging accuracy. I also co-developed <strong style="color: var(--ink);">MRCL-ELM</strong>, a novel multi-residual architecture for satellite image classification published in <em>Neural Computing and Applications</em> (Q1). In both works, I integrated LIME and SHAP explainability frameworks to ensure model predictions are clinically and scientifically interpretable.</p>
+      <p>Looking ahead, I aim to pursue a PhD focused on <strong style="color: var(--ink);">trustworthy medical AI</strong> — developing lightweight, interpretable deep learning architectures for histopathology and radiology applications, particularly in resource-constrained healthcare settings. I am especially interested in hybrid architectures that combine the local feature extraction strengths of CNNs with the global context modeling of Vision Transformers, while maintaining computational efficiency and clinical explainability.</p>
+    `;
+  }
+
   // Publications link parity
   if (Array.isArray(d.publications)) {
     d.publications.forEach(p => {
