@@ -5,7 +5,7 @@
 
 // ─── Constants ───────────────────────────────────────────────────────────
 // Fallback strategy: Direct data.json -> LocalStorage Cache -> Backend /portfolio
-const CACHE_KEY = 'portfolio_cache_v6';
+const CACHE_KEY = 'portfolio_cache_v7';
 const CACHE_TTL_MS = 60 * 1000; // 1 minute
 const FETCH_TIMEOUT_MS = 20000; // 20s network timeout before fallback
 
@@ -263,9 +263,9 @@ async function getPortfolio(isSubpage = false) {
   // Third attempt: Fallback to static data.json if backend fails
   try {
     const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
-    let localRes = await fetch((inSub ? '../assets/data/data.json?v=6' : 'assets/data/data.json?v=6'), { cache: 'no-cache' });
+    let localRes = await fetch((inSub ? '../assets/data/data.json?v=7' : 'assets/data/data.json?v=7'), { cache: 'no-cache' });
     if (!localRes.ok) {
-      localRes = await fetch((inSub ? 'assets/data/data.json?v=6' : '../assets/data/data.json?v=6'), { cache: 'no-cache' });
+      localRes = await fetch((inSub ? 'assets/data/data.json?v=7' : '../assets/data/data.json?v=7'), { cache: 'no-cache' });
     }
     if (localRes && localRes.ok) {
       const localData = await localRes.json();
