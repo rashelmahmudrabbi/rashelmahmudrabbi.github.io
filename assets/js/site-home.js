@@ -237,7 +237,7 @@
         </div>
       </div>
       <div class="col-12 col-lg ps-lg-4">
-        <p class="hero-title">${escapeHtml((title).replace(/–.*$/, '–').replace(/—.*$/, '—'))} <span class="typewriter-wrapper"><span id="typewriterText">Computer Vision &amp; AI</span><span class="typewriter-cursor"></span></span></p>
+        <p class="hero-title">${escapeHtml((title).replace(/\s*[-–—]\s*.*$/, ' – ')).trim()} <span class="typewriter-wrapper"><span id="typewriterText">Computer Vision &amp; AI</span><span class="typewriter-cursor"></span></span></p>
         <h1 class="hero-name">${escapeHtml(name)}</h1>
         
         <div class="hero-contact mt-2 mb-3">
@@ -992,7 +992,8 @@
       github: settings.social_github,
       linkedin: settings.social_linkedin,
       scholar: settings.social_scholar,
-      orcid: settings.social_orcid
+      orcid: settings.social_orcid,
+      x: settings.social_x
     };
     const leftEl = document.getElementById('contactInfoLeft');
     const rightEl = document.getElementById('contactInfoRight');
@@ -1016,7 +1017,8 @@
         ${socials.github ? `<div class="info-row"><span class="info-label"><i class="bi bi-github me-2"></i>GitHub</span><span class="info-value"><a href="${escapeHtml(socials.github)}" target="_blank" style="color:var(--gold);text-decoration:none;">rashelmahmudrabbi</a></span></div>` : ''}
         ${socials.linkedin ? `<div class="info-row"><span class="info-label"><i class="bi bi-linkedin me-2"></i>LinkedIn</span><span class="info-value"><a href="${escapeHtml(socials.linkedin)}" target="_blank" style="color:var(--gold);text-decoration:none;">rashelmahmudrabbi</a></span></div>` : ''}
         ${socials.scholar ? `<div class="info-row"><span class="info-label"><i class="bi bi-mortarboard me-2"></i>Google Scholar</span><span class="info-value"><a href="${escapeHtml(socials.scholar)}" target="_blank" style="color:var(--gold);text-decoration:none;">View Profile</a></span></div>` : ''}
-        ${socials.orcid ? `<div class="info-row"><span class="info-label"><i class="bi bi-person-badge me-2"></i>ORCID</span><span class="info-value"><a href="${escapeHtml(socials.orcid)}" target="_blank" style="color:var(--gold);text-decoration:none;">0009-0004-6070-4496</a></span></div>` : ''}`;
+        ${socials.orcid ? `<div class="info-row"><span class="info-label"><i class="bi bi-person-badge me-2"></i>ORCID</span><span class="info-value"><a href="${escapeHtml(socials.orcid)}" target="_blank" style="color:var(--gold);text-decoration:none;">0009-0004-6070-4496</a></span></div>` : ''}
+        ${socials.x ? `<div class="info-row"><span class="info-label"><i class="bi bi-twitter-x me-2"></i>X</span><span class="info-value"><a href="${escapeHtml(socials.x)}" target="_blank" style="color:var(--gold);text-decoration:none;">rashel_m_rabbi</a></span></div>` : ''}`;
     }
   }
 
