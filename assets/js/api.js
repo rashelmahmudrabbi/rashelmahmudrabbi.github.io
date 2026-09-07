@@ -208,7 +208,24 @@ function isCacheFresh(cached) {
 // Fetches the combined portfolio endpoint.
 // Returns { data: {...}, error: null|Error, fromCache: bool }
 async function getPortfolio(isSubpage = false) {
-  // Canonical source of truth: assets/data/data.json (always present, versioned with git, 100% identical on localhost and GitHub Pages)
+  // First attempt: Remote backend (dynamic source of truth)
+  try {
+    const res = await fetchWithTimeout(API_BASE + '/portfolio');
+    if (!res.ok) throw new Error('Request failed: ' + res.status);
+    const fresh = await res.json();
+    setCachedPortfolio(fresh);
+    return { data: normalizePortfolioData(fresh), error: null, fromCache: false };
+  } catch (err) {
+    console.warn('Could not load /portfolio from backend:', err.message);
+  }
+
+  // Second attempt: Session cache
+  const cached = getCachedPortfolio();
+  if (cached && isCacheFresh(cached)) {
+    return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
+  }
+
+  // Third attempt: Fallback to static data.json if backend fails
   try {
     const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
     let localRes = await fetch((inSub ? '../assets/data/data.json?v=6' : 'assets/data/data.json?v=6'), { cache: 'no-cache' });
@@ -221,36 +238,22 @@ async function getPortfolio(isSubpage = false) {
       return { data: normalizePortfolioData(localData), error: null, fromCache: false };
     }
   } catch (e) {
-    console.warn('Direct data.json fetch failed, falling back to cache/backend:', e);
+    console.warn('Direct data.json fetch failed:', e);
   }
 
-  const cached = getCachedPortfolio();
-  if (cached && isCacheFresh(cached)) {
+  // Final fallback
+  if (cached) {
     return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
   }
-
-  // Secondary fallback to remote backend if static asset cannot be read (e.g. file:/// protocol)
-  try {
-    const res = await fetchWithTimeout(API_BASE + '/portfolio');
-    if (!res.ok) throw new Error('Request failed: ' + res.status);
-    const fresh = await res.json();
-    setCachedPortfolio(fresh);
-    return { data: normalizePortfolioData(fresh), error: null, fromCache: false };
-  } catch (err) {
-    console.warn('Could not load /portfolio from backend:', err.message);
-    if (cached) {
-      return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
-    }
-    return {
-      data: normalizePortfolioData({
-        settings: {}, education: [], experience: [], publications: [],
-        projects: [], certifications: [], awards: [], activities: [],
-        gallery: [], references: [],
-      }),
-      error: err,
-      fromCache: false,
-    };
-  }
+  return {
+    data: normalizePortfolioData({
+      settings: {}, education: [], experience: [], publications: [],
+      projects: [], certifications: [], awards: [], activities: [],
+      gallery: [], references: [],
+    }),
+    error: new Error('All data sources failed'),
+    fromCache: false,
+  };
 }
 
 // ─── Image fallback helper ───────────────────────────────────────────────
