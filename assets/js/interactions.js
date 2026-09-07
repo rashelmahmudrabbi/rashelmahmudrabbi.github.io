@@ -275,9 +275,15 @@
 
   // ── 6. TYPEWRITER EFFECT ──────────────────────────────────────────────────
   let typewriterRunning = false;
+  let typewriterTimeoutId = null;
+
   function initTypewriter() {
     const el = document.getElementById('typewriterText');
-    if (!el || prefersReducedMotion || typewriterRunning) return;
+    if (!el || prefersReducedMotion) return;
+    
+    // If already running, we might be re-initializing after HTML replacement.
+    // Clear the old loop to prevent duplicates.
+    if (typewriterTimeoutId) clearTimeout(typewriterTimeoutId);
     typewriterRunning = true;
 
     const phrases = [
@@ -294,15 +300,21 @@
     let isPaused = false;
 
     function type() {
+      const liveEl = document.getElementById('typewriterText');
+      if (!liveEl) {
+        typewriterRunning = false;
+        return; // Element destroyed
+      }
+
       const current = phrases[phraseIndex];
 
       if (!isDeleting) {
-        el.textContent = current.substring(0, charIndex + 1);
+        liveEl.textContent = current.substring(0, charIndex + 1);
         charIndex++;
 
         if (charIndex === current.length) {
           isPaused = true;
-          setTimeout(() => {
+          typewriterTimeoutId = setTimeout(() => {
             isPaused = false;
             isDeleting = true;
             type();
@@ -310,7 +322,7 @@
           return;
         }
       } else {
-        el.textContent = current.substring(0, charIndex - 1);
+        liveEl.textContent = current.substring(0, charIndex - 1);
         charIndex--;
 
         if (charIndex === 0) {
@@ -320,11 +332,11 @@
       }
 
       const speed = isDeleting ? 40 : 80;
-      setTimeout(type, speed);
+      typewriterTimeoutId = setTimeout(type, speed);
     }
 
     // Start after a brief delay
-    setTimeout(type, 1000);
+    typewriterTimeoutId = setTimeout(type, 1000);
   }
 
   document.addEventListener('DOMContentLoaded', initTypewriter);
