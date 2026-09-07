@@ -103,14 +103,13 @@
     const avatar = p.avatar || settings.avatar || 'media/profile/Prof._Passport_size_image.jpg';
     const heroStatusText = p.heroStatusText || settings.heroStatusText || 'Seeking PhD Opportunities · Fall 2026';
 
-    const socials = p.socials || {
-      github: settings.social_github || 'https://github.com/rashelmahmudrabbi',
-      linkedin: settings.social_linkedin || 'https://www.linkedin.com/in/rashelmahmudrabbi',
-      researchgate: settings.social_researchgate || 'https://www.researchgate.net/profile/rashel-mahmud-rabbi',
-      scholar: settings.social_scholar || 'https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ',
-      orcid: settings.social_orcid || 'https://orcid.org/0009-0004-6070-4496',
-      x: settings.social_x || 'https://x.com/rashel_m_rabbi'
-    };
+    const socials = p.socials || {};
+    socials.github = socials.github || settings.social_github || 'https://github.com/rashelmahmudrabbi';
+    socials.linkedin = socials.linkedin || settings.social_linkedin || 'https://www.linkedin.com/in/rashelmahmudrabbi';
+    socials.researchgate = socials.researchgate || settings.social_researchgate || 'https://www.researchgate.net/profile/rashel-mahmud-rabbi';
+    socials.scholar = socials.scholar || settings.social_scholar || 'https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ';
+    socials.orcid = socials.orcid || settings.social_orcid || 'https://orcid.org/0009-0004-6070-4496';
+    socials.x = socials.x || settings.social_x || 'https://x.com/rashel_m_rabbi';
 
     const stats = p.stats || {
       publications: settings.stat_publications ?? 3,
@@ -988,13 +987,12 @@
     const email = p.email || settings.email;
     const phone = p.phone || settings.phone;
     const location = p.location || settings.location;
-    const socials = p.socials || {
-      github: settings.social_github,
-      linkedin: settings.social_linkedin,
-      scholar: settings.social_scholar,
-      orcid: settings.social_orcid,
-      x: settings.social_x
-    };
+    const socials = p.socials || {};
+    socials.github = socials.github || settings.social_github;
+    socials.linkedin = socials.linkedin || settings.social_linkedin;
+    socials.scholar = socials.scholar || settings.social_scholar;
+    socials.orcid = socials.orcid || settings.social_orcid;
+    socials.x = socials.x || settings.social_x || 'https://x.com/rashel_m_rabbi';
     const leftEl = document.getElementById('contactInfoLeft');
     const rightEl = document.getElementById('contactInfoRight');
     if (leftEl) {
