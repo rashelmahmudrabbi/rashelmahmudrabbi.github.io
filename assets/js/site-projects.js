@@ -3,29 +3,43 @@
   
   const result = await getPortfolio(true);
   const d = result.data || {};
-  const projects = d.projects || [];
-  const settings = d.settings || {};
+  let projects = d.projects || [];
+  let settings = d.settings || {};
+  let research = [];
+  let dev = [];
+  let years = [];
 
-  const research = projects.filter((p) => p.category === 'research' || p.category === 'thesis');
-  const dev = projects.filter((p) => p.category === 'development');
-  const featured = projects.filter((p) => p.featured);
-  const thesis = projects.filter((p) => p.category === 'thesis');
+  function initProjectsView(data) {
+    projects = data.projects || [];
+    settings = data.settings || {};
+    research = projects.filter((p) => p.category === 'research' || p.category === 'thesis');
+    dev = projects.filter((p) => p.category === 'development');
+    years = [...new Set(projects.map((p) => p.year).filter(Boolean))].sort().reverse();
 
-  const years = [...new Set(projects.map((p) => p.year).filter(Boolean))].sort().reverse();
+    renderFilterBar();
+    renderProjectsContainer();
+    renderFooter(settings);
+  }
 
-  renderFilterBar();
-  renderProjectsContainer();
-  renderFooter(settings);
+  initProjectsView(d);
+
+  window.addEventListener('portfolio-updated', (e) => {
+    if (e.detail && e.detail.data) {
+      initProjectsView(e.detail.data);
+    }
+  });
 
   function renderFilterBar() {
     const el = document.getElementById('filterBarButtons');
+    if (!el) return;
     const buttons = [
+      `<span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>`,
       `<button class="filter-btn all active" onclick="filterProjects('all',this)">All (${projects.length})</button>`,
       `<button class="filter-btn" onclick="filterProjects('research',this)">Research (${research.length})</button>`,
       `<button class="filter-btn" onclick="filterProjects('development',this)">Development (${dev.length})</button>`,
       ...years.map((y) => `<button class="filter-btn" onclick="filterProjects('${escapeHtml(y)}',this)">${escapeHtml(y)}</button>`),
     ];
-    el.insertAdjacentHTML('beforeend', buttons.join(''));
+    el.innerHTML = buttons.join('');
   }
 
   function techChips(tech, cls) {

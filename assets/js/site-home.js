@@ -26,23 +26,47 @@
 
   // ── 2. Render every section ────────────────────────────────────────────
   // Each render call is wrapped so one failure doesn't block the others.
-  safeRender('Hero',              () => renderHero(settings, spotlights));
-  safeRender('Objective',         () => renderObjective(settings));
-  safeRender('Research Statement',() => renderResearchStatement(settings));
-  safeRender('Research Interests',() => renderResearchInterests(settings));
-  safeRender('Experience',        () => renderExperience(experience));
-  safeRender('Education',         () => renderEducation(education));
-  safeRender('Publications',      () => renderPublications(publications));
-  safeRender('Projects',          () => renderProjects(projects));
-  safeRender('Certifications',    () => renderCertifications(certifications));
-  safeRender('Skills',            () => renderSkills(settings, d.spokenLanguages));
-  safeRender('Awards',            () => renderAwardsAndActivities(awards, activities));
-  safeRender('Gallery',           () => renderGallery(gallery));
-  safeRender('Contact Info',     () => renderContactInfo(settings));
-  safeRender('References',        () => renderReferences(references));
-  safeRender('Footer',            () => renderFooter(settings));
+  function renderAll(data) {
+    const s = data.settings || {};
+    const edu = data.education || [];
+    const exp = data.experience || [];
+    const pubs = data.publications || [];
+    const projs = data.projects || [];
+    const certs = data.certifications || [];
+    const awds = data.awards || [];
+    const acts = data.activities || [];
+    const gal = data.gallery || [];
+    const refs = data.references || [];
+    const spots = data.spotlights || [];
 
-  // Dismiss preloader smoothly as all content is ready
+    safeRender('Hero',              () => renderHero(s, spots));
+    safeRender('Objective',         () => renderObjective(s));
+    safeRender('Research Statement',() => renderResearchStatement(s));
+    safeRender('Research Interests',() => renderResearchInterests(s));
+    safeRender('Experience',        () => renderExperience(exp));
+    safeRender('Education',         () => renderEducation(edu));
+    safeRender('Publications',      () => renderPublications(pubs));
+    safeRender('Projects',          () => renderProjects(projs));
+    safeRender('Certifications',    () => renderCertifications(certs));
+    safeRender('Skills',            () => renderSkills(s, data.spokenLanguages));
+    safeRender('Awards',            () => renderAwardsAndActivities(awds, acts));
+    safeRender('Gallery',           () => renderGallery(gal));
+    safeRender('Contact Info',     () => renderContactInfo(s));
+    safeRender('References',        () => renderReferences(refs));
+    safeRender('Footer',            () => renderFooter(s));
+  }
+
+  // Initial immediate render (from instant SWR cache or network)
+  renderAll(d);
+
+  // Listen for background SWR revalidation updates
+  window.addEventListener('portfolio-updated', (e) => {
+    if (e.detail && e.detail.data) {
+      renderAll(e.detail.data);
+    }
+  });
+
+  // Dismiss preloader smoothly as content is ready
   if (window.dismissPreloader) {
     window.dismissPreloader();
   }
@@ -412,7 +436,7 @@
           ? exp.bullets
           : (typeof exp.bullets === 'string' ? exp.bullets.split('\n').map(s => s.trim()).filter(Boolean) : []);
         return `
-      <div class="timeline-item">
+      <div class="timeline-item stagger-item">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <h5>${escapeHtml(exp.title || exp.role || '')}</h5>
@@ -423,6 +447,9 @@
       </div>`;
       })
       .join('') || '<p class="text-muted">No experience entries yet.</p>';
+      
+    el.setAttribute('data-stagger-parent', '');
+    if (window.initStaggerObserver) window.initStaggerObserver();
   }
 
   function renderEducation(education) {
@@ -530,7 +557,7 @@
     el.innerHTML = filteredEducation
       .map(
         (e) => `
-      <div class="academic-timeline-item">
+      <div class="academic-timeline-item stagger-item">
         <div class="d-flex align-items-baseline justify-content-between flex-wrap gap-2 mb-1">
           <h4 class="ti-degree mb-0">${escapeHtml(getDegreeTitle(e))}</h4>
           ${getGradeChip(e) ? `<span class="ti-grade-chip">${escapeHtml(getGradeChip(e))}</span>` : ''}
@@ -542,6 +569,9 @@
       </div>`
       )
       .join('');
+
+    el.setAttribute('data-stagger-parent', '');
+    if (window.initStaggerObserver) window.initStaggerObserver();
   }
 
   function pubBadgeClass(type) {
@@ -1043,12 +1073,41 @@
 
   function renderFooter(settings) {
     const p = settings.profile || settings || {};
-    if (settings.footerText) document.getElementById('footerText').textContent = settings.footerText;
-    document.getElementById('footerYear').textContent = new Date().getFullYear();
+    if (settings.footerText) {
+      const ft = document.getElementById('footerText');
+      if (ft) ft.textContent = settings.footerText;
+    }
+    const fy = document.getElementById('footerYear');
+    if (fy) fy.textContent = new Date().getFullYear();
     const footerName = p.name || settings.name || 'RASHEL MAHMUD RABBI';
     const footerTitle = p.title || settings.title || 'Graduate Researcher · Computer Vision & AI';
-    document.getElementById('footerName').textContent = footerName;
-    document.getElementById('footerTitle').textContent = footerTitle;
+    const fn = document.getElementById('footerName');
+    if (fn) fn.textContent = footerName;
+    const fti = document.getElementById('footerTitle');
+    if (fti) fti.textContent = footerTitle;
+
+    // Dynamically update footer social links including X (Twitter)
+    const footerSocialsEl = document.getElementById('footerSocials');
+    if (footerSocialsEl) {
+      const socials = p.socials || {};
+      const gh = socials.github || settings.social_github || 'https://github.com/rashelmahmudrabbi';
+      const li = socials.linkedin || settings.social_linkedin || 'https://www.linkedin.com/in/rashelmahmudrabbi';
+      const rg = socials.researchgate || settings.social_researchgate || 'https://www.researchgate.net/profile/rashel-mahmud-rabbi';
+      const sc = socials.scholar || settings.social_scholar || 'https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ';
+      const or = socials.orcid || settings.social_orcid || 'https://orcid.org/0009-0004-6070-4496';
+      const xUrl = socials.x || settings.social_x || 'https://x.com/rashel_m_rabbi';
+      const email = p.email || settings.email || 'raselmahud6757@gmail.com';
+
+      footerSocialsEl.innerHTML = `
+        ${gh ? `<a class="footer-social-link" href="${escapeHtml(gh)}" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="bi bi-github"></i></a>` : ''}
+        ${li ? `<a class="footer-social-link" href="${escapeHtml(li)}" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>` : ''}
+        ${rg ? `<a class="footer-social-link" href="${escapeHtml(rg)}" target="_blank" rel="noopener noreferrer" title="ResearchGate" aria-label="ResearchGate"><i class="bi bi-journal-text"></i></a>` : ''}
+        ${sc ? `<a class="footer-social-link" href="${escapeHtml(sc)}" target="_blank" rel="noopener noreferrer" title="Google Scholar" aria-label="Google Scholar"><i class="bi bi-mortarboard"></i></a>` : ''}
+        ${or ? `<a class="footer-social-link" href="${escapeHtml(or)}" target="_blank" rel="noopener noreferrer" title="ORCID" aria-label="ORCID"><i class="bi bi-person-badge"></i></a>` : ''}
+        ${xUrl ? `<a class="footer-social-link" href="${escapeHtml(xUrl)}" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>` : ''}
+        ${email ? `<a class="footer-social-link" href="mailto:${escapeHtml(email)}" title="Email" aria-label="Email"><i class="bi bi-envelope"></i></a>` : ''}
+      `;
+    }
   }
 })();
 

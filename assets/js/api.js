@@ -4,14 +4,14 @@
 // this whole script.
 
 // ─── Constants ───────────────────────────────────────────────────────────
-// Fallback strategy: Direct data.json -> LocalStorage Cache -> Backend /portfolio
-const CACHE_KEY = 'portfolio_cache_v9';
-const CACHE_TTL_MS = 60 * 1000; // 1 minute
-const FETCH_TIMEOUT_MS = 20000; // 20s network timeout before fallback
+// Fallback strategy: Instant Cache (SWR) -> Background Backend Refresh -> Local data.json
+const CACHE_KEY = 'portfolio_cache_v10';
+const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes fresh TTL
+const FETCH_TIMEOUT_MS = 6000; // 6s network timeout for smooth fallback during cold starts
 
 // Clear legacy caches to prevent stale data divergence
 try {
-  ['portfolio_cache_v1', 'portfolio_cache_v2', 'portfolio_cache_v3', 'portfolio_cache_v4', 'portfolio_cache_v5'].forEach(k => localStorage.removeItem(k));
+  ['portfolio_cache_v1', 'portfolio_cache_v2', 'portfolio_cache_v3', 'portfolio_cache_v4', 'portfolio_cache_v5', 'portfolio_cache_v6', 'portfolio_cache_v7', 'portfolio_cache_v8', 'portfolio_cache_v9'].forEach(k => localStorage.removeItem(k));
 } catch (e) {}
 
 // ─── Data Normalizer ──────────────────────────────────────────────────────
@@ -241,45 +241,73 @@ function isCacheFresh(cached) {
 }
 
 // Fetches the combined portfolio endpoint.
-// Returns { data: {...}, error: null|Error, fromCache: bool }
+// True Stale-While-Revalidate (SWR):
+// 1. If cache exists, return it IMMEDIATELY (<5ms) to paint the UI.
+// 2. In the background, fetch fresh data from backend. If changed, updates cache and dispatches 'portfolio-updated' event.
+// 3. If no cache exists, fetches from backend (or static data.json fallback).
 async function getPortfolio(isSubpage = false) {
-  // First attempt: Remote backend (dynamic source of truth)
+  const cached = getCachedPortfolio();
+
+  // Background revalidation helper
+  const revalidateInBackground = () => {
+    fetchWithTimeout(API_BASE + '/portfolio')
+      .then(res => {
+        if (!res.ok) throw new Error('Status ' + res.status);
+        return res.json();
+      })
+      .then(fresh => {
+        const freshNormalized = normalizePortfolioData(fresh);
+        const oldStr = cached ? JSON.stringify(cached.data) : '';
+        const newStr = JSON.stringify(freshNormalized);
+        setCachedPortfolio(freshNormalized);
+        if (oldStr && oldStr !== newStr) {
+          // Data changed on backend: notify any listening page scripts to quietly re-render
+          window.dispatchEvent(new CustomEvent('portfolio-updated', { detail: { data: freshNormalized } }));
+        }
+      })
+      .catch(err => {
+        console.warn('Background portfolio revalidation note:', err.message);
+      });
+  };
+
+  // If we have cached data, return it immediately for 0-latency page display!
+  if (cached && cached.data) {
+    // If cache is older than TTL, revalidate in background without blocking rendering
+    if (!isCacheFresh(cached)) {
+      setTimeout(revalidateInBackground, 50);
+    }
+    return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
+  }
+
+  // If no cache, perform immediate network fetch
   try {
     const res = await fetchWithTimeout(API_BASE + '/portfolio');
     if (!res.ok) throw new Error('Request failed: ' + res.status);
     const fresh = await res.json();
-    setCachedPortfolio(fresh);
-    return { data: normalizePortfolioData(fresh), error: null, fromCache: false };
+    const normalized = normalizePortfolioData(fresh);
+    setCachedPortfolio(normalized);
+    return { data: normalized, error: null, fromCache: false };
   } catch (err) {
     console.warn('Could not load /portfolio from backend:', err.message);
   }
 
-  // Second attempt: Session cache
-  const cached = getCachedPortfolio();
-  if (cached && isCacheFresh(cached)) {
-    return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
-  }
-
-  // Third attempt: Fallback to static data.json if backend fails
+  // Fallback to static data.json if backend is cold/unreachable
   try {
     const inSub = isSubpage || Boolean(document.querySelector('script[src^="../"]') || document.querySelector('link[href^="../"]'));
-    let localRes = await fetch((inSub ? '../assets/data/data.json?v=9' : 'assets/data/data.json?v=9'), { cache: 'no-cache' });
+    let localRes = await fetch((inSub ? '../assets/data/data.json?v=10' : 'assets/data/data.json?v=10'), { cache: 'default' });
     if (!localRes.ok) {
-      localRes = await fetch((inSub ? 'assets/data/data.json?v=9' : '../assets/data/data.json?v=9'), { cache: 'no-cache' });
+      localRes = await fetch((inSub ? 'assets/data/data.json?v=10' : '../assets/data/data.json?v=10'), { cache: 'default' });
     }
     if (localRes && localRes.ok) {
       const localData = await localRes.json();
-      setCachedPortfolio(localData);
-      return { data: normalizePortfolioData(localData), error: null, fromCache: false };
+      const normalizedLocal = normalizePortfolioData(localData);
+      setCachedPortfolio(normalizedLocal);
+      return { data: normalizedLocal, error: null, fromCache: false };
     }
   } catch (e) {
     console.warn('Direct data.json fetch failed:', e);
   }
 
-  // Final fallback
-  if (cached) {
-    return { data: normalizePortfolioData(cached.data), error: null, fromCache: true };
-  }
   return {
     data: normalizePortfolioData({
       settings: {}, education: [], experience: [], publications: [],

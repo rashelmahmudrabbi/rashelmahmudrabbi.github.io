@@ -5296,3 +5296,122 @@ footer a:hover {
   border-color: var(--gold);
 }
 
+/* ============ SHARED CARD SURFACE ============ */
+.card-surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  box-shadow: 0 4px 20px rgba(11, 31, 58, 0.04);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.card-surface:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+}
+[data-theme="dark"] .card-surface {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+[data-theme="dark"] .card-surface:hover {
+  border-color: var(--gold);
+}
+
+/* ============ THEME KNOB ROTATE ANIMATION ============ */
+#themeToggle {
+  transition: transform 0.25s var(--ease), background 0.25s ease;
+}
+#themeToggle:hover {
+  transform: scale(1.08);
+}
+#themeToggle .knob {
+  display: inline-block;
+  transition: transform 0.4s var(--ease);
+}
+#themeToggle:active .knob {
+  transform: rotate(360deg);
+}
+
+/* ============ CONTACT FORM & TOAST STYLES ============ */
+.contact-form-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 2.2rem;
+  box-shadow: 0 12px 40px rgba(11, 31, 58, 0.06);
+}
+[data-theme="dark"] .contact-form-card {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+.contact-input-field {
+  background: var(--surface-2);
+  border: 1.5px solid var(--line);
+  color: var(--text-dark);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+.contact-input-field:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+  background: var(--surface);
+  color: var(--text-dark);
+}
+[data-theme="dark"] .contact-input-field {
+  background: var(--surface-2);
+  color: var(--ink);
+  border-color: var(--line);
+}
+[data-theme="dark"] .contact-input-field:focus {
+  background: var(--surface);
+  color: #ffffff;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(120, 169, 255, 0.2);
+}
+.contact-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-mid);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+/* Toast notification */
+.copy-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--navy-deep);
+  color: #FFFFFF;
+  border: 1px solid var(--gold);
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.copy-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+[data-theme="dark"] .copy-toast {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+

@@ -14,7 +14,10 @@
 
 function updateThemeKnob(isDark) {
   const knob = document.querySelector('#themeToggle .knob');
-  if (knob) knob.textContent = isDark ? '☾' : '☀';
+  if (knob) {
+    knob.textContent = isDark ? '☾' : '☀';
+    knob.setAttribute('data-theme-icon', isDark ? 'dark' : 'light');
+  }
 }
 
 function toggleTheme() {

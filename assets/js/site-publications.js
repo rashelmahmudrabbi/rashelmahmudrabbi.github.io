@@ -3,9 +3,9 @@
   
   const result = await getPortfolio(true);
   const d = result.data || {};
-  const publications = d.publications || [];
-  const settings = d.settings || {};
-  const ownerName = (settings.profile && settings.profile.name) || '';
+  let publications = d.publications || [];
+  let settings = d.settings || {};
+  let ownerName = (settings.profile && settings.profile.name) || '';
 
   const typeBadge = { conference: 'badge-conference', journal: 'badge-journal', thesis: 'badge-thesis' };
   const typeLabel = { conference: 'Conference Paper', journal: 'Journal Article', thesis: 'Thesis' };
@@ -24,10 +24,24 @@
     preprint: 'Preprint',
   };
 
-  renderStats();
-  renderFilterBar();
-  renderList();
-  renderFooter(settings);
+  function initPublicationsView(data) {
+    publications = data.publications || [];
+    settings = data.settings || {};
+    ownerName = (settings.profile && settings.profile.name) || '';
+
+    renderStats();
+    renderFilterBar();
+    renderList();
+    renderFooter(settings);
+  }
+
+  initPublicationsView(d);
+
+  window.addEventListener('portfolio-updated', (e) => {
+    if (e.detail && e.detail.data) {
+      initPublicationsView(e.detail.data);
+    }
+  });
 
   function renderStats() {
     const total = publications.length;
@@ -48,14 +62,13 @@
     const conference = publications.filter((p) => p.type === 'conference').length;
     const thesis = publications.filter((p) => p.type === 'thesis').length;
     const el = document.getElementById('filterBarButtons');
-    el.insertAdjacentHTML(
-      'beforeend',
-      `
+    if (!el) return;
+    el.innerHTML = `
+      <span style="font-size:.78rem;font-weight:600;color:var(--text-mid);margin-right:.3rem;text-transform:uppercase;letter-spacing:.5px;">Filter:</span>
       <button class="filter-btn all active" onclick="filterPubs('all',this)">All (${publications.length})</button>
       ${journal ? `<button class="filter-btn" onclick="filterPubs('journal',this)">Journal (${journal})</button>` : ''}
       ${conference ? `<button class="filter-btn" onclick="filterPubs('conference',this)">Conference (${conference})</button>` : ''}
-      ${thesis ? `<button class="filter-btn" onclick="filterPubs('thesis',this)">Thesis (${thesis})</button>` : ''}`
-    );
+      ${thesis ? `<button class="filter-btn" onclick="filterPubs('thesis',this)">Thesis (${thesis})</button>` : ''}`;
   }
 
   // Helper to bold the owner's name in the authors list

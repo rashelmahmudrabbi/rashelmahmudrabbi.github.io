@@ -2,9 +2,9 @@
   'use strict';
   const result = await getPortfolio(true);
   const d = result.data || {};
-  const settings = d.settings || {};
-  const posts = d.blog || [];
-  const p = settings.profile || {};
+  let posts = d.blog || [];
+  let settings = d.settings || {};
+  let p = settings.profile || {};
 
   let activeCategory = 'all';
 
@@ -17,11 +17,24 @@
   };
   const iconFor = (cat) => iconMap[cat] || 'bi-pencil-square';
 
-  renderPosts(activeCategory);
-  renderTags();
-  renderRecent();
-  renderConnect();
-  renderAuthorAndFooter();
+  function initBlogView(data) {
+    posts = data.blog || [];
+    settings = data.settings || {};
+    p = settings.profile || {};
+    renderPosts(activeCategory);
+    renderTags();
+    renderRecent();
+    renderConnect();
+    renderAuthorAndFooter();
+  }
+
+  initBlogView(d);
+
+  window.addEventListener('portfolio-updated', (e) => {
+    if (e.detail && e.detail.data) {
+      initBlogView(e.detail.data);
+    }
+  });
 
   function postCardHtml(post, idx) {
     return `

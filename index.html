@@ -34,15 +34,29 @@
   <link rel="preconnect" href="https://portfolio-backend-u.vercel.app">
   <link rel="dns-prefetch" href="https://portfolio-backend-u.vercel.app">
   <link rel="preload" href="media/profile/Prof._Passport_size_image.jpg" as="image">
-  <link rel="preload" href="assets/js/config.js?v=3.8" as="script">
-  <link rel="preload" href="assets/js/api.js?v=3.8" as="script">
-  <link rel="preload" href="assets/js/site-home.js?v=3.8" as="script">
+  <link rel="preload" href="assets/js/config.js?v=3.9" as="script">
+  <link rel="preload" href="assets/js/api.js?v=3.9" as="script">
+  <link rel="preload" href="assets/js/site-home.js?v=4.0" as="script">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css?v=3.8" />
+  <!-- Early Theme Pre-paint Init to eliminate FOUC -->
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('portfolio_theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (saved === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -56,7 +70,14 @@
       "name": "North Bengal International University"
     },
     "knowsAbout": ["Computer Vision", "Artificial Intelligence", "Deep Learning", "Medical Image Analysis"],
-    "sameAs": []
+    "sameAs": [
+      "https://github.com/rashelmahmudrabbi",
+      "https://www.linkedin.com/in/rashelmahmudrabbi",
+      "https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ",
+      "https://www.researchgate.net/profile/rashel-mahmud-rabbi",
+      "https://orcid.org/0009-0004-6070-4496",
+      "https://x.com/rashel_m_rabbi"
+    ]
   }
   </script>
 </head>
@@ -98,7 +119,7 @@
 
           <!-- CV ACTION BUTTON -->
           <li class="nav-item ms-lg-2 my-2 my-lg-0">
-            <a class="nav-cv-btn text-decoration-none" href="https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing" target="_blank">
+            <a class="nav-cv-btn text-decoration-none" data-magnetic="0.2" href="https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing" target="_blank">
               <i class="bi bi-eye"></i> View CV
             </a>
           </li>
@@ -642,8 +663,8 @@
 
     <!-- LIGHTBOX MODAL -->
     <div id="lightboxModal"
-      style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,12,30,.96);align-items:center;justify-content:center;flex-direction:column;">
-      <button onclick="closeLightbox()"
+      style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,12,30,.96);align-items:center;justify-content:center;flex-direction:column;" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+      <button onclick="closeLightbox()" aria-label="Close photo lightbox"
         style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:10;line-height:1;">&times;</button>
       <div id="lbCounter"
         style="position:absolute;top:1.4rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:.85rem;letter-spacing:.5px;">
@@ -651,7 +672,7 @@
       <div id="lbTitle"
         style="position:absolute;top:1.2rem;left:1.5rem;color:var(--gold-lt);font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;max-width:55%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
       </div>
-      <button onclick="lbPrev()" id="lbPrevBtn"
+      <button onclick="lbPrev()" id="lbPrevBtn" aria-label="Previous photo"
         style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8249;</button>
       <div
         style="max-width:90vw;max-height:80vh;display:flex;align-items:center;justify-content:center;margin-top:2.5rem;">
@@ -663,7 +684,7 @@
       </div>
       <div id="lbThumbs"
         style="display:flex;gap:.5rem;margin-top:.8rem;overflow-x:auto;max-width:90vw;padding:.3rem .5rem;"></div>
-      <button onclick="lbNext()" id="lbNextBtn"
+      <button onclick="lbNext()" id="lbNextBtn" aria-label="Next photo"
         style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8250;</button>
     </div>
 
@@ -709,6 +730,8 @@
           target="_blank" title="Google Scholar" aria-label="Google Scholar"><i class="bi bi-mortarboard"></i></a>
         <a class="footer-social-link" href="https://orcid.org/0009-0004-6070-4496" target="_blank" title="ORCID"
           aria-label="ORCID"><i class="bi bi-person-badge"></i></a>
+        <a class="footer-social-link" href="https://x.com/rashel_m_rabbi" target="_blank" title="X (Twitter)"
+          aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
         <a class="footer-social-link" href="mailto:raselmahud6757@gmail.com" title="Email" aria-label="Email"><i
             class="bi bi-envelope"></i></a>
       </div>
@@ -716,8 +739,6 @@
       <p class="mb-0">
         © <span id="footerYear">2026</span> <strong id="footerName" class="footer-name">RASHEL MAHMUD RABBI</strong>
         &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
-        <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
-          class="footer-admin-link" aria-label="Admin"><i class="bi bi-gear-fill"></i></a>
       </p>
     </div>
   </footer>
@@ -851,8 +872,26 @@
       startSpotlightTimer();
       const box = document.querySelector('.hero-spotlight-box');
       if (box) {
+        // Pause on mouse hover & keyboard focus
         box.onmouseenter = () => clearInterval(spotlightInterval);
         box.onmouseleave = () => startSpotlightTimer();
+        box.onfocusin = () => clearInterval(spotlightInterval);
+        box.onfocusout = () => startSpotlightTimer();
+
+        // Touch swipe gesture support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        box.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        box.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 45) {
+            if (diff > 0) nextSpotlight();
+            else prevSpotlight();
+          }
+        }, { passive: true });
       }
     };
 
@@ -1025,10 +1064,10 @@
       if (e.target === this) window.closeLightbox();
     });
   </script>
-  <script defer src="assets/js/config.js?v=3.8"></script>
-  <script defer src="assets/js/api.js?v=3.8"></script>
-  <script defer src="assets/js/site-home.js?v=3.8"></script>
-  <script defer src="assets/js/interactions.js?v=3.8"></script>
+  <script defer src="assets/js/config.js?v=3.9"></script>
+  <script defer src="assets/js/api.js?v=3.9"></script>
+  <script defer src="assets/js/site-home.js?v=4.0"></script>
+  <script defer src="assets/js/interactions.js?v=3.9"></script>
 </body>
 
 </html>

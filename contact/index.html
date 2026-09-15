@@ -34,6 +34,20 @@
     href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/styles.css?v=3.8" />
+  <!-- Early Theme Pre-paint Init to eliminate FOUC -->
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('portfolio_theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (saved === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -117,7 +131,7 @@
 
           <!-- CV ACTION BUTTON -->
           <li class="nav-item ms-lg-2 my-2 my-lg-0">
-            <a class="nav-cv-btn text-decoration-none" href="https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing"
+            <a class="nav-cv-btn text-decoration-none" data-magnetic="0.2" href="https://drive.google.com/file/d/1ezs8hs6v_8_XickPu8nDRnsOSmf9bYvE/view?usp=sharing"
               target="_blank">
               <i class="bi bi-eye"></i> View CV
             </a>
@@ -150,24 +164,27 @@
 
           <!-- Left side: Contact text & direct info -->
           <div class="col-lg-5">
-            <h2 class="mb-4" style="font-family:'Crimson Pro',serif; font-size: 2.5rem; color: var(--text-dark);">Let's
-              Connect</h2>
-            <p class="mb-4" style="font-size: 1.1rem; color: var(--text-mid); line-height: 1.6;">
-              I am currently open to new research opportunities, academic collaborations, and industry roles in Computer
-              Vision and AI.
-              Feel free to reach out via email or connect with me on professional platforms.
+            <h2 class="mb-4" style="font-family:'Crimson Pro',serif; font-size: 2.5rem; color: var(--text-dark);">Let's Connect</h2>
+            <p class="mb-4" style="font-size: 1.05rem; color: var(--text-mid); line-height: 1.65;">
+              I am currently open to new research opportunities, academic collaborations, and industry roles in Computer Vision and AI.
+              Feel free to send a message directly using the form, reach out via email, or connect on professional platforms.
             </p>
 
             <div class="d-flex flex-column gap-3 mb-4 mt-4">
-              <a href="mailto:raselmahud6757@gmail.com"
-                class="btn px-4 py-2 rounded-pill d-inline-flex align-items-center justify-content-center text-decoration-none btn-email-cta">
-                <i class="bi bi-envelope-paper-fill fs-5 me-2"></i> Send an Email
-              </a>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <a href="mailto:raselmahud6757@gmail.com"
+                  class="btn px-4 py-2 rounded-pill d-inline-flex align-items-center justify-content-center text-decoration-none btn-email-cta">
+                  <i class="bi bi-envelope-paper-fill fs-5 me-2"></i> Send an Email
+                </a>
+                <button type="button" class="btn btn-outline-secondary px-3 py-2 rounded-pill d-inline-flex align-items-center" onclick="copyEmail(this)" title="Copy email address to clipboard">
+                  <i class="bi bi-clipboard me-1"></i> Copy Email
+                </button>
+              </div>
 
               <div class="contact-info-pill d-flex align-items-center p-3 rounded-4 mt-2"
                 style="background: var(--surface-2); border: 1px solid var(--line); color: var(--text-dark); transition: all 0.3s ease;">
                 <div class="d-flex align-items-center justify-content-center rounded-circle me-3"
-                  style="width:48px; height:48px; background: rgba(184,134,42,0.1); color: var(--gold);">
+                  style="width:48px; height:48px; background: rgba(47,111,237,0.1); color: var(--gold);">
                   <i class="bi bi-geo-alt-fill fs-5"></i>
                 </div>
                 <div>
@@ -177,74 +194,96 @@
                 </div>
               </div>
             </div>
+
+            <!-- Professional links mini-grid -->
+            <div class="row g-2 mt-2">
+              <div class="col-4">
+                <a href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-2 rounded-3 text-center">
+                    <i class="bi bi-linkedin fs-4 d-block" style="color: #0A66C2;"></i>
+                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-dark);">LinkedIn</span>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://github.com/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-2 rounded-3 text-center">
+                    <i class="bi bi-github fs-4 d-block" style="color: var(--text-dark);"></i>
+                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-dark);">GitHub</span>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-2 rounded-3 text-center">
+                    <i class="bi bi-mortarboard-fill fs-4 d-block" style="color: #4285F4;"></i>
+                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-dark);">Scholar</span>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-2 rounded-3 text-center">
+                    <i class="bi bi-journal-text fs-4 d-block" style="color: #00CCBB;"></i>
+                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-dark);">ResearchGate</span>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://orcid.org/0009-0004-6070-4496" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-2 rounded-3 text-center">
+                    <i class="bi bi-person-badge fs-4 d-block" style="color: #A6CE39;"></i>
+                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-dark);">ORCID</span>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://x.com/rashel_m_rabbi" target="_blank" class="text-decoration-none">
+                  <div class="contact-social-card p-2 rounded-3 text-center">
+                    <i class="bi bi-twitter-x fs-4 d-block" style="color: var(--text-dark);"></i>
+                    <span style="font-size:0.75rem; font-weight:600; color:var(--text-dark);">X</span>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
 
-          <!-- Right side: Professional links grid -->
-          <div class="col-lg-7 ps-lg-5">
-            <div class="row g-3">
+          <!-- Right side: Interactive Contact Form -->
+          <div class="col-lg-7 ps-lg-4">
+            <div class="contact-form-card">
+              <h3 style="font-family:'Crimson Pro',serif; font-size:1.8rem; font-weight:700; color:var(--text-dark); margin-bottom:0.5rem;">
+                <i class="bi bi-send-fill me-2" style="color:var(--gold);"></i>Send a Direct Message
+              </h3>
+              <p style="color:var(--text-mid); font-size:0.92rem; margin-bottom:1.5rem;">
+                Have a question or proposal? Drop a message and I'll get back to you promptly.
+              </p>
 
-              <div class="col-sm-6">
-                <a href="https://www.linkedin.com/in/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
-                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                    <i class="bi bi-linkedin fs-2 mb-2 d-block" style="color: #0A66C2;"></i>
-                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">LinkedIn</h4>
-                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Professional network</p>
+              <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="contact-label" for="contactName">Your Name *</label>
+                    <input type="text" class="contact-input-field" id="contactName" name="name" placeholder="Dr. Jane Doe" required />
                   </div>
-                </a>
-              </div>
-
-              <div class="col-sm-6">
-                <a href="https://github.com/rashelmahmudrabbi" target="_blank" class="text-decoration-none">
-                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                    <i class="bi bi-github fs-2 mb-2 d-block github-icon" style="color: var(--text-dark);"></i>
-                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">GitHub</h4>
-                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Code repositories</p>
+                  <div class="col-md-6">
+                    <label class="contact-label" for="contactEmail">Your Email *</label>
+                    <input type="email" class="contact-input-field" id="contactEmail" name="email" placeholder="jane@university.edu" required />
                   </div>
-                </a>
-              </div>
-
-              <div class="col-sm-6">
-                <a href="https://scholar.google.com/citations?hl=en&user=agrATD8AAAAJ" target="_blank"
-                  class="text-decoration-none">
-                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                    <i class="bi bi-mortarboard-fill fs-2 mb-2 d-block" style="color: #4285F4;"></i>
-                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">Google Scholar</h4>
-                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Research publications</p>
+                  <div class="col-12">
+                    <label class="contact-label" for="contactSubject">Subject</label>
+                    <input type="text" class="contact-input-field" id="contactSubject" name="subject" placeholder="Research collaboration / Inquiry" />
                   </div>
-                </a>
-              </div>
-
-              <div class="col-sm-6">
-                <a href="https://www.researchgate.net/profile/rashel-mahmud-rabbi" target="_blank"
-                  class="text-decoration-none">
-                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                    <i class="bi bi-journal-text fs-2 mb-2 d-block" style="color: #00CCBB;"></i>
-                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">ResearchGate</h4>
-                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Academic profile</p>
+                  <div class="col-12">
+                    <label class="contact-label" for="contactMessage">Message *</label>
+                    <textarea class="contact-input-field" id="contactMessage" name="message" rows="5" placeholder="Write your message here..." required></textarea>
                   </div>
-                </a>
-              </div>
-
-              <div class="col-sm-6">
-                <a href="https://orcid.org/0009-0004-6070-4496" target="_blank" class="text-decoration-none">
-                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                    <i class="bi bi-person-badge fs-2 mb-2 d-block" style="color: #A6CE39;"></i>
-                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">ORCID</h4>
-                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Researcher ID</p>
+                  <div class="col-12">
+                    <button type="submit" id="contactSubmitBtn" class="btn btn-primary px-4 py-2 rounded-pill d-inline-flex align-items-center">
+                      <i class="bi bi-send me-2"></i> Send Message
+                    </button>
+                    <div id="contactFormStatus" class="mt-3" style="display:none; font-size:0.92rem; font-weight:500;"></div>
                   </div>
-                </a>
-              </div>
-
-              <div class="col-sm-6">
-                <a href="https://x.com/rashel_m_rabbi" target="_blank" class="text-decoration-none">
-                  <div class="contact-social-card p-3 rounded-4 text-center h-100">
-                    <i class="bi bi-twitter-x fs-2 mb-2 d-block github-icon" style="color: var(--text-dark);"></i>
-                    <h4 class="h6 fw-bold mb-1" style="color: var(--text-dark);">X (Twitter)</h4>
-                    <p class="mb-0" style="font-size:0.85rem; color: var(--text-mid);">Research updates</p>
-                  </div>
-                </a>
-              </div>
-
+                </div>
+              </form>
             </div>
           </div>
 
@@ -252,6 +291,9 @@
       </div>
     </section>
   </main>
+
+  <!-- Toast notification -->
+  <div class="copy-toast" id="copyToast"><i class="bi bi-check2-circle"></i> <span>Email copied to clipboard!</span></div>
 
   <footer>
     <div class="container">
@@ -276,18 +318,74 @@
       <p class="mb-0">
         © <span id="footerYear">2026</span> <strong id="footerName" class="footer-name">RASHEL MAHMUD RABBI</strong>
         &nbsp;|&nbsp; <span id="footerTitle">Graduate Researcher · Computer Vision &amp; AI</span>
-        <a href="https://portfolio-backend-u.vercel.app/admin" target="_blank" title="Admin Dashboard"
-          class="footer-admin-link" aria-label="Admin"><i class="bi bi-gear-fill"></i></a>
       </p>
     </div>
   </footer>
 
   <button id="scrollTop" aria-label="Back to top" title="Back to top"><i class="bi bi-arrow-up-short"></i></button>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/theme.js?v=3.8"></script>
-  <script src="../assets/js/config.js?v=3.8"></script>
-  <script src="../assets/js/api.js?v=3.8"></script>
-  <script src="../assets/js/interactions.js?v=3.8"></script>
+  <script src="../assets/js/theme.js?v=3.9"></script>
+  <script src="../assets/js/config.js?v=3.9"></script>
+  <script src="../assets/js/api.js?v=3.9"></script>
+  <script src="../assets/js/interactions.js?v=3.9"></script>
+  <script>
+    function copyEmail(btn) {
+      const email = 'raselmahud6757@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const toast = document.getElementById('copyToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+      }).catch(() => {
+        alert('Email: ' + email);
+      });
+    }
+
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contactSubmitBtn');
+      const statusEl = document.getElementById('contactFormStatus');
+      const form = document.getElementById('contactForm');
+
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        subject: form.subject.value.trim(),
+        message: form.message.value.trim()
+      };
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Sending...';
+      statusEl.style.display = 'none';
+
+      try {
+        const backendBase = (typeof API_BASE !== 'undefined') ? API_BASE : 'https://portfolio-backend-u.vercel.app';
+        const res = await fetch(backendBase + '/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || 'Failed to send message.');
+
+        statusEl.className = 'mt-3 alert alert-success py-2 px-3';
+        statusEl.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>' + (json.message || 'Thank you! Your message has been sent successfully.');
+        statusEl.style.display = 'block';
+        form.reset();
+      } catch (err) {
+        console.warn('Backend submission note:', err.message);
+        // Graceful fallback to mailto
+        statusEl.className = 'mt-3 alert alert-warning py-2 px-3';
+        statusEl.innerHTML = `Could not reach the automated dispatcher directly. <a href="mailto:raselmahud6757@gmail.com?subject=${encodeURIComponent(data.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(data.message + '\n\n— ' + data.name + ' (' + data.email + ')')}" class="alert-link">Click here to send via your email client &rarr;</a>`;
+        statusEl.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-send me-2"></i> Send Message';
+      }
+    }
+  </script>
 </body>
 
 </html>
