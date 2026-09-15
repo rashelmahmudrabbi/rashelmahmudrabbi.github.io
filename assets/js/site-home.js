@@ -281,7 +281,7 @@
           <div class="hero-stat"><div class="hero-stat-num">${stats.publications ?? 3}</div><div class="hero-stat-label">Publications</div></div>
           <div class="hero-stat"><div class="hero-stat-num">${stats.projects ?? 7}</div><div class="hero-stat-label">Projects</div></div>
           <div class="hero-stat"><div class="hero-stat-num">${stats.awards ?? 2}</div><div class="hero-stat-label">Honors</div></div>
-          <div class="hero-stat"><div class="hero-stat-num">3.87</div><div class="hero-stat-label">B.Sc. CGPA</div></div>
+          <div class="hero-stat"><div class="hero-stat-num" data-no-suffix>3.87</div><div class="hero-stat-label">B.Sc. CGPA</div></div>
         </div>
       </div>`;
 
@@ -991,9 +991,13 @@
     if (el) {
       el.innerHTML = (gallery || [])
         .map(
-          (ev, idx) => `
+          (ev, idx) => {
+            // Find the first photo with a valid src for the cover thumbnail
+            const coverPhoto = (ev.photos || []).find(p => p && (p.src || p.url)) || {};
+            const coverSrc = coverPhoto.src || coverPhoto.url || '';
+            return `
         <div class="gallery-item" role="button" tabindex="0" onclick="window.openLightbox ? window.openLightbox(${idx}) : openLightbox(${idx})">
-          <img src="${escapeHtml(resolveAssetUrl((ev.photos && ev.photos[0] && ev.photos[0].src) || '', false))}" alt="${escapeHtml(ev.title || '')}" loading="lazy"
+          <img src="${escapeHtml(resolveAssetUrl(coverSrc, false))}" alt="${escapeHtml(ev.title || '')}" loading="lazy"
                onerror="this.onerror=null;this.src='${getGenericPlaceholder()}'"/>
           <span class="gallery-photo-badge"><i class="bi bi-images"></i> ${(ev.photos || []).length}</span>
           <div class="gallery-overlay">
@@ -1003,7 +1007,8 @@
               <span><i class="bi bi-images me-1"></i>${(ev.photos || []).length} photos</span>
             </div>
           </div>
-        </div>`
+        </div>`;
+          }
         )
         .join('') || '<div class="text-muted text-center">No gallery events yet.</div>';
 
