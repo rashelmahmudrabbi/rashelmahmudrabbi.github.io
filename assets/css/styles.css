@@ -5477,3 +5477,9 @@ footer a:hover {
   border-color: var(--gold);
 }
 
+.research-statement-content b,
+.research-statement-content strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
