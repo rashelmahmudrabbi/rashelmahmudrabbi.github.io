@@ -384,8 +384,10 @@
   function renderResearchStatement(settings) {
     const el = document.getElementById('researchStatementContent');
     if (!el) return;
-    const stmt = settings.about && settings.about.research_statement_text;
+    let stmt = settings.about && settings.about.research_statement_text;
     if (stmt && stmt.trim()) {
+      // Strip block-level layout tags if admin accidentally pasted full page HTML
+      stmt = stmt.replace(/<\/?(section|div|article|main|header|footer)[^>]*>/gi, '').trim();
       el.innerHTML = stmt;
     } else {
       // Default fallback content when admin hasn't set a research statement yet
