@@ -5074,29 +5074,37 @@ footer a:hover {
   100% { transform: translateX(20px); }
 }
 
-/* ── MINIMALIST NAV HOVER ── */
+/* ── DOT INDICATOR NAV HOVER ── */
 .navbar .nav-link {
   position: relative;
-  overflow: hidden;
-  transition: color 0.3s ease;
-  margin: 0 4px;
+  overflow: visible;
+  transition: color 0.3s ease, transform 0.3s ease;
+  margin: 0 6px;
+  padding-bottom: 6px !important;
 }
 
 .navbar .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0px;
-  left: 0;
-  width: 100%;
-  height: 2px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   background: var(--gold);
-  transform: translateX(-101%);
-  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 0;
+  transform: translate(-50%, 5px);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .navbar .nav-link:hover::after,
 .navbar .nav-link.active::after {
-  transform: translateX(0);
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.navbar .nav-link:hover {
+  transform: translateY(-1px);
 }
 
 .navbar .nav-link.active {
@@ -5105,7 +5113,11 @@ footer a:hover {
 }
 
 [data-theme="dark"] .navbar .nav-link.active {
-  color: var(--gold) !important;
+  color: #fff !important;
+}
+[data-theme="dark"] .navbar .nav-link::after {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(217, 160, 81, 0.6);
 }
 
 
