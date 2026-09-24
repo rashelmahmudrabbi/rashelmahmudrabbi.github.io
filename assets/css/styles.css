@@ -5074,10 +5074,26 @@ footer a:hover {
   100% { transform: translateX(20px); }
 }
 
-/* ── ANIMATED NAV UNDERLINE ── */
+/* ── PREMIUM ANIMATED NAV HOVER ── */
 .navbar .nav-link {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 1;
+  border-radius: 20px;
+  margin: 0 4px;
+}
+
+.navbar .nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(47, 111, 237, 0.08);
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .navbar .nav-link::after {
@@ -5086,23 +5102,43 @@ footer a:hover {
   bottom: 2px;
   left: 50%;
   width: 0;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 2px;
-  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #78a9ff);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(217, 160, 81, 0.4);
+  transition: width 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navbar .nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.navbar .nav-link:hover::before,
+.navbar .nav-link.active::before {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .navbar .nav-link:hover::after,
 .navbar .nav-link.active::after {
-  width: 70%;
-  left: 15%;
+  width: 50%;
+  left: 25%;
 }
 
 .navbar .nav-link.active {
+  color: var(--primary) !important;
+  font-weight: 700;
   background: transparent !important;
 }
 
+[data-theme="dark"] .navbar .nav-link::before {
+  background: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .navbar .nav-link::after {
+  box-shadow: 0 2px 8px rgba(120, 169, 255, 0.4);
+}
 [data-theme="dark"] .navbar .nav-link.active {
+  color: #fff !important;
   background: transparent !important;
 }
 
