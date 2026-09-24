@@ -5483,3 +5483,35 @@ footer a:hover {
   font-weight: 700;
 }
 
+/* ============ THEME TOGGLE – Focus & Accessibility ============ */
+#themeToggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+/* ============ DARK MODE – Enhanced Card Depth (#11) ============ */
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .pub-card,
+[data-theme="dark"] .timeline-card,
+[data-theme="dark"] .ref-card,
+[data-theme="dark"] .award-item,
+[data-theme="dark"] .research-card,
+[data-theme="dark"] .interest-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ============ PROJECT CARD – Hover Lift (#13) ============ */
+.project-card {
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  border-color: var(--gold-soft);
+}
+
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}

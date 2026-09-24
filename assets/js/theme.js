@@ -1,16 +1,7 @@
-// Theme initialization & toggle with localStorage persistence
-(function() {
-  try {
-    const saved = localStorage.getItem('portfolio_theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialDark = saved === 'dark' || (!saved && prefersDark);
-    if (initialDark) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else if (saved === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  } catch (e) {}
-})();
+// Theme initialization is handled by the inline <script> block in each HTML
+// file's <head> to prevent FOUC. This file only provides the toggle function
+// and additional theme-related utilities.
+
 
 function updateThemeKnob(isDark) {
   const knob = document.querySelector('#themeToggle .knob');

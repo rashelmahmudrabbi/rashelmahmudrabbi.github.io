@@ -666,7 +666,7 @@
       style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,12,30,.96);align-items:center;justify-content:center;flex-direction:column;" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
       <button onclick="closeLightbox()" aria-label="Close photo lightbox"
         style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:10;line-height:1;">&times;</button>
-      <div id="lbCounter"
+      <div id="lbCounter" aria-live="polite"
         style="position:absolute;top:1.4rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:.85rem;letter-spacing:.5px;">
       </div>
       <div id="lbTitle"
@@ -679,7 +679,7 @@
         <img id="lbImage" src="" alt=""
           style="max-width:88vw;max-height:78vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.6);" />
       </div>
-      <div id="lbCaption"
+      <div id="lbCaption" aria-live="polite"
         style="color:rgba(255,255,255,.75);font-size:.9rem;margin-top:.8rem;text-align:center;max-width:70vw;min-height:1.4rem;">
       </div>
       <div id="lbThumbs"
