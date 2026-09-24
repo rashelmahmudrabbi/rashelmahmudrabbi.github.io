@@ -5074,52 +5074,6 @@ footer a:hover {
   100% { transform: translateX(20px); }
 }
 
-/* ── DOT INDICATOR NAV HOVER ── */
-.navbar .nav-link {
-  position: relative;
-  overflow: visible;
-  transition: color 0.3s ease, transform 0.3s ease;
-  margin: 0 6px;
-  padding-bottom: 6px !important;
-}
-
-.navbar .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: 0;
-  transform: translate(-50%, 5px);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-.navbar .nav-link:hover {
-  transform: translateY(-1px);
-}
-
-.navbar .nav-link.active {
-  color: var(--primary) !important;
-  font-weight: 700;
-}
-
-[data-theme="dark"] .navbar .nav-link.active {
-  color: #fff !important;
-}
-[data-theme="dark"] .navbar .nav-link::after {
-  background: var(--gold);
-  box-shadow: 0 0 8px rgba(217, 160, 81, 0.6);
-}
-
 
 /* ── CONTACT CARD ── */
 .contact-card:hover {
