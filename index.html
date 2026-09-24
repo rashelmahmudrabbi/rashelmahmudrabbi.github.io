@@ -931,15 +931,17 @@
       }
 
       // ── Stats Counter Animation ──
-      function animateCounter(el, target) {
+      function animateCounter(el, target, isDecimal) {
         const duration = 1500;
         const start = performance.now();
         const easeOut = t => 1 - Math.pow(1 - t, 3);
         function step(now) {
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
-          el.textContent = Math.round(easeOut(progress) * target);
+          const current = easeOut(progress) * target;
+          el.textContent = isDecimal ? current.toFixed(2) : Math.round(current);
           if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = isDecimal ? target.toFixed(2) : target;
         }
         requestAnimationFrame(step);
       }
@@ -952,8 +954,10 @@
             if (entry.isIntersecting && !statsAnimated) {
               statsAnimated = true;
               statNums.forEach(el => {
-                const target = parseInt(el.textContent, 10) || 0;
-                if (target > 0) animateCounter(el, target);
+                const text = el.textContent;
+                const isDecimal = text.includes('.');
+                const target = parseFloat(text) || 0;
+                if (target > 0) animateCounter(el, target, isDecimal);
               });
               statsObserver.disconnect();
             }
