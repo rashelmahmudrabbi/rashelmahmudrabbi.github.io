@@ -5271,48 +5271,57 @@ footer a:hover {
 .contact-form-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 2.2rem;
-  box-shadow: 0 12px 40px rgba(11, 31, 58, 0.06);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 16px 40px rgba(11, 31, 58, 0.04), 0 0 0 1px rgba(255,255,255,0.5) inset;
+  position: relative;
+  overflow: hidden;
+}
+.contact-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--gold), #78a9ff);
 }
 [data-theme="dark"] .contact-form-card {
   background: var(--surface);
-  border-color: var(--line);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.02) inset;
 }
 .contact-input-field {
   background: var(--surface-2);
   border: 1.5px solid var(--line);
   color: var(--text-dark);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
   font-size: 0.95rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   width: 100%;
 }
 .contact-input-field:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+  box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.12);
   background: var(--surface);
   color: var(--text-dark);
+  transform: translateY(-2px);
 }
 [data-theme="dark"] .contact-input-field {
-  background: var(--surface-2);
+  background: rgba(255,255,255,0.03);
   color: var(--ink);
-  border-color: var(--line);
+  border-color: rgba(255,255,255,0.1);
 }
 [data-theme="dark"] .contact-input-field:focus {
   background: var(--surface);
   color: #ffffff;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(120, 169, 255, 0.2);
+  box-shadow: 0 0 0 4px rgba(120, 169, 255, 0.15);
 }
 .contact-label {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   color: var(--text-mid);
   margin-bottom: 0.4rem;
   display: block;
