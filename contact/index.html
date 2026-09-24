@@ -375,25 +375,40 @@
       statusEl.style.display = 'none';
 
       try {
+        // 1. Send directly to your email via Web3Forms
+        const web3FormsData = {
+          ...data,
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY_HERE" // <-- We will replace this
+        };
+
+        const emailRes = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(web3FormsData)
+        });
+        const emailJson = await emailRes.json();
+        
+        if (!emailRes.ok || !emailJson.success) {
+          throw new Error('Email delivery failed.');
+        }
+
+        // 2. Also save to your database silently (backup)
         const backendBase = (typeof API_BASE !== 'undefined') ? API_BASE : 'https://portfolio-backend-u.vercel.app';
-        const res = await fetch(backendBase + '/api/contact', {
+        fetch(backendBase + '/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
-        });
+        }).catch(err => console.warn('Database backup failed:', err));
 
-        const json = await res.json();
-        if (!res.ok) throw new Error(json.error || 'Failed to send message.');
-
+        // Success message!
         statusEl.className = 'mt-3 alert alert-success py-2 px-3';
-        statusEl.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>' + (json.message || 'Thank you! Your message has been sent successfully.');
+        statusEl.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>' + 'Thank you! Your message has been sent directly to my inbox.';
         statusEl.style.display = 'block';
         form.reset();
       } catch (err) {
-        console.warn('Backend submission note:', err.message);
-        // Graceful fallback to mailto
-        statusEl.className = 'mt-3 alert alert-warning py-2 px-3';
-        statusEl.innerHTML = `Could not reach the automated dispatcher directly. <a href="mailto:raselmahud6757@gmail.com?subject=${encodeURIComponent(data.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(data.message + '\n\n— ' + data.name + ' (' + data.email + ')')}" class="alert-link">Click here to send via your email client &rarr;</a>`;
+        console.warn('Submission error:', err.message);
+        statusEl.className = 'mt-3 alert alert-danger py-2 px-3';
+        statusEl.innerHTML = `Could not send message automatically. <a href="mailto:raselmahud6757@gmail.com?subject=${encodeURIComponent(data.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(data.message + '\n\n— ' + data.name + ' (' + data.email + ')')}" class="alert-link">Click here to send via your email client &rarr;</a>`;
         statusEl.style.display = 'block';
       } finally {
         btn.disabled = false;
