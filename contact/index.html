@@ -131,12 +131,13 @@
     (function(){
       const preloader = document.getElementById('pagePreloader');
       if(!preloader) return;
-      window.addEventListener('portfolio-data-ready', () => {
+      window.addEventListener('load', () => {
         preloader.classList.add('preloader-hidden');
       });
+      // Fallback
       setTimeout(() => {
         if (!preloader.classList.contains('preloader-hidden')) preloader.classList.add('preloader-hidden');
-      }, 8000);
+      }, 1000);
     })();
   </script>
   <div id="scrollProgress"></div>
