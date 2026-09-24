@@ -278,7 +278,7 @@
         </div>
 
         <div class="hero-stats">
-          <div class="hero-stat"><div class="hero-stat-num">${stats.publications ?? 3}</div><div class="hero-stat-label">Publications</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">2<span style="font-size: 1.2rem; color: var(--gold);">+</span></div><div class="hero-stat-label">Publications</div></div>
           <div class="hero-stat"><div class="hero-stat-num">${stats.projects ?? 7}</div><div class="hero-stat-label">Projects</div></div>
           <div class="hero-stat"><div class="hero-stat-num">${stats.awards ?? 2}</div><div class="hero-stat-label">Honors</div></div>
           <div class="hero-stat"><div class="hero-stat-num" data-no-suffix>3.87</div><div class="hero-stat-label">B.Sc. CGPA</div></div>
