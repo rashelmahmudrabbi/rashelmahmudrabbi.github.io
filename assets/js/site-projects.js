@@ -276,6 +276,8 @@
     }
 
     const researchGridItems = research.filter((p) => p.category === 'research' && !p.featured);
+    const featured = projects.filter((p) => p.featured);
+    const thesis = projects.filter((p) => p.category === 'thesis');
 
     let html = '';
     html += `
