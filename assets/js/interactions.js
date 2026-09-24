@@ -133,41 +133,7 @@
     window.initTiltCards = initTiltCards;
   }
 
-  // ── 4. PAGE TRANSITION OVERLAY ────────────────────────────────────────────
-  const transitionOverlay = document.getElementById('pageTransitionOverlay');
-  if (transitionOverlay && !prefersReducedMotion) {
-    // Intercept internal navigation links
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[href]');
-      if (!link) return;
 
-      const href = link.getAttribute('href');
-      // Only intercept internal page navigation (not anchors, external links, or javascript:)
-      if (!href) return;
-      if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-      if (link.target === '_blank') return;
-      if (href.startsWith('http') && !href.includes(window.location.hostname)) return;
-
-      e.preventDefault();
-      transitionOverlay.classList.add('active');
-
-      setTimeout(() => {
-        window.location.href = href;
-      }, 450);
-    });
-
-    // Remove overlay on page show (back/forward navigation)
-    window.addEventListener('pageshow', (e) => {
-      if (e.persisted) {
-        transitionOverlay.classList.remove('active');
-      }
-    });
-
-    // Also remove on initial load
-    window.addEventListener('load', () => {
-      transitionOverlay.classList.remove('active');
-    });
-  }
 
   // ── 5. HERO PARTICLE CANVAS ───────────────────────────────────────────────
   function initParticles() {
