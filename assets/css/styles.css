@@ -4568,31 +4568,6 @@ footer a:hover {
   overflow: hidden;
 }
 
-.pub-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--gold);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease);
-  border-radius: 4px 0 0 4px;
-}
-
-.pub-card:hover::before {
-  opacity: 1;
-}
-
-.pub-card:hover {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--gold-tint) 100%);
-}
-
-[data-theme="dark"] .pub-card:hover {
-  background: linear-gradient(135deg, var(--surface) 0%, rgba(47, 111, 237, 0.06) 100%);
-}
-
 /* ============ BLOG READING PROGRESS BAR ============ */
 .reading-progress {
   position: fixed;
