@@ -123,6 +123,76 @@
   </style>
 </head>
 <body>
+  <!-- GLOBAL PRELOADER -->
+  <div id="pagePreloader" class="page-preloader">
+    <div class="preloader-content">
+      <div class="preloader-ring-wrap">
+        <svg class="preloader-svg" width="120" height="120" viewBox="0 0 120 120">
+          <defs>
+            <linearGradient id="preloaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2F6FED" />
+              <stop offset="100%" stop-color="#78A9FF" />
+            </linearGradient>
+          </defs>
+          <circle class="preloader-track" cx="60" cy="60" r="54" fill="none" stroke-width="6" />
+          <circle class="preloader-progress" id="preloaderProgress" cx="60" cy="60" r="54" fill="none" stroke="url(#preloaderGradient)" stroke-width="6" stroke-dasharray="339.292" stroke-dashoffset="339.292" />
+        </svg>
+        <div class="preloader-center">
+          <span class="preloader-percent" id="preloaderPercent">0</span>
+        </div>
+      </div>
+      <div class="preloader-meta">
+        <div class="preloader-brand">RASHEL MAHMUD RABBI</div>
+        <div class="preloader-sub">
+          <span class="preloader-pulse-dot"></span> Fetching Data...
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const preloader = document.getElementById('pagePreloader');
+      const progress = document.getElementById('preloaderProgress');
+      const percent = document.getElementById('preloaderPercent');
+      if(!preloader) return;
+      const circumference = 2 * Math.PI * 54;
+      let current = 0;
+      let target = 90;
+      let speed = 2;
+      
+      const interval = setInterval(() => {
+        if(current < target) {
+          current += speed;
+          if(current > target) current = target;
+          percent.textContent = Math.floor(current);
+          progress.style.strokeDashoffset = circumference - (current / 100) * circumference;
+        }
+      }, 30);
+
+      window.addEventListener('portfolio-data-ready', () => {
+        target = 100;
+        speed = 10;
+        const completeInterval = setInterval(() => {
+          if (current >= 100) {
+            clearInterval(completeInterval);
+            clearInterval(interval);
+            percent.textContent = '100';
+            progress.style.strokeDashoffset = 0;
+            preloader.classList.add('preloader-complete');
+            setTimeout(() => preloader.classList.add('preloader-hidden'), 400);
+          } else {
+            current += speed;
+            if(current > 100) current = 100;
+            percent.textContent = Math.floor(current);
+            progress.style.strokeDashoffset = circumference - (current / 100) * circumference;
+          }
+        }, 20);
+      });
+      setTimeout(() => {
+        if (!preloader.classList.contains('preloader-hidden')) preloader.classList.add('preloader-hidden');
+      }, 8000);
+    })();
+  </script>
   <!-- Floating particles -->
   <div class="particles" id="particles"></div>
 

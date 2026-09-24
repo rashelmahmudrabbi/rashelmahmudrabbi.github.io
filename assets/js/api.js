@@ -246,6 +246,12 @@ function isCacheFresh(cached) {
 // 2. In the background, fetch fresh data from backend. If changed, updates cache and dispatches 'portfolio-updated' event.
 // 3. If no cache exists, fetches from backend (or static data.json fallback).
 async function getPortfolio(isSubpage = false) {
+  const result = await _getPortfolio(isSubpage);
+  window.dispatchEvent(new Event('portfolio-data-ready'));
+  return result;
+}
+
+async function _getPortfolio(isSubpage = false) {
   const cached = getCachedPortfolio();
 
   // Background revalidation helper
