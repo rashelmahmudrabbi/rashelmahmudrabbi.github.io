@@ -4568,6 +4568,24 @@ footer a:hover {
   overflow: hidden;
 }
 
+.pub-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-radius: 4px 0 0 4px;
+}
+
+.pub-card:hover::before {
+  transform: scaleY(1);
+}
+
 /* ============ BLOG READING PROGRESS BAR ============ */
 .reading-progress {
   position: fixed;
