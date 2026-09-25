@@ -108,18 +108,18 @@
     .coming-soon p{font-size:.88rem;color:var(--text-mid);margin:0;}
 
     /* NEWSLETTER */
-    .newsletter-card{background:var(--navy-deep);border-radius:14px;padding:2rem;text-align:center;margin-top:2rem;}
-    [data-theme="dark"] .newsletter-card{background:var(--surface);border:1px solid var(--line);}
-    .newsletter-card h4{font-family:'Crimson Pro',serif;color:var(--accent-warm-soft);margin-bottom:.5rem;}
-    .newsletter-card p{color:rgba(255,255,255,.7);font-size:.88rem;margin-bottom:1rem;}
-    [data-theme="dark"] .newsletter-card p{color:var(--ink-soft);}
-    .newsletter-input{display:flex;gap:.5rem;}
-    .newsletter-input input{flex:1;border:none;border-radius:25px;padding:.5rem 1rem;font-size:.85rem;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
-    [data-theme="dark"] .newsletter-input input{background:var(--surface-2);color:var(--ink);border-color:var(--line);}
-    .newsletter-input input::placeholder{color:rgba(255,255,255,.5);}
-    .newsletter-input button{background:var(--accent-warm);border:none;color:#ffffff;font-weight:700;font-size:.82rem;padding:.5rem 1.2rem;border-radius:25px;transition:background .2s;white-space:nowrap;}
-    .newsletter-input button:hover{background:var(--accent-warm-soft);}
+    .newsletter-card{background:var(--surface);border:1px solid var(--line);box-shadow:0 8px 24px -10px rgba(11,31,58,0.06);border-radius:14px;padding:2.2rem 2rem;text-align:center;margin-top:2rem;}
+    .newsletter-card h4{font-family:'Crimson Pro',serif;color:var(--navy);font-size:1.35rem;font-weight:700;margin-bottom:.5rem;}
+    .newsletter-card p{color:var(--ink-soft);font-size:.9rem;margin-bottom:1.2rem;}
+    .newsletter-input{display:flex;gap:.5rem;max-width:520px;margin:0 auto;}
+    .newsletter-input input{flex:1;border:1px solid var(--line);border-radius:25px;padding:.6rem 1.1rem;font-size:.88rem;background:var(--surface-2);color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+    .newsletter-input input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(47,111,237,0.12);}
+    .newsletter-input input::placeholder{color:var(--ink-faint);}
+    .newsletter-input button{background:var(--accent-warm);border:none;color:#ffffff;font-weight:700;font-size:.85rem;padding:.6rem 1.4rem;border-radius:25px;cursor:pointer;transition:background .2s,transform .15s ease;white-space:nowrap;}
+    .newsletter-input button:hover{background:var(--accent-warm-soft);transform:translateY(-1px);}
+    [data-theme="dark"] .newsletter-card h4{color:var(--navy);}
     [data-theme="dark"] .newsletter-input button{color:#0B1F3A;}
+    [data-theme="dark"] .newsletter-input input:focus{box-shadow:0 0 0 3px rgba(120,169,255,0.18);}
 
     @media(max-width:900px){
       .blog-grid{grid-template-columns:1fr;}
@@ -227,7 +227,7 @@
                 <button type="submit" id="sub-btn">Subscribe</button>
               </div>
             </form>
-            <div id="newsletter-success" style="display:none;color:var(--accent-warm-soft);font-size:.9rem;margin-top:.8rem;font-weight:500;">
+            <div id="newsletter-success" style="display:none;color:var(--sage);font-size:.9rem;margin-top:.8rem;font-weight:600;">
               ✓ Thank you! You'll hear from me when I publish new posts.
             </div>
             <div id="newsletter-error" style="display:none;color:#f88;font-size:.85rem;margin-top:.8rem;">
